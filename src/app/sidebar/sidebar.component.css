@@ -1,0 +1,74 @@
+.sidebar {
+  background-color: black;
+  background-image: url("../assets/images/sidebar-bg.png");
+  opacity: 0.5;
+  background-size: cover;
+  background-position: center;
+  padding: 20px;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  width: 250px; /* Set width as needed */
+  height: 100vh; /* Full height */
+  position: fixed; /* Fixed position */
+  top: 0; /* Align to the top */
+  left: 0; /* Align to the left */
+  overflow-y: auto; /* Enable scrolling if needed */
+}
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+  text-align: center;
+}
+.sidebar-header h2 {
+  color: #f3a502;
+  font-family: "Poppins", sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  margin: 0;
+}
+.sidebar .logo {
+  background-image: url("../assets/images/honey.png");
+  width: 100px;
+  height: 100px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-left: 0;
+}
+.sidebar-menu h3, .sidebar-library h3, .sidebar-general h3 {
+  font-size: 14px;
+  text-transform: uppercase;
+  color: #b0b0b0;
+  margin-bottom: 10px;
+}
+.sidebar-menu ul, .sidebar-library ul, .sidebar-general ul {
+  list-style: none;
+  padding: 0;
+}
+.sidebar-menu ul li, .sidebar-library ul li, .sidebar-general ul li {
+  margin-bottom: 15px;
+}
+.sidebar-menu ul li a, .sidebar-library ul li a, .sidebar-general ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  transition: color 0.3s ease;
+}
+.sidebar-menu ul li a fa-icon, .sidebar-library ul li a fa-icon, .sidebar-general ul li a fa-icon {
+  margin-right: 10px;
+  font-size: 18px;
+}
+.sidebar-menu ul li a.active, .sidebar-menu ul li a:hover, .sidebar-library ul li a.active, .sidebar-library ul li a:hover, .sidebar-general ul li a.active, .sidebar-general ul li a:hover {
+  color: #f3a502;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+}/*# sourceMappingURL=sidebar.component.css.map */
