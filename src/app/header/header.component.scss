@@ -1,0 +1,96 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: black; // Change to your desired background color
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+  .logo {
+    img {
+      width: 50px; // Adjust the size as needed
+      height: auto; // Maintain aspect ratio
+      border: 1px solid #000000;
+    }
+  }
+
+  .top-nav {
+    ul {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      border-radius: 92px 0px 0px 0px;
+      opacity: 0px;
+
+
+      li {
+        margin: 0 15px; // Spacing between nav items
+        a {
+          text-decoration: none;
+          color: white; // Change to your desired text color
+          font-weight: bold;
+
+          &:hover {
+            text-decoration-line: underline;
+            color: #F8B319;
+            ; // Change to your desired hover color
+          }
+        }
+      }
+    }
+  }
+
+  .search-bar {
+    display: flex;
+    align-items: center;
+    color:#21242D;
+    ;
+    opacity: 0.7;
+
+    .search-icon, .filter-icon {
+      margin: 0 5px; // Spacing between icons and input
+      cursor: pointer;
+      color: #fff;
+    }
+
+    input {
+      padding: 5px 10px;
+      border: 1px solid #ced4da; // Change to your desired border color
+      border-radius: 5px;
+      outline: none;
+
+      &:focus {
+        border-color: #007bff; // Change to your desired focus border color
+      }
+    }
+  }
+
+  .profile-menu {
+    display: flex;
+    align-items: center;
+    color: #fff;
+
+    .notification-icon {
+      margin-right: 10px; // Spacing between notification icon and text
+      cursor: pointer;
+      color: #fff;
+    }
+
+    span {
+      margin-right: 10px; // Spacing between name and user icon
+      font-weight: bold;
+      color: #fff;
+
+      &:hover {
+        color: #ffd500; // Change to your desired hover color
+        text-decoration: underline; // Underline effect on hover
+        cursor: pointer; // Change cursor to pointer
+      }
+    }
+
+    i {
+      cursor: pointer; // Change cursor to pointer for user icon
+    }
+  }
+}

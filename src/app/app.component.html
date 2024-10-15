@@ -1,14 +1,4 @@
-<table>
-        <thead>
-            <td>Id</td>
-            <td>Product name</td>
-            <td>Price</td>
-        </thead>
-        <tbody>
-        <tr *ngFor="let product of products">
-            <td>{{product.id}}</td>
-            <td>{{product.name}}</td>
-            <td>{{product.price}}</td>
-        </tr>
-    </tbody>
-</table>
+<app-header (toggle)="isSidebarOpen = !isSidebarOpen"></app-header>
+<app-sidebar [isOpen]="isSidebarOpen"></app-sidebar> <!-- Correctly binding isOpen -->
+<app-footer></app-footer>
+<router-outlet></router-outlet>

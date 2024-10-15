@@ -5,14 +5,12 @@ import { ProductService } from './product.service';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent implements OnInit {
-  products: any[] = [];
+export class AppComponent {
+  title = 'MBF';
+  isSidebarOpen = false; // Sidebar is hidden by default
 
-  constructor(private productService: ProductService) {}
-
-  ngOnInit() {
-    this.productService.getProducts().subscribe((data) => {
-      this.products = data;
-    });
+  toggleSidebar() {
+    this.isSidebarOpen = !this.isSidebarOpen; // Toggle the sidebar state
+    console.log('Sidebar Open:', this.isSidebarOpen); // Check the value
   }
 }

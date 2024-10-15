@@ -1,0 +1,76 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: black;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.header .logo img {
+  width: 50px;
+  height: auto;
+  border: 1px solid #000000;
+}
+.header .top-nav ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-radius: 92px 0px 0px 0px;
+  opacity: 0px;
+}
+.header .top-nav ul li {
+  margin: 0 15px;
+}
+.header .top-nav ul li a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+.header .top-nav ul li a:hover {
+  text-decoration-line: underline;
+  color: #F8B319;
+}
+.header .search-bar {
+  display: flex;
+  align-items: center;
+  color: #21242D;
+  opacity: 0.7;
+}
+.header .search-bar .search-icon, .header .search-bar .filter-icon {
+  margin: 0 5px;
+  cursor: pointer;
+  color: #fff;
+}
+.header .search-bar input {
+  padding: 5px 10px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  outline: none;
+}
+.header .search-bar input:focus {
+  border-color: #007bff;
+}
+.header .profile-menu {
+  display: flex;
+  align-items: center;
+  color: #fff;
+}
+.header .profile-menu .notification-icon {
+  margin-right: 10px;
+  cursor: pointer;
+  color: #fff;
+}
+.header .profile-menu span {
+  margin-right: 10px;
+  font-weight: bold;
+  color: #fff;
+}
+.header .profile-menu span:hover {
+  color: #ffd500;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.header .profile-menu i {
+  cursor: pointer;
+}/*# sourceMappingURL=header.component.css.map */

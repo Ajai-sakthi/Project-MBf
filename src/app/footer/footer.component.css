@@ -1,0 +1,11 @@
+.footer {
+  background-color: #1d1d1d;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  position: fixed;
+  bottom: 0;
+  left: 0; /* Align to the left */
+  width: calc(100% - 250px); /* Adjust width based on sidebar */
+  font-size: 0.9rem;
+}/*# sourceMappingURL=footer.component.css.map */
