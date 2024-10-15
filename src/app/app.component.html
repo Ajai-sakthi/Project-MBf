@@ -1,1 +1,14 @@
-<h1>SAMBAVAM STARTED!...</h1>
+<table>
+        <thead>
+            <td>Id</td>
+            <td>Product name</td>
+            <td>Price</td>
+        </thead>
+        <tbody>
+        <tr *ngFor="let product of products">
+            <td>{{product.id}}</td>
+            <td>{{product.name}}</td>
+            <td>{{product.price}}</td>
+        </tr>
+    </tbody>
+</table>
