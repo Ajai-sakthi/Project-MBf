@@ -2,39 +2,62 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 20px;
-  background-color: black; // Change to your desired background color
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 15px 20px;
+  background-color: black;
+  color: white;
+  font-family: 'Arial', sans-serif;
+
+  button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    i {
+      margin-right: 5px;
+    }
+  }
 
   .logo {
-    img {
-      width: 50px; // Adjust the size as needed
-      height: auto; // Maintain aspect ratio
-      border: 1px solid #000000;
+    display: flex;
+    align-items: center;
+    background-image: url('../assets/images/CiN.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: left center;
+    height: 50px;
+
+    h2 {
+      margin: 0;
+      font-size: 24px;
+      font-weight: bold;
+      color: rgb(255, 174, 0);
+      padding-left: 60px;
     }
   }
 
   .top-nav {
     ul {
-      display: flex;
       list-style: none;
-      margin: 0;
+      display: flex;
+      gap: 20px;
       padding: 0;
-      border-radius: 92px 0px 0px 0px;
-      opacity: 0px;
-
+      margin: 0;
 
       li {
-        margin: 0 15px; // Spacing between nav items
         a {
+          color: white;
           text-decoration: none;
-          color: white; // Change to your desired text color
-          font-weight: bold;
+          font-size: 18px;
 
           &:hover {
+            color: rgb(255, 174, 0);
             text-decoration-line: underline;
-            color: #F8B319;
-            ; // Change to your desired hover color
           }
         }
       }
@@ -44,24 +67,29 @@
   .search-bar {
     display: flex;
     align-items: center;
-    color:#21242D;
-    ;
-    opacity: 0.7;
+    background-color: black;
+    padding: 5px 10px;
+    border-radius: 5px;
 
-    .search-icon, .filter-icon {
-      margin: 0 5px; // Spacing between icons and input
+    .search-icon,
+    .filter-icon {
+      font-size: 18px;
+      margin: 5px;
       cursor: pointer;
-      color: #fff;
+      color: #bdc3c7;
     }
 
     input {
-      padding: 5px 10px;
-      border: 1px solid #ced4da; // Change to your desired border color
-      border-radius: 5px;
+      background: none;
+      border: 1px solid white;
+      color: white;
+      font-size: 16px;
+      padding: 5px;
       outline: none;
+      border-radius: 5px;
 
-      &:focus {
-        border-color: #007bff; // Change to your desired focus border color
+      &::placeholder {
+        color: #bdc3c7;
       }
     }
   }
@@ -69,28 +97,136 @@
   .profile-menu {
     display: flex;
     align-items: center;
-    color: #fff;
+    gap: 10px;
+    color: white;
 
     .notification-icon {
-      margin-right: 10px; // Spacing between notification icon and text
+      font-size: 20px;
       cursor: pointer;
-      color: #fff;
     }
 
     span {
-      margin-right: 10px; // Spacing between name and user icon
-      font-weight: bold;
-      color: #fff;
+      font-size: 18px;
+    }
+    span:hover{
+      color: rgb(255, 174, 0);
+      text-decoration-line: underline;
+    }
 
-      &:hover {
-        color: #ffd500; // Change to your desired hover color
-        text-decoration: underline; // Underline effect on hover
-        cursor: pointer; // Change cursor to pointer
+    .fa-user-circle {
+      font-size: 24px;
+      cursor: pointer;
+    }
+  }
+
+  // Responsive design
+  @media (max-width: 1024px) {
+    padding: 5px 10px;
+
+    .logo {
+      h2 {
+        font-size: 20px;
+        padding-left: 50px;
       }
     }
 
-    i {
-      cursor: pointer; // Change cursor to pointer for user icon
+    .top-nav {
+      flex-direction: column;
+      align-items: flex-start;
+      ul {
+        gap: 15px;
+
+        li {
+          a {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+
+    .search-bar input {
+      font-size: 14px;
+      padding: 5px 10px;
+      border-radius: 5px;
+
+    }
+
+    .profile-menu span {
+      font-size: 16px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+
+    .logo {
+      height: 40px;
+
+      h2 {
+        font-size: 18px;
+        padding-left: 45px;
+      }
+    }
+
+    .top-nav {
+      ul {
+        flex-direction: column;
+        gap: 10px;
+
+        li {
+          a {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+
+    .search-bar {
+      width: 50%;
+      margin-top: 10px;
+      padding: 5px 5px;
+      border-radius: 5px;
+
+      input {
+        width: 100%;
+        font-size: 14px;
+      }
+    }
+
+    .profile-menu {
+      gap: 8px;
+
+      .fa-user-circle {
+        font-size: 22px;
+      }
+
+      span {
+        font-size: 16px;
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    .logo h2 {
+      font-size: 16px;
+      padding-left: 40px;
+    }
+
+    .search-bar input {
+      font-size: 12px;
+    }
+
+    .profile-menu {
+      gap: 6px;
+
+      .fa-user-circle {
+        font-size: 20px;
+      }
+
+      span {
+        font-size: 14px;
+      }
     }
   }
 }
