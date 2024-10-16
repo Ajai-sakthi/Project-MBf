@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { IconDefinition } from '@fortawesome/fontawesome-common-types';
 import { faHome, faSearch, faTrophy, faStar, faClock, faDownload, faHeart, faPlus, faCheck, faCog, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'; // Importing necessary icons
-
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
