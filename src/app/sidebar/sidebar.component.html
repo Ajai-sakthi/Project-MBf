@@ -9,18 +9,6 @@
         </a>
       </li>
       <li>
-        <a routerLink="/discover">
-          <fa-icon [icon]="faSearch"></fa-icon>
-          Discover
-        </a>
-      </li>
-      <li>
-        <a routerLink="/awards">
-          <fa-icon [icon]="faTrophy"></fa-icon>
-          Awards
-        </a>
-      </li>
-      <li>
         <a routerLink="/celebrities">
           <fa-icon [icon]="faStar"></fa-icon>
           Celebrities
@@ -34,10 +22,8 @@
     <ul>
       <li><a routerLink="/recent"><fa-icon [icon]="faClock"></fa-icon> Recent</a></li>
       <li><a routerLink="/top-rated"><fa-icon [icon]="faStar"></fa-icon> Top Rated</a></li>
-      <li><a routerLink="/downloaded"><fa-icon [icon]="faDownload"></fa-icon> Downloaded</a></li>
-      <li><a routerLink="/playlists"><fa-icon [icon]="faHeart"></fa-icon> Playlists</a></li>
-      <li><a routerLink="/watchlist"><fa-icon [icon]="faPlus"></fa-icon> Watchlist</a></li>
-      <li><a routerLink="/completed"><fa-icon [icon]="faCheck"></fa-icon> Completed</a></li>
+      <li><a routerLink="/wishlist"><fa-icon [icon]="faHeart"></fa-icon> Wishlist</a></li> <!-- Changed routerLink to '/wishlist' -->
+      <li><a routerLink="/languages"><fa-icon [icon]="faLanguage"></fa-icon> Languages</a></li> <!-- Changed routerLink to '/languages' -->
     </ul>
   </div>
 

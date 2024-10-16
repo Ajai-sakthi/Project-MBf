@@ -2,31 +2,24 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 15px 20px;
-  background-color: black;
-  color: white;
-  font-family: 'Arial', sans-serif;
+  background-color: #000000;
+  padding: 1rem;
+  //color: white;
 
+  // Sidebar toggle button
   button {
     background: none;
     border: none;
     color: white;
-    font-size: 24px;
+    font-size: 1.5rem;
     cursor: pointer;
-
-    &:hover {
-      opacity: 0.8;
-    }
-
-    i {
-      margin-right: 5px;
-    }
   }
 
+  // Logo Section
   .logo {
     display: flex;
     align-items: center;
-    background-image: url('../assets/images/logo.png');
+    background: url('../assets/images/logo.png');
     background-repeat: no-repeat;
     background-size: contain;
     background-position: left center;
@@ -36,197 +29,202 @@
       margin: 0;
       font-size: 24px;
       font-weight: bold;
-      color: rgb(255, 174, 0);
       padding-left: 60px;
+      color: #fdc602;
     }
   }
 
+  // Top navigation for Movies, TV Shows, Anime
   .top-nav {
-    ul {
-      list-style: none;
+    .nav-list {
       display: flex;
-      gap: 20px;
+      list-style: none;
       padding: 0;
       margin: 0;
 
       li {
+        margin: 0 15px;
+
         a {
-          color: white;
           text-decoration: none;
-          font-size: 18px;
+          color: white;
+          transition: color 0.3s;
 
           &:hover {
-            color: rgb(255, 174, 0);
-            text-decoration-line: underline;
+            text-decoration: underline;
+            color: #fdc602;
           }
         }
       }
     }
   }
 
+  // Search bar and filter
   .search-bar {
     display: flex;
     align-items: center;
-    background-color: black;
-    padding: 5px 10px;
-    border-radius: 5px;
+    position: relative;
+    color:white;
+
+    width: 300px; // Adjust as needed
 
     .search-icon,
     .filter-icon {
-      font-size: 18px;
-      margin: 5px;
-      cursor: pointer;
-      color: #bdc3c7;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color:white; // Set the icon color to grey
+    }
+
+    .search-icon {
+      left: 10px; // Adjust as needed
+    }
+
+    .filter-icon {
+      left: 230px; // Adjust as needed
+      cursor: pointer; // Make filter icon clickable
     }
 
     input {
-      background: none;
-      border: 1px solid white;
-      color: white;
-      font-size: 16px;
-      padding: 5px;
+      width: 100%;
+      padding: 10px 40px; // Add padding to make space for icons
+      border: 1px;
+      opacity: 0.2;
+      color: azure;
+      border-radius: 20px;
       outline: none;
-      border-radius: 5px;
+    }
+  }
 
-      &::placeholder {
-        color: #bdc3c7;
+  // Auth links (Login and Sign Up)
+  .auth-links {
+    display: flex;
+    align-items: center;
+    list-style: none;
+
+    li {
+      margin: 0 10px;
+
+      a {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: white;
+        transition: color 0.3s;
+
+        i {
+          margin-right: 8px;
+        }
+
+        &:hover {
+          color: #fdc602;
+        }
       }
     }
   }
 
+  // Profile menu (notifications and user icon)
   .profile-menu {
     display: flex;
     align-items: center;
-    gap: 10px;
-    color: white;
 
-    .notification-icon {
-      font-size: 20px;
-      cursor: pointer;
+    .notification-icon,
+    .fa-user-circle {
+      margin: 0 10px;
+      color: white;
     }
 
     span {
-      font-size: 18px;
-    }
-    span:hover{
-      color: rgb(255, 174, 0);
-      text-decoration-line: underline;
-    }
-
-    .fa-user-circle {
-      font-size: 24px;
-      cursor: pointer;
+      margin-right: 10px;
+      color: white;
     }
   }
 
-  // Responsive design
-  @media (max-width: 1024px) {
-    padding: 5px 10px;
-
-    .logo {
-      h2 {
-        font-size: 20px;
-        padding-left: 50px;
-      }
-    }
-
-    .top-nav {
-      flex-direction: column;
-      align-items: flex-start;
-      ul {
-        gap: 15px;
-
-        li {
-          a {
-            font-size: 16px;
-          }
-        }
-      }
-    }
-
-    .search-bar input {
-      font-size: 14px;
-      padding: 5px 10px;
-      border-radius: 5px;
-
-    }
-
-    .profile-menu span {
-      font-size: 16px;
-    }
-  }
-
+  // Responsive design for screens below 768px
   @media (max-width: 768px) {
     flex-direction: column;
     align-items: flex-start;
+    width: 100%;
+    height: auto;
 
-    .logo {
-      height: 40px;
-
-      h2 {
-        font-size: 18px;
-        padding-left: 45px;
-      }
-    }
-
-    .top-nav {
-      ul {
-        flex-direction: column;
-        gap: 10px;
-
-        li {
-          a {
-            font-size: 16px;
-          }
-        }
-      }
+    .top-nav,
+    .auth-links,
+    .profile-menu {
+      justify-content: flex-start;
+      width: 100%;
+      margin-top: 10px;
     }
 
     .search-bar {
       width: 50%;
       margin-top: 10px;
-      padding: 5px 5px;
-      border-radius: 5px;
 
       input {
-        width: 100%;
-        font-size: 14px;
+        width: 80%;
+      }
+      .filter-icon {
+        left: 190px; // Adjust as needed
+        cursor: pointer; // Make filter icon clickable
       }
     }
 
-    .profile-menu {
-      gap: 8px;
+    button {
+      font-size: 1.2rem;
+    }
+  }
 
-      .fa-user-circle {
-        font-size: 22px;
+  // Responsive design for screens below 576px
+  @media (max-width: 576px) {
+    flex-direction: column;
+    align-items: flex-start;
+
+    .logo {
+      justify-content: flex-start;
+      width: 100%;
+
+      h2 {
+        font-size: 18px;
+        padding: 50px;
+        margin: 0;
+        align-items: center;
       }
+    }
 
-      span {
-        font-size: 16px;
+    .search-bar input {
+      width: 100%;
+
+    }
+
+    .auth-links,
+    .profile-menu {
+      li {
+        margin: 0 5px;
       }
     }
   }
 
-  @media (max-width: 480px) {
+  // Responsive design for screens above 779px
+  @media (min-width: 779px) {
     .logo h2 {
-      font-size: 16px;
-      padding-left: 40px;
+      font-size: 28px;
     }
 
     .search-bar input {
-      font-size: 12px;
+      width: 250px;
     }
 
-    .profile-menu {
-      gap: 6px;
+    .auth-links li a,
+    .profile-menu span {
+      font-size: 16px;
+    }
 
-      .fa-user-circle {
-        font-size: 20px;
-      }
+    .profile-menu .notification-icon,
+    .fa-user-circle {
+      font-size: 1.5rem;
+    }
 
-      span {
-        font-size: 14px;
-      }
+    button {
+      font-size: 1.7rem;
     }
   }
 }

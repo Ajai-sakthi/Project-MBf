@@ -1,0 +1,23 @@
+.home-page {
+  text-align: center;
+  padding: 50px;
+
+  h1 {
+    color: #ffae00;
+    font-size: 36px;
+  }
+
+  p {
+    font-size: 18px;
+    margin: 20px 0;
+  }
+
+  .btn {
+    background-color: #ffae00;
+    color: white;
+    font-size: 18px;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+  }
+}

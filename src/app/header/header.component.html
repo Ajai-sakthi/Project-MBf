@@ -4,15 +4,15 @@
   </button>
 
   <!-- Logo Section -->
-  <div class="logo"> <!-- Use a div for the logo -->
-    <h2>Cine Paradise</h2>
+  <div class="logo">
+    <h2>Cine Paradiso</h2>
   </div>
 
   <nav class="top-nav">
-    <ul>
-      <li><a href="#">Movies</a></li>
-      <li><a href="#">TV Shows</a></li>
-      <li><a href="#">Anime</a></li>
+    <ul class="nav-list">
+      <li><a routerLink="/movies">Movies</a></li>
+      <li><a routerLink="/tv-shows">TV Shows</a></li>
+      <li><a routerLink="/anime">Anime</a></li>
     </ul>
   </nav>
 
@@ -22,9 +22,14 @@
     <i class="fa fa-filter filter-icon"></i>
   </div>
 
+  <div class="auth-links">
+    <li><a routerLink="/login"><i class="fa fa-sign-in" aria-hidden="true"></i>Log In</a></li>
+    <li><a routerLink="/register"><i class="fa fa-sign-out" aria-hidden="true"></i>Sign Up</a></li>
+  </div>
+
   <div class="profile-menu">
     <i class="fa fa-bell notification-icon"></i>
-    <span>Anastasia</span>
+    <!--<span>{{user.name}}</span>-->
     <i class="fa fa-user-circle"></i>
   </div>
 </header>

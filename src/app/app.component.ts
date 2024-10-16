@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,10 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent {
   title = 'MBF';
-  isSidebarOpen = false; // Sidebar is hidden by default
+  isOpen = false;// Sidebar is hidden by default
 
-  toggleSidebar() {
-    this.isSidebarOpen = !this.isSidebarOpen; // Toggle the sidebar state
-    console.log('Sidebar Open:', this.isSidebarOpen); // Check the value
+  onToggleSidebar() {
+    this.isOpen = !this.isOpen; // Toggle the sidebar state
+    console.log("Sidebar toggled:", this.isOpen); // Optional: Log to check if this function runs
   }
 }

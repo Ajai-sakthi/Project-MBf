@@ -1,10 +1,19 @@
 .footer {
-  background-color: #1d1d1d;
-  color: white;
-  text-align: center;
-  padding: 1rem;
-  position:fixed;
-  bottom: 0;
-  width: 100%;
-  font-size: 0.9rem;
+  background-color: #000000; // Dark background for the footer
+  color: white;              // Text color for the footer
+  text-align: center;        // Center align text
+  padding: 1rem;             // Padding for the footer
+  position: fixed;           // Keep footer fixed at the bottom
+  bottom: 0;                 // Align to the bottom of the viewport
+  left: 0;                   // Align to the left edge
+  right: 0;                  // Align to the right edge
+  width: 100%;               // Full width of the screen
+  font-size: 0.9rem;         // Font size for the footer
+  z-index:10;                // Ensure it appears above other content
+
+  // Responsive adjustments
+  @media (max-width: 768px) {
+    padding: 0.5rem;         // Reduce padding on smaller screens
+    font-size: 0.8rem;       // Smaller font size on mobile
+  }
 }

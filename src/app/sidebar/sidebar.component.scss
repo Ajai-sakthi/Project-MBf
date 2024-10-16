@@ -1,33 +1,23 @@
 // Define color variables for easier updates and styling.
 $primary-color: #f3a502;  // Accent color
-$background-color: #111;  // Sidebar background color
-$text-color: #fff;        // Main text color
-$muted-color: #b0b0b0;    // Muted text color for headings
-$sidebar-width: 250px;    // Sidebar width
+$background-color: #111;   // Sidebar background color
+$text-color: #fff;         // Main text color
+$muted-color: #b0b0b0;     // Muted text color for headings
+$sidebar-width: 250px;     // Sidebar width
+$sidebar-height: calc(100vh - 60px); // Full viewport height minus footer height
 
-// General styles for the sidebar
 .sidebar {
-  height: 200%; // Full viewport height
+  height: $sidebar-height; // Adjust the height to account for footer height
   width: $sidebar-width;
-  background-color: black; // Fallback background color
-  background-image: url('../assets/images/sidebar-bg.png'); // Path to your sidebar background image
-  background-size: cover; // Cover the entire sidebar
-  background-position: center; // Center the background image
-  padding: 20px;
-  position: absolute; // Set as absolute positioning
-  color: $text-color;
+  background-color: black;
+  position: fixed; // Keep it fixed
+  overflow-y: auto; // Allow scrolling
   display: flex;
   flex-direction: column;
-  transition: transform 0.3s ease; // Smooth transition for opening/closing
+  padding: 10px;
+  z-index: 10; // Higher z-index to be above the footer
 
-  // Header section with logo and title
-  &-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 30px;
-    text-align: center; // Center the title
-  }
- // Menu section
+  // Menu sections
   &-menu,
   &-library,
   &-general {
@@ -41,6 +31,7 @@ $sidebar-width: 250px;    // Sidebar width
     ul {
       list-style: none;
       padding: 0;
+      margin: 0; // Reset margin
 
       li {
         margin-bottom: 15px;
@@ -53,13 +44,11 @@ $sidebar-width: 250px;    // Sidebar width
           align-items: center;
           transition: color 0.3s ease;
 
-          // Font Awesome icon styling
           fa-icon {
             margin-right: 10px;
             font-size: 18px;
           }
 
-          // Active and hover states for the menu items
           &.active,
           &:hover {
             color: $primary-color;
@@ -69,19 +58,37 @@ $sidebar-width: 250px;    // Sidebar width
     }
   }
 }
+
+// Adjust sidebar open and closed states
+.open {
+  transform: translateX(0); // Show sidebar
+}
+
+.closed {
+  transform: translateX(-100%); // Hide sidebar off-screen
+}
+
 // Footer styles
 .footer {
-  background-color:black;
-  color: white;
-  text-align: center;
-  padding: 1rem;
-  position:absolute;
-  bottom: 0;
-  width: 100%;
-  font-size: 0.9rem;
-  z-index: 5; // Ensure it stays above the main content but below the sidebar when needed
-  transition: margin-left 0.3s ease; // Smooth transition for when sidebar opens/closes
+  background-color: #1d1d1d; // Dark background for the footer
+  color: white;              // Text color for the footer
+  text-align: center;        // Center align text
+  padding: 1rem;             // Padding for the footer
+  position: fixed;           // Keep footer fixed at the bottom
+  bottom: 0;                 // Align to the bottom of the viewport
+  left: 0;                   // Align to the left edge
+  right: 0;                  // Align to the right edge
+  width: 100%;               // Full width of the screen
+  font-size: 0.9rem;         // Font size for the footer
+  z-index: 5;                // Ensure it appears below the sidebar
+
+  // Responsive adjustments
+  @media (max-width: 768px) {
+    padding: 0.5rem;         // Reduce padding on smaller screens
+    font-size: 0.8rem;       // Smaller font size on mobile
+  }
 }
+
 // Responsive adjustments for smaller screens
 @media (max-width: 768px) {
   .sidebar {
@@ -89,13 +96,4 @@ $sidebar-width: 250px;    // Sidebar width
     height: auto; // Automatic height
     position: relative; // Positioning is relative for mobile
   }
-}
-
-// Add styles for open and closed states
-.open {
-  transform: translateX(0); // Show sidebar
-}
-
-.closed {
-  transform: translateX(-100%); // Hide sidebar
 }
