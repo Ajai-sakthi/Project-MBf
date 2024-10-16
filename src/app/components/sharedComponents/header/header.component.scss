@@ -19,7 +19,7 @@
   .logo {
     display: flex;
     align-items: center;
-    background: url('../assets/images/logo.png');
+    background: url('../../../../assets//images/logo.png');
     background-repeat: no-repeat;
     background-size: contain;
     background-position: left center;
@@ -31,7 +31,10 @@
       font-weight: bold;
       padding-left: 60px;
       color: #fdc602;
-    }
+     }
+     a{
+      text-decoration: none;
+     }
   }
 
   // Top navigation for Movies, TV Shows, Anime

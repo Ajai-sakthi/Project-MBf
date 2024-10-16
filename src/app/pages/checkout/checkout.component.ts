@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CartService } from '../services/cart.service'; // Make sure this path is correct
+import { CartService } from '../../services/cart.service'; // Make sure this path is correct
 
 @Component({
   selector: 'app-checkout',

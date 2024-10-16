@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MovieService } from '../services/movie.service'; // Ensure this path is correct
-import { CartService } from '../services/cart.service'; // Ensure this path is correct
-import { Movie } from '../models/movie.model'; // Adjust this path to your Movie model
+import { MovieService } from '../../services/movie.service'; // Ensure this path is correct
+import { CartService } from '../../services/cart.service'; // Ensure this path is correct
+import { Movie } from '../../models/movie.model'; // Adjust this path to your Movie model
 import { Router } from '@angular/router'; // Import Router
 
 @Component({
