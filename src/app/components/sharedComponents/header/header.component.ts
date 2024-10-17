@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -6,9 +6,34 @@ import { Component, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-  @Output() toggle = new EventEmitter<void>(); // Emit event on toggle
+  searchQuery: string = '';
+  isProfileMenuOpen: boolean = false;
+  isFilterMenuOpen: boolean = false;
+
+  // Output event for sidebar toggle
+  @Output() sidebarToggle: EventEmitter<void> = new EventEmitter();
 
   toggleSidebar() {
-    this.toggle.emit(); // Emit the event
+    this.sidebarToggle.emit(); // Emit event to parent to toggle sidebar
+  }
+
+  onSearch() {
+    // Here you can handle the search functionality
+    console.log("Search Query: ", this.searchQuery);
+    // Add your search logic, such as filtering the movie list
+  }
+
+  openFilterMenu() {
+    this.isFilterMenuOpen = !this.isFilterMenuOpen; // Toggle filter menu visibility
+  }
+
+  toggleProfileMenu() {
+    this.isProfileMenuOpen = !this.isProfileMenuOpen; // Toggle profile menu visibility
+  }
+
+  logout() {
+    // Implement your logout logic here
+    console.log("User logged out.");
+    // Optionally redirect to login or home page
   }
 }

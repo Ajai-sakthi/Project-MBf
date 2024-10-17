@@ -1,35 +1,60 @@
 <header class="header">
-  <button (click)="toggleSidebar()">
-    <i class="fa fa-bars"></i> <!-- Toggle icon for sidebar -->
+  <!-- Sidebar Toggle Button -->
+  <button aria-label="Toggle Sidebar" (click)="toggleSidebar()">
+    <i class="fa fa-bars" aria-hidden="true"></i>
   </button>
 
   <!-- Logo Section -->
   <div class="logo">
-    <h2><a routerLink="/">Cine Paradiso</a></h2>
+    <h2><a routerLink="/" aria-label="Home">Cine Paradiso</a></h2>
   </div>
 
-  <nav class="top-nav">
+  <!-- Top Navigation -->
+  <nav class="top-nav" role="navigation" aria-label="Main Navigation">
     <ul class="nav-list">
-      <li><a routerLink="/movies">Movies</a></li>
-      <li><a routerLink="/tv-shows">TV Shows</a></li>
-      <li><a routerLink="/anime">Anime</a></li>
+      <li><a routerLink="/movies" aria-label="Movies">Movies</a></li>
     </ul>
   </nav>
 
+  <!-- Search Bar -->
   <div class="search-bar">
-    <i class="fa fa-search search-icon"></i>
-    <input type="text" placeholder="Search" />
-    <i class="fa fa-filter filter-icon"></i>
+    <i class="fa fa-search search-icon" aria-hidden="true"></i>
+    <input
+      type="text"
+      placeholder="Search"
+      [(ngModel)]="searchQuery"
+      (input)="onSearch()"
+      aria-label="Search Movies or Shows"
+    />
+    <i class="fa fa-filter filter-icon" aria-hidden="true" (click)="openFilterMenu()"></i>
   </div>
 
-  <div class="auth-links">
-    <li><a routerLink="/login"><i class="fa fa-sign-in" aria-hidden="true"></i>Log In</a></li>
-    <li><a routerLink="/register"><i class="fa fa-sign-out" aria-hidden="true"></i>Sign Up</a></li>
-  </div>
+  <!-- Auth Links -->
+  <nav class="auth-links">
+    <ul>
+      <li><a routerLink="/login"><i class="fa fa-sign-in" aria-hidden="true"></i> Log In</a></li>
+      <li><a routerLink="/register"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign Up</a></li>
+    </ul>
+  </nav>
 
+  <!-- Profile & Notifications -->
   <div class="profile-menu">
-    <i class="fa fa-bell notification-icon"></i>
-    <!--<span>{{user.name}}</span>-->
-    <i class="fa fa-user-circle"></i>
+    <i class="fa fa-bell notification-icon" aria-hidden="true"></i>
+    <div class="dropdown">
+      <i class="fa fa-user-circle" (click)="toggleProfileMenu()" aria-hidden="true"></i>
+      <div *ngIf="isProfileMenuOpen" class="profile-dropdown">
+        <ul>
+          <li><a routerLink="/profile">Profile</a></li>
+          <li><a routerLink="/settings">Settings</a></li>
+          <li><a (click)="logout()">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Cart Icon -->
+    <a routerLink="/cart">
+      <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+      <span class="cart-count"></span> <!-- Example cart count -->
+    </a>
   </div>
 </header>
