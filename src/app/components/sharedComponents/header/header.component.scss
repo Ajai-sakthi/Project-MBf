@@ -1,0 +1,233 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #000000;
+  padding: 1rem;
+  //color: white;
+
+  // Sidebar toggle button
+  button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+
+  // Logo Section
+  .logo {
+    display: flex;
+    align-items: center;
+    background: url('../../../../assets//images/logo.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: left center;
+    height: 50px;
+
+    h2 {
+      margin: 0;
+      font-size: 24px;
+      font-weight: bold;
+      padding-left: 60px;
+      color: #fdc602;
+     }
+     a{
+      text-decoration: none;
+     }
+  }
+
+  // Top navigation for Movies, TV Shows, Anime
+  .top-nav {
+    .nav-list {
+      display: flex;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        margin: 0 15px;
+
+        a {
+          text-decoration: none;
+          color: white;
+          transition: color 0.3s;
+
+          &:hover {
+            text-decoration: underline;
+            color: #fdc602;
+          }
+        }
+      }
+    }
+  }
+
+  // Search bar and filter
+  .search-bar {
+    display: flex;
+    align-items: center;
+    position: relative;
+    color:white;
+
+    width: 300px; // Adjust as needed
+
+    .search-icon,
+    .filter-icon {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color:white; // Set the icon color to grey
+    }
+
+    .search-icon {
+      left: 10px; // Adjust as needed
+    }
+
+    .filter-icon {
+      left: 230px; // Adjust as needed
+      cursor: pointer; // Make filter icon clickable
+    }
+
+    input {
+      width: 100%;
+      padding: 10px 40px; // Add padding to make space for icons
+      border: 1px;
+      opacity: 0.2;
+      color: azure;
+      border-radius: 20px;
+      outline: none;
+    }
+  }
+
+  // Auth links (Login and Sign Up)
+  .auth-links {
+    display: flex;
+    align-items: center;
+    list-style: none;
+
+    li {
+      margin: 0 10px;
+
+      a {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: white;
+        transition: color 0.3s;
+
+        i {
+          margin-right: 8px;
+        }
+
+        &:hover {
+          color: #fdc602;
+        }
+      }
+    }
+  }
+
+  // Profile menu (notifications and user icon)
+  .profile-menu {
+    display: flex;
+    align-items: center;
+
+    .notification-icon,
+    .fa-user-circle {
+      margin: 0 10px;
+      color: white;
+    }
+
+    span {
+      margin-right: 10px;
+      color: white;
+    }
+  }
+
+  // Responsive design for screens below 768px
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    height: auto;
+
+    .top-nav,
+    .auth-links,
+    .profile-menu {
+      justify-content: flex-start;
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .search-bar {
+      width: 50%;
+      margin-top: 10px;
+
+      input {
+        width: 80%;
+      }
+      .filter-icon {
+        left: 190px; // Adjust as needed
+        cursor: pointer; // Make filter icon clickable
+      }
+    }
+
+    button {
+      font-size: 1.2rem;
+    }
+  }
+
+  // Responsive design for screens below 576px
+  @media (max-width: 576px) {
+    flex-direction: column;
+    align-items: flex-start;
+
+    .logo {
+      justify-content: flex-start;
+      width: 100%;
+
+      h2 {
+        font-size: 18px;
+        padding: 50px;
+        margin: 0;
+        align-items: center;
+      }
+    }
+
+    .search-bar input {
+      width: 100%;
+
+    }
+
+    .auth-links,
+    .profile-menu {
+      li {
+        margin: 0 5px;
+      }
+    }
+  }
+
+  // Responsive design for screens above 779px
+  @media (min-width: 779px) {
+    .logo h2 {
+      font-size: 28px;
+    }
+
+    .search-bar input {
+      width: 250px;
+    }
+
+    .auth-links li a,
+    .profile-menu span {
+      font-size: 16px;
+    }
+
+    .profile-menu .notification-icon,
+    .fa-user-circle {
+      font-size: 1.5rem;
+    }
+
+    button {
+      font-size: 1.7rem;
+    }
+  }
+}

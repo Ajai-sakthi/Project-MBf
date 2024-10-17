@@ -1,0 +1,25 @@
+:host {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    position: relative;
+    overflow: hidden; 
+  }
+  
+  :host::before {
+    content: '';
+    position: absolute; 
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../../assets/images/tv-storage.jpeg'); 
+    background-size: cover;
+    background-position: center;
+    opacity: 0.5; /* Adjusted opacity */
+    z-index: -1; 
+    filter: blur(5px); /* Optional: adds a blur effect */
+  }
+  
