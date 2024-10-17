@@ -1,0 +1,37 @@
+<div class="sidebar" [ngClass]="{'open': isOpen, 'closed': !isOpen}">
+  <div class="sidebar-menu">
+    <h3>Menu</h3>
+    <ul>
+      <li>
+        <a routerLink="/home" class="active">
+          <fa-icon [icon]="faHome"></fa-icon>
+          Home
+        </a>
+      </li>
+      <li>
+        <a routerLink="/celebrities">
+          <fa-icon [icon]="faStar"></fa-icon>
+          Celebrities
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="sidebar-library">
+    <h3>Library</h3>
+    <ul>
+      <li><a routerLink="/recent"><fa-icon [icon]="faClock"></fa-icon> Recent</a></li>
+      <li><a routerLink="/top-rated"><fa-icon [icon]="faStar"></fa-icon> Top Rated</a></li>
+      <li><a routerLink="/wishlist"><fa-icon [icon]="faHeart"></fa-icon> Wishlist</a></li> <!-- Changed routerLink to '/wishlist' -->
+      <li><a routerLink="/languages"><fa-icon [icon]="faLanguage"></fa-icon> Languages</a></li> <!-- Changed routerLink to '/languages' -->
+    </ul>
+  </div>
+
+  <div class="sidebar-general">
+    <h3>General</h3>
+    <ul>
+      <li><a routerLink="/settings"><fa-icon [icon]="faCog"></fa-icon> Settings</a></li>
+      <li><a routerLink="/logout"><fa-icon [icon]="faSignOutAlt"></fa-icon> Log Out</a></li>
+    </ul>
+  </div>
+</div>

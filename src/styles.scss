@@ -1,1 +1,24 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// Override Bootstrap variables
+$primary:rgb(255, 196, 0);  // Change the primary color
+$secondary: #6c757d; // Change the secondary color
+$success: #28a745;   // Change the success color
+$danger: #dc3545;    // Change the danger color
+/* Bootstrap import */
+@import 'bootstrap/scss/bootstrap';
+
+//font awesome icons
+@import "font-awesome/css/font-awesome.css";
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: #020202;
+    color: #F9F9F9;
+}

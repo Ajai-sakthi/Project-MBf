@@ -1,0 +1,35 @@
+.movie-list {
+  text-align: center;
+  padding: 20px;
+
+  .movies-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+
+  .movie-card {
+    border: 1px solid #ccc;
+    padding: 20px;
+    width: 200px;
+    text-align: center;
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    h3 {
+      color: #ffae00;
+    }
+
+    .btn {
+      background-color: #ffae00;
+      color: white;
+      cursor: pointer;
+      border: none;
+      padding: 10px;
+    }
+  }
+}

@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'Project-MBf';
+  title = 'MBF';
+  isOpen = false;// Sidebar is hidden by default
+
+  onToggleSidebar() {
+    this.isOpen = !this.isOpen; // Toggle the sidebar state
+    // console.log("Sidebar toggled:", this.isOpen); // Optional: Log to check if this function runs
+  }
 }

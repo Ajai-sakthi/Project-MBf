@@ -1,0 +1,31 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "name": "Red Bull",
+      "price":"100"
+    },
+    {
+      "id": "2",
+      "name": "coco-cola",
+      "price":"45"
+    },
+    {
+      "id": "3",
+      "name": "7 Up",
+      "price":"35"
+    },
+    {
+      "id": "4",
+      "name": "Maaza",
+      "price":"30"
+    },
+    {
+        "id": "5",
+        "name": "Bovonto",
+        "price":"50"
+      }
+      
+    
+  ]
+}

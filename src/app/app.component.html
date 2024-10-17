@@ -1,1 +1,4 @@
-<h1>SAMBAVAM STARTED!...</h1>
+<app-header (toggle)="onToggleSidebar()"></app-header> <!-- Add parentheses to call the method -->
+<app-sidebar [isOpen]="isOpen"></app-sidebar> <!-- Correctly binding isOpen -->
+<router-outlet></router-outlet>
+<app-footer></app-footer>
