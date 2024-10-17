@@ -1,0 +1,36 @@
+
+
+  <div class="carousel-container" (mouseover)="stopAutoplay()" (mouseout)="startAutoplay()">
+    <div class="carousel-container">
+        <div class="carousel-slides">
+          <div
+            class="carousel-slide"
+            *ngFor="let slide of slides; let i = index"
+            [ngClass]="{'active': i === currentSlide}"
+          >
+            <img [src]="slide.image" alt="Slide Image" />
+            <div class="slide-content">
+              <h3>{{ slide.title }}</h3>
+              <p>{{ slide.description }}</p>
+              <a href="" class="button">Watch Now</a>
+            </div>
+           
+          </div>
+        </div>
+      
+        <!-- Custom Navigation Arrows -->
+        <div class="arrow-left" (click)="prevSlide()"></div>
+        <div class="arrow-right" (click)="nextSlide()"></div>
+      
+        <!-- Pagination Dots (Optional) -->
+        <div class="pagination-dots">
+          <span
+            *ngFor="let slide of slides; let i = index"
+            [ngClass]="{'active-dot': i === currentSlide}"
+            (click)="goToSlide(i)"
+          ></span>
+        </div>
+      </div>
+      
+  </div>
+  

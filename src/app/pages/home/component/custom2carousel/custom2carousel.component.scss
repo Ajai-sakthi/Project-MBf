@@ -1,0 +1,133 @@
+/* Carousel Container */
+.carousel-container {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+/* Slide Styling */
+.carousel-slides {
+  display: flex;
+  transition: transform 5s ease;
+}
+
+.carousel-slide {
+  min-width: 100%;
+  opacity: 0;
+  position: absolute; /* Keep absolute positioning for full visibility */
+  top: 0; /* Align slides at the top */
+  left: 0;
+  width: 100%;
+  height: 24rem;
+  transition: opacity 2s ease; /* Shorter transition for opacity */
+  animation-duration: 2s; /* Set default animation duration */
+}
+
+/* Keyframe Animations */
+@keyframes slideIn {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+/* Class for active slide to change opacity and position */
+.carousel-slide.active {
+  opacity: 1; /* Make it fully visible */
+  animation-name: slideIn; /* Apply slide-in animation */
+}
+
+.carousel-slide.previous {
+  opacity: 0; /* Make it transparent */
+  animation-name: slideOut; /* Apply slide-out animation */
+}
+
+/* Active slide styling */
+.carousel-slide.active {
+  opacity: 1;
+  position: relative; /* Active slide moves relative to the container */
+}
+
+.slide-content {
+  position: absolute;
+  bottom: 50px; /* Adjusted to leave space for dashes */
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: white;
+}
+
+img {
+  width: 100%;
+  height: 100%; /* Ensure image takes full height of the slide */
+  object-fit: cover;
+  border-radius:10px; /* Maintain aspect ratio while covering the container */
+}
+
+/* Pagination Dashes */
+.pagination-dashes {
+  position: absolute;
+  bottom: 10px; /* Adjust as necessary for spacing */
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+}
+
+.pagination-dashes .dash {
+  font-size: 20px; /* Adjust size as needed */
+  margin: 0 5px;
+  cursor: pointer;
+  color: #aaa; /* Default color for inactive dashes */
+}
+
+.pagination-dashes .active {
+  color: #333; /* Color for the active dash */
+}
+
+/* Navigation Arrows */
+.arrow-left,
+.arrow-right {
+  position: absolute;
+  top: 50%;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  cursor: pointer;
+  transform: translateY(-50%);
+}
+
+.arrow-left {
+  left: 10px;
+}
+
+.arrow-right {
+  right: 10px;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .carousel-slide {
+    flex-direction: column;
+  }
+
+  .slide-content {
+    bottom: 10px;
+  }
+}
