@@ -45,7 +45,7 @@
 
     .bottom {
       width: 100%;
-      background-color: #134e4a; // Equivalent to bg-green-900
+      border: 2px solid white;
       height:18rem; // Equivalent to h-44
     }
   }
@@ -62,8 +62,8 @@
 
     .box {
       width: 100%;
-      background-color: #dc2626; // Equivalent to bg-red-600
-      height: 13rem; // Equivalent to h-44
+      border: 2px solid white;
+      height: 15rem; // Equivalent to h-44
     }
   }
 }
