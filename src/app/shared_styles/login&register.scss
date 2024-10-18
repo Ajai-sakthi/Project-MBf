@@ -5,21 +5,20 @@
     height: 100vh;
     margin: 0;
     position: relative;
-    overflow: hidden; 
+    overflow: hidden;
   }
-  
+
   :host::before {
     content: '';
-    position: absolute; 
+    position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('../../../../Project-MBf/src/assets/images/tv-storage.jpeg') no-repeat center center/cover; // Notice the leading slash 
+    background: url('../../../../Project-MBf/src/assets/images/tv-storage.jpeg') no-repeat center center/cover; // Notice the leading slash
     background-size: cover;
     background-position: center;
     opacity: 1.0; /* Adjusted opacity */
-    z-index: -1; 
-   filter: blur(1.8px); /* Optional: adds a blur effect */
+    z-index: -1;
+   filter: blur(0.7px); /* Optional: adds a blur effect */
   }
-  
