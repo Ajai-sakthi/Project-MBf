@@ -3,8 +3,8 @@
   justify-content: center;
   align-items: center;
   height:100vh;
-  opacity: 0.85;
-  background: url('../assets/tv-storage.jpg') no-repeat center center/cover; // Notice the leading slash
+  opacity:1.0;
+  background: url('../../../../Project-MBf/src/assets/images/tv-storage.jpeg') no-repeat center center/cover; // Notice the leading slash
 
   &::before {
     content: "";
@@ -19,7 +19,7 @@
 
   .login-form {
     z-index: 1;
-    background-color: rgb(0, 0, 0); // Semi-transparent background for the form
+    background-color: rgb(0, 0, 0);// Semi-transparent background for the form
     padding: 40px;
     border-radius: 15px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
@@ -85,6 +85,7 @@
         font-size: 14px;
         color: #F8B319;
         text-decoration: none;
+        //margin-left: 10px;
 
         &:hover {
           text-decoration: underline;
@@ -125,90 +126,3 @@
     }
   }
 }
-/*:host {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
-  background: url('../assets/tv-storage.jpg') no-repeat center center/cover; 
-  background-size: cover;
-  background-position: center;
-}
-
-.auth-container {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  width: 100%;
-  max-width: 400px; 
-
-.auth-form {
-  background: rgba(255, 255, 255, 0.1); 
-  backdrop-filter: blur(15px); 
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  color: #fff;
-}
-
-h2 {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.form-group {
-  margin-bottom: 15px;
-}
-
-label {
-  display: block;
-  margin-bottom: 5px;
-}
-
-input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 5px;
-  background: rgba(255, 255, 255, 0.2);
-  color: #fff;
-}
-
-input::placeholder {
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.remember-forgot {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 15px;
-}
-
-.btn-login {
-  width: 100%;
-  padding: 10px;
-  background-color: #ffae00; 
-  border: none;
-  border-radius: 5px;
-  color: #fff;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.btn-login:hover {
-  background-color: #b39500; 
-}
-
-.register-link {
-  text-align: center;
-}
-
-.register-link a {
-  color:  #ffae00;
-  text-decoration: none;
-}
-
-.register-link a:hover {
-  text-decoration: underline;
-}*/
