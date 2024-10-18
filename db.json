@@ -1,6 +1,6 @@
 {
   "Movie":[
-        {  "src":"../assets/images/SOK.jpg",
+        {  "src":"../../../assets/images/SOK.jpg",
             "name":"Sillunu Oru Kadhal",
             "rating":"5.0",
             "releasedate":"04/04/2008",
@@ -8,7 +8,7 @@
             "language":"Kollywood"
         },
         {
-            "src":"../assets/images/VV.jpg",
+            "src":"../../../assets/images/VV.jpg",
             "name":"Vinnaithaandi Varuvaaya",
             "rating":"3.8",
             "releasedate":"26/02/2010",
@@ -16,7 +16,7 @@
             "language":"Kollywood"
         },
         {
-            "src":"../assets/images/ViVe.jpg",
+            "src":"../../../assets/images/ViVe.jpg",
             "name":"Vikram vedha",
             "rating":"4.1",
             "releasedate":"21/07/2017",
@@ -24,7 +24,7 @@
             "language":"Kollywood"   
         },
         {
-            "src":"../assets/images/OKK.jpg",
+            "src":"../../../assets/images/OKK.jpg",
             "name":"O Kadhal Kanmani",
             "rating":"4.3",
             "releasedate":"17/04/2015",
@@ -32,7 +32,7 @@
             "language":"Kollywood"   
         },
         {
-            "src":"../assets/images/YNM.jpeg",
+            "src":"../../../assets/images/YNM.jpeg",
             "name":"Yaaradi Nee Mohini",
             "rating":"3.8",
             "releasedate":"08/09/2006",
@@ -41,7 +41,7 @@
         },
       
         {
-            "src":"../assets/images/Raanjhaana.jpg",
+            "src":"../../../assets/images/Raanjhaana.jpg",
             "name":"Raanjhaana",
             "rating":"3.9",
             "releasedate":"21/06/2013",
@@ -49,7 +49,7 @@
             "language":"Bollywood"    
         },
         {
-            "src":"../assets/images/KPC.jpg",
+            "src":"../../../assets/images/KPC.jpg",
             "name":"Kai Po Che",
             "rating":"4.3",
             "releasedate":"22/02/2013",
@@ -57,7 +57,7 @@
             "language":"Bollywood"  
         },
         {
-            "src":"../assets/images/charlie.jpg",
+            "src":"../../../assets/images/charlie.jpg",
             "name":"Charlie",
             "rating":"3.9",
             "releasedate":"24/12/2015",
@@ -65,7 +65,7 @@
             "language":"Mollywood"     
         },
         {
-            "src":"../assets/images/OSO.jpg",
+            "src":"../../../assets/images/OSO.jpg",
             "name":"Ohm Shanthi Oshaana",
             "rating":"4.3",
             "releasedate":"07/02/2014",
@@ -73,7 +73,7 @@
             "language":"Mollywood"  
         },
         {
-            "src":"../assets/images/premam.jpg",
+            "src":"../../../assets/images/premam.jpg",
             "name":"Premam",
             "rating":"3.9",
             "releasedate":"29/05/2015",
@@ -81,7 +81,7 @@
             "language":"Mollywood" 
         },
         {
-            "src":"../assets/images/Dangal.jpg",
+            "src":"../../../assets/images/Dangal.jpg",
             "name":"Dangal",
             "rating":"4.2",
             "releasedate":"23/12/2016",
@@ -89,7 +89,7 @@
             "language":"Bollywood" 
         },
         {
-            "src":"../assets/images/3.jpg",
+            "src":"../../../assets/images/3.jpg",
             "name":"3",
             "rating":"4.3",
             "releasedate":"30/03/2012",
@@ -97,7 +97,7 @@
             "language":"Kollywood"
         },
         {
-            "src":"../assets/images/aavesham.jpg",
+            "src":"../../../assets/images/aavesham.jpg",
             "name":"Aavesham",
             "rating":"3.7",
             "releasedate":"11/04/2024",
@@ -105,7 +105,7 @@
             "language":"Mollywood" 
         },
         {
-            "src":"../assets/images/premalu.jpg",
+            "src":"../../../assets/images/premalu.jpg",
             "name":"Premalu",
             "rating":"4.4",
             "releasedate":"09/02/2024",
@@ -113,7 +113,7 @@
             "language":"Mollywood" 
         },
         {
-            "src":"../assets/images/shershaah.jpg",
+            "src":"../../../assets/images/shershaah.jpg",
             "name":"Shershaah",
             "rating":"4.5",
             "releasedate":"12/08/2021",
@@ -121,7 +121,7 @@
             "language":"Bollywood" 
         },
         {
-            "src":"../assets/images/sooraraipotru.jpg",
+            "src":"../../../assets/images/sooraraipotru.jpg",
             "name":"Soorarai Potru",
             "rating":"4.6",
             "releasedate":"12/11/2020",
@@ -129,7 +129,7 @@
             "language":"Kollywood"  
         },
         {
-            "src":"../assets/images/irudhisuttru.jpg",
+            "src":"../../../assets/images/irudhisuttru.jpg",
             "name":"Irudhi Suttru",
             "rating":"4.6",
             "releasedate":"29/01/2016",
@@ -137,7 +137,7 @@
             "language":"Kollywood"  
         },
         {
-            "src":"../assets/images/thepursuitofhappyness.jpg",
+            "src":"../../../assets/images/thepursuitofhappyness.jpg",
             "name":"The Pursuit Of Happyness",
             "rating":"4.2",
             "releasedate":"15/12/2006",

@@ -5,10 +5,10 @@ import { Movie } from '../../models/movie.model';
 @Component({
   selector: 'app-root',
   templateUrl: './movie-list.component.html',
-  styleUrls: ['./movie-list.component.css'],
+  styleUrls: ['./movie-list.component.scss'],
   providers:[MovieService]
 })
-export class AppComponent implements OnInit {
+export class MovieListComponent implements OnInit {
   movies: Movie[] = []; // Initialize an empty array to store movies
 
   constructor(private movieService: MovieService) {}
