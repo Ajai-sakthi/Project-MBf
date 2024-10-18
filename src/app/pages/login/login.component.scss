@@ -48,17 +48,37 @@ input::placeholder {
   align-items: center;
   margin-bottom: 1.2rem;
 
-  label {
-    display: flex;
-    align-items: center;
-    font-size: 15px;
-
-    input[type="checkbox"] {
-      margin-right: 0.5rem; /* Ensure spacing between checkbox and label text */
-      margin-left: 0.5rem; /* Adjust the margin-left if you want space between the text and the checkbox */
-    }
+  .remember-checkbox{
+    display:flex;
+    align-items:center;
   }
 }
+
+  label {
+    margin-left: 8px;
+    font-size:15px;
+    line-height:1;
+    //display: flex;
+    //align-items: center;
+    //font-size: 15px;
+
+    //input[type="checkbox"] {
+     // margin-right: 0.5rem; /* Ensure spacing between checkbox and label text */
+      //margin-left: 0.1rem; /* Adjust the margin-left if you want space between the text and the checkbox */
+    }
+  
+  .forgot-password {
+    //margin-left: auto; /* Push "Forgot password?" to the right */
+    color: #ffae00; /* Match color with your theme */
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+
+
 
 .btn-login {
   width: 100%;
