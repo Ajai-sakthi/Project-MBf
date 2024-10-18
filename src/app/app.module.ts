@@ -15,6 +15,8 @@ import { RegisterComponent } from './pages/register/register.component'; // Make
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { NotFoundComponent } from './pages/404page/notPageFound.component';
+import { CustomCarouselComponent } from './pages/home/component/custom-carousel/custom-carousel.component';
+import { Custom2carouselComponent } from './pages/home/component/custom2carousel/custom2carousel.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { NotFoundComponent } from './pages/404page/notPageFound.component';
     CheckoutComponent,
     LoginComponent,
     RegisterComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    CustomCarouselComponent,
+    Custom2carouselComponent
   ],
   imports: [
     BrowserModule,
