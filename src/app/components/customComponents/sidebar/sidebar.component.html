@@ -20,28 +20,55 @@
   <div class="sidebar-library">
     <h3>Library</h3>
     <ul>
-      <li><a routerLink="/top-rated"><fa-icon [icon]="faStar"></fa-icon> Top Rated</a></li>
-      <li><a routerLink="/wishlist"><fa-icon [icon]="faHeart"></fa-icon> Wishlist</a></li>
+      <!-- Top Rated Dropdown -->
+      <li (click)="toggleRatingSelection()">
+        <a href="javascript:void(0)">
+          <fa-icon [icon]="faStar"></fa-icon> Top Rated
+        </a>
+      </li>
+      <div *ngIf="showRatingSelection" class="dropdown-list">
+        <ul>
+          <li *ngFor="let rating of ratings" class="dropdown-item">
+            <label>
+              <input
+                type="radio"
+                name="rating"
+                (change)="toggleRating(rating.value)"
+                [checked]="selectedRatings === rating.value"
+              />
+              <span>{{ rating.label }}</span>
+            </label>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Wishlist Link -->
+      <li>
+        <a routerLink="/wishlist">
+          <fa-icon [icon]="faHeart"></fa-icon> Wishlist
+        </a>
+      </li>
+
+      <!-- Languages Dropdown -->
       <li (click)="toggleLanguageSelection()">
         <a href="javascript:void(0)">
           <fa-icon [icon]="faLanguage"></fa-icon> Languages
         </a>
       </li>
+      <div *ngIf="showLanguageSelection" class="dropdown-list">
+        <ul>
+          <li *ngFor="let language of languages" class="dropdown-item">
+            <label>
+              <input
+                type="checkbox"
+                (change)="toggleLanguage(language)"
+                [checked]="selectedLanguages.includes(language)"
+              />
+              <span>{{ language }}</span>
+            </label>
+          </li>
+        </ul>
+      </div>
     </ul>
-
-    <!-- Language Selection Dropdown -->
-    <div *ngIf="showLanguageSelection" class="language-selection">
-      <ul>
-        <li *ngFor="let language of languages" class="language-item">
-          <label>
-            <input
-              type="checkbox"
-              (change)="toggleLanguage(language)"
-              [checked]="selectedLanguages.includes(language)"
-            />
-            <span>{{ language }}</span> <!-- Wrap text in a span for styling -->
-          </label>
-        </li>
-      </ul>
-    </div>
-
+  </div>
+</div>

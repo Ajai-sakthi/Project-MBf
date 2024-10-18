@@ -111,6 +111,31 @@ $sidebar-height: calc(100vh - 60px); // Full viewport height minus footer height
     }
   }
 }
+.dropdown-list {
+  margin-left: 15px;
+  ul {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 10px;
+  }
+  .dropdown-item {
+    margin-bottom: 10px;
+    label {
+      display: flex;
+      align-items: center;
+    }
+    input {
+      margin-right: 10px;
+    }
+    span {
+      font-size: 14px;
+    }
+    &:hover{
+      color: #f3a502;
+    }
+  }
+}
+
 
 // Footer styles
 .footer {
