@@ -1,10 +1,15 @@
-<div class="movie-list">
-  <h2>Movie List</h2>
-  <div *ngIf="movies.length === 0">No movies available.</div>
-  <div *ngFor="let movie of movies" class="movie-item">
-    <h3>{{ movie.title }}</h3>
-    <p>{{ movie.description }}</p>
-    <p>Price: {{ movie.price }}</p>
-    <button (click)="addToCart(movie)">Add to Cart</button>
+<div class="container" >
+  <div class="productCard" *ngFor="let prod of movies">
+      <img class=productImage src="{{prod.src}}" alt="{{prod.name}}">
+      <div>{{prod.name}}</div>
+      <div class="star-rating">
+          <i class="fas fa-star" *ngFor="let star of getStars(prod.rating)"></i>
+          <i class="far fa-star" *ngFor="let star of getStars(5-(floorval(prod.rating)))"></i>
+        </div>
+      <div class="productDate">{{prod.releasedate}}</div>
+      <div>&#8377;{{prod.price}}</div>
+     <div class="btn-container">
+      <button class="button">Buy Now</button>
+      <button class="button">More Info</button>
+     </div> 
   </div>
-</div>

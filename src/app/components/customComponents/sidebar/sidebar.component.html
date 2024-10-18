@@ -20,12 +20,31 @@
   <div class="sidebar-library">
     <h3>Library</h3>
     <ul>
-      <li><a routerLink="/recent"><fa-icon [icon]="faClock"></fa-icon> Recent</a></li>
       <li><a routerLink="/top-rated"><fa-icon [icon]="faStar"></fa-icon> Top Rated</a></li>
-      <li><a routerLink="/wishlist"><fa-icon [icon]="faHeart"></fa-icon> Wishlist</a></li> <!-- Changed routerLink to '/wishlist' -->
-      <li><a routerLink="/languages"><fa-icon [icon]="faLanguage"></fa-icon> Languages</a></li> <!-- Changed routerLink to '/languages' -->
+      <li><a routerLink="/wishlist"><fa-icon [icon]="faHeart"></fa-icon> Wishlist</a></li>
+      <li (click)="toggleLanguageSelection()">
+        <a href="javascript:void(0)">
+          <fa-icon [icon]="faLanguage"></fa-icon> Languages
+        </a>
+      </li>
     </ul>
-  </div>
+
+    <!-- Language Selection Dropdown -->
+    <div *ngIf="showLanguageSelection" class="language-selection">
+      <ul>
+        <li *ngFor="let language of languages" class="language-item">
+          <label>
+            <input
+              type="checkbox"
+              (change)="toggleLanguage(language)"
+              [checked]="selectedLanguages.includes(language)"
+            />
+            <span>{{ language }}</span> <!-- Wrap text in a span for styling -->
+          </label>
+        </li>
+      </ul>
+    </div>
+
 
   <div class="sidebar-general">
     <h3>General</h3>
