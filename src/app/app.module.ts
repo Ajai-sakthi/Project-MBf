@@ -8,7 +8,7 @@ import { SidebarComponent } from './components/customComponents/sidebar/sidebar.
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HomeComponent } from './pages/home/home.component';
 import { MovieListComponent } from './pages/movie-list/movie-list.component';
-import { CartComponent } from './pages/cart/cart.component';
+import { CartPageComponent } from './pages/cart/cart.component';
 import { CheckoutComponent } from './pages/checkout/checkout.component';
 import { LoginComponent } from './pages/login/login.component'; // Make sure this path is correct
 import { RegisterComponent } from './pages/register/register.component'; // Make sure this path is correct
@@ -26,7 +26,7 @@ import { Custom2carouselComponent } from './pages/home/component/custom2carousel
     SidebarComponent,
     HomeComponent,
     MovieListComponent,
-    CartComponent,
+    CartPageComponent,
     CheckoutComponent,
     LoginComponent,
     RegisterComponent,

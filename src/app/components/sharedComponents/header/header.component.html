@@ -16,6 +16,7 @@
     </ul>
   </nav>
 
+
   <!-- Search Bar -->
   <div class="search-bar">
     <i class="fa fa-search search-icon" aria-hidden="true"></i>
@@ -32,6 +33,7 @@
   <!-- Auth Links -->
   <nav class="auth-links">
     <ul>
+
       <li><a routerLink="/login"><i class="fa fa-sign-in" aria-hidden="true"></i> Log In</a></li>
       <li><a routerLink="/register"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign Up</a></li>
     </ul>
@@ -44,6 +46,7 @@
       <i class="fa fa-user-circle" (click)="toggleProfileMenu()" aria-hidden="true"></i>
       <div *ngIf="isProfileMenuOpen" class="profile-dropdown">
         <ul>
+
           <li><a routerLink="/profile">Profile</a></li>
           <li><a routerLink="/settings">Settings</a></li>
           <li><a (click)="logout()">Logout</a></li>

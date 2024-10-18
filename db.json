@@ -1,31 +1,50 @@
 {
-  "products": [
+  "movies": [
     {
-      "id": "1",
-      "name": "Red Bull",
-      "price":"100"
+      "id": 1,
+      "title": "Inception",
+      "genre": "Sci-Fi",
+      "director": "Christopher Nolan",
+      "releaseYear": 2010,
+      "rating": 8.8,
+      "posterUrl": "path_to_inception_poster.jpg",
+      "price": 12.99
     },
     {
-      "id": "2",
-      "name": "coco-cola",
-      "price":"45"
+      "id": 2,
+      "title": "The Dark Knight",
+      "genre": "Action",
+      "director": "Christopher Nolan",
+      "releaseYear": 2008,
+      "rating": 9.0,
+      "posterUrl": "path_to_dark_knight_poster.jpg",
+      "price": 10.99
     },
     {
-      "id": "3",
-      "name": "7 Up",
-      "price":"35"
+      "id": 3,
+      "title": "Interstellar",
+      "genre": "Sci-Fi",
+      "director": "Christopher Nolan",
+      "releaseYear": 2014,
+      "rating": 8.6,
+      "posterUrl": "path_to_interstellar_poster.jpg",
+      "price": 15.99
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "username": "johndoe",
+      "password": "password123",
+      "email": "johndoe@example.com",
+      "isAdmin": false
     },
     {
-      "id": "4",
-      "name": "Maaza",
-      "price":"30"
-    },
-    {
-        "id": "5",
-        "name": "Bovonto",
-        "price":"50"
-      }
-      
-    
+      "id": 2,
+      "username": "janedoe",
+      "password": "password456",
+      "email": "janedoe@example.com",
+      "isAdmin": true
+    }
   ]
 }

@@ -1,35 +1,75 @@
-.movie-list {
-  text-align: center;
+.movie-list-container {
   padding: 20px;
-
-  .movies-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
+  .section-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
   }
 
-  .movie-card {
-    border: 1px solid #ccc;
-    padding: 20px;
-    width: 200px;
+  .loading,
+  .no-movies {
     text-align: center;
+    font-size: 1.2rem;
+    margin: 40px 0;
+  }
 
-    img {
-      max-width: 100%;
-      height: auto;
-    }
+  .movies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
 
-    h3 {
-      color: #ffae00;
-    }
+    .movie-card {
+      display: flex;
+      flex-direction: column;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
 
-    .btn {
-      background-color: #ffae00;
-      color: white;
-      cursor: pointer;
-      border: none;
-      padding: 10px;
+      .movie-poster {
+        width: 100%;
+        height: 200px;
+        overflow: hidden;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      .movie-details {
+        padding: 15px;
+        color: #000;
+
+        .movie-title {
+          font-size: 1.4rem;
+          margin-bottom: 5px;
+          color: #000;
+        }
+
+        .movie-genre {
+          color: #000;
+          margin-bottom: 10px;
+        }
+
+        .movie-description {
+          font-size: 1rem;
+          color: #000;
+          margin-bottom: 10px;
+        }
+
+        .movie-rating,
+        .movie-price {
+          font-weight: bold;
+          color: #000;
+        }
+
+        button {
+          margin-top: 15px;
+          width: 100%;
+        }
+      }
     }
   }
 }
