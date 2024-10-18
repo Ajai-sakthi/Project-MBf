@@ -1,44 +1,125 @@
 .cart-page {
   padding: 20px;
-  text-align: center;
+  background-color: #000; // Light background for better contrast
 
-  .cart-item {
+  &__title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #fff; // Darker text for readability
+  }
+
+  &__items {
+    display: flex;
+    color: #fff;
+    flex-direction: column;
+    gap: 15px; // Space between cart items
+  }
+
+  &__item {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #ccc;
-    padding: 10px 0;
+    padding: 15px;
+    border: 1px solid #ced4da; // Light border for separation
+    border-radius: 5px;
+    color: #fff;
+    background-color: #000; // White background for item
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); // Subtle shadow for depth
 
-    img {
-      max-width: 80px;
-      height: auto;
+    &-details {
+      display: flex;
+      color: white;
+      align-items: center;
+      gap: 15px; // Space between image and text
     }
 
-    h3 {
-      flex-grow: 1;
-      margin: 0 20px;
+    &-image {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 5px; // Rounded image corners
     }
 
-    .btn-danger {
-      background-color: #ff1744;
-      border: none;
-      padding: 5px 10px;
+    &-info {
+      flex: 1; // Allow info to grow
+    }
+
+    &-title {
+      font-size: 18px;
+      font-weight: 500;
+      color: #fff; // Dark text
+    }
+
+    &-price {
+      font-size: 16px;
+      color: #fff; // Medium text color
+    }
+
+    &-actions {
+      display: flex;
+      align-items: center;
+      color: #000;
+      gap: 10px; // Space between elements
+    }
+
+    &-quantity {
+      width: 60px;
+      padding: 5px;
+      border: 1px solid #ced4da; // Input border
+      border-radius: 5px; // Rounded corners
+      text-align: center; // Center text in input
     }
   }
 
-  .cart-total {
+  &__summary {
     margin-top: 20px;
+    padding: 15px;
+    background-color: #000; // Light gray for summary
+    border-radius: 5px;
+    color: #fff;
 
-    h3 {
-      color: #ffae00;
+    &-label {
+      font-size: 20px;
+      font-weight: 600;
+      color: #212529; // Dark text
+    }
+  }
+
+  &__checkout-btn {
+    margin-top: 10px;
+    width: auto; // Remove full width, so the button shrinks to its content size
+    padding: 8px 16px; // Adjust padding for a smaller button
+    font-size: 14px; // Reduce the font size for a smaller appearance
+    background-color: #ffb300; // Primary button color
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: #b38c00; // Darker shade on hover
     }
 
-    .btn {
-      background-color: #ffae00;
-      color: white;
-      cursor: pointer;
-      border: none;
-      padding: 10px;
+    &:disabled {
+      background-color: #6c757d; // Gray for disabled state
+      cursor: not-allowed; // Change cursor for disabled state
+    }
+  }
+
+  &__empty-message {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 18px;
+    color: #fff; // Lighter text color for empty state
+  }
+
+  &__continue-shopping-link {
+    color: #ffd000; // Link color
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none; // Remove underline on hover
     }
   }
 }

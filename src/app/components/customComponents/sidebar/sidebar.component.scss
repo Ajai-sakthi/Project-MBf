@@ -9,8 +9,8 @@ $sidebar-height: calc(100vh - 60px); // Full viewport height minus footer height
 .sidebar {
   height: $sidebar-height; // Adjust the height to account for footer height
   width: $sidebar-width;
-  background-color: black;
-  position: fixed; // Keep it fixed
+  background-color: $background-color; // Use defined variable
+  position:fixed; // Keep it fixed
   overflow-y: auto; // Allow scrolling
   display: flex;
   flex-direction: column;
@@ -66,6 +66,50 @@ $sidebar-height: calc(100vh - 60px); // Full viewport height minus footer height
 
 .closed {
   transform: translateX(-100%); // Hide sidebar off-screen
+}
+
+.language-selection {
+  position: absolute; // Adjust positioning as necessary
+  background: black;
+  z-index: 1000;
+  padding: 10px;
+  display: flex; // Use flexbox for horizontal layout
+  flex-wrap: wrap; // Allow items to wrap to the next line
+  max-width: 90%; // Keep the dropdown within sidebar width
+  gap: 10px; // Space between language options
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex; // Use flexbox for the list
+    flex-wrap: wrap; // Allow the list items to wrap
+
+    li.language-item {
+      padding: 5px 10px; // Add padding for each language option
+      flex: 0 1 auto; // Allow items to shrink and grow as needed
+      display: flex; // Align checkbox and text
+      align-items: center; // Center align vertically
+
+      label {
+        cursor: pointer;
+        display: flex; // Align checkbox and text
+        align-items: center;
+
+        input[type="checkbox"] {
+          width: 20px;  // Set a fixed width for checkboxes
+          height: 20px; // Set a fixed height for checkboxes
+          margin-right: 5px; // Space between checkbox and text
+          cursor: pointer; // Change cursor on hover
+          accent-color: $primary-color; // Change checkbox color if desired
+        }
+
+        span {
+          font-size: 16px; // Optional: Set a specific font size for better readability
+        }
+      }
+    }
+  }
 }
 
 // Footer styles

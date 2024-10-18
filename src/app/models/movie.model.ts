@@ -1,9 +1,8 @@
 export interface Movie {
-  id: number;
-  title: string;
-  description: string;
-  releaseYear: number;
+  src: any;
+  name: string;
   rating: number;
-  price:number;
-  imageUrl: string; // Add other properties as needed
+  releasedate: any;
+  price: any;
+  language: string;
 }

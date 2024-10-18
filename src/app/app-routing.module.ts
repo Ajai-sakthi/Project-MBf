@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component'; // Import HomeComponent
 import { MovieListComponent } from './pages/movie-list/movie-list.component';
-import { CartComponent } from './pages/cart/cart.component';
+import { CartPageComponent } from './pages/cart/cart.component';
 import { CheckoutComponent } from './pages/checkout/checkout.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'movies', component: MovieListComponent },
-  { path: 'cart', component: CartComponent },
+  { path: 'cart', component: CartPageComponent },
   { path: 'checkout', component: CheckoutComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: '**',component: NotFoundComponent }

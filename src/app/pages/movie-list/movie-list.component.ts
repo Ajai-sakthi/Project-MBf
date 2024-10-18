@@ -1,41 +1,33 @@
 import { Component, OnInit } from '@angular/core';
-import { MovieService } from '../../services/movie.service'; // Ensure this path is correct
-import { CartService } from '../../services/cart.service'; // Ensure this path is correct
-import { Movie } from '../../models/movie.model'; // Adjust this path to your Movie model
-import { Router } from '@angular/router'; // Import Router
+import { MovieService } from '../../services/movie.service';
+import { Movie } from '../../models/movie.model';
 
 @Component({
-  selector: 'app-movie-list',
+  selector: 'app-root',
   templateUrl: './movie-list.component.html',
-  styleUrls: ['./movie-list.component.scss']
+  styleUrls: ['./movie-list.component.css'],
+  providers:[MovieService]
 })
-export class MovieListComponent implements OnInit {
-  movies: Movie[] = []; // Use your Movie type
+export class AppComponent implements OnInit {
+  movies: Movie[] = []; // Initialize an empty array to store movies
 
-  constructor(
-    private movieService: MovieService,
-    private cartService: CartService,
-    private router: Router
-  ){}
+  constructor(private movieService: MovieService) {}
 
   ngOnInit(): void {
-    this.fetchMovies();
+    // Fetch movies when the component is initialized
+    this.movieService.getMovies().subscribe((data: Movie[]) => {
+      this.movies = data;
+    });
+  }
+  floorval(val: number){
+    return Math.floor(val);
+  }
+  getStars(rating: number): number[] {
+    const stars = [];
+    for (let i = 1; i <= rating; i++) {
+      stars.push(i);
+    }
+    return stars;
+  }
   }
 
-  fetchMovies(): void {
-    this.movieService.getMovies().subscribe(
-      (data: Movie[]) => {
-        this.movies = data;
-      },
-      (error) => {
-        console.error('Error fetching movies:', error);
-      }
-    );
-  }
-
-  addToCart(movie: Movie): void {
-    this.cartService.addToCart(movie);
-    alert(`${movie.title} added to cart!`); // You can customize this message
-    this.router.navigate(['/cart']);
-  }
-}
