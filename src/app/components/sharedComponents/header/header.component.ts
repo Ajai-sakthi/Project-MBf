@@ -30,6 +30,10 @@ export class HeaderComponent {
   toggleProfileMenu() {
     this.isProfileMenuOpen = !this.isProfileMenuOpen; // Toggle profile menu visibility
   }
+   // Method to close the profile dropdown
+   closeProfileMenu(): void {
+    this.isProfileMenuOpen = false;
+  }
 
   logout() {
     // Implement your logout logic here

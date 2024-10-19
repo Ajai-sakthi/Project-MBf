@@ -1,0 +1,29 @@
+.profile-container {
+  max-width: 400px;
+  margin: 50px auto;
+  text-align: center;
+
+  h2 {
+    margin-bottom: 20px;
+  }
+
+  .profile-details {
+    margin-bottom: 20px;
+
+    p {
+      font-size: 18px;
+    }
+  }
+
+  .btn-logout {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+
+  .btn-logout:hover {
+    background-color: #d32f2f;
+  }
+}

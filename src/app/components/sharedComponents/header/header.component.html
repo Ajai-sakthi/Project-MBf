@@ -39,25 +39,19 @@
     </ul>
   </nav>
 
-  <!-- Profile & Notifications -->
-  <div class="profile-menu">
-    <i class="fa fa-bell notification-icon" aria-hidden="true"></i>
-    <div class="dropdown">
-      <i class="fa fa-user-circle" (click)="toggleProfileMenu()" aria-hidden="true"></i>
-      <div *ngIf="isProfileMenuOpen" class="profile-dropdown">
-        <ul>
+<!-- Profile & Notifications -->
+<div class="profile-menu">
+  <i class="fa fa-bell notification-icon" aria-hidden="true"></i>
 
-          <li><a routerLink="/profile">Profile</a></li>
-          <li><a routerLink="/settings">Settings</a></li>
-          <li><a (click)="logout()">Logout</a></li>
-        </ul>
-      </div>
-    </div>
+  <!-- Profile Icon -->
+  <i class="fa fa-user-circle" routerLink="/profile" aria-hidden="true"></i>
+</div>
+
 
     <!-- Cart Icon -->
     <a routerLink="/cart">
       <i class="fa fa-shopping-cart" aria-hidden="true"></i>
       <span class="cart-count"></span> <!-- Example cart count -->
     </a>
-  </div>
+
 </header>
