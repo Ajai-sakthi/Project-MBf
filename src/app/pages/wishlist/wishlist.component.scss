@@ -1,9 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 
+/* Center the H1 element */
+.title {
+  text-align: center;  /* Center the title */
+  margin-top: 20px;    /* Add some margin above the title */
+}
+
+h1 {
+  font-size: 36px;     /* Larger font size for the title */
+  color: white;        /* White color for the text */
+  font-family: "Lato", sans-serif; /* Keep the font consistent */
+  margin-bottom: 30px; /* Add spacing below the title */
+}
+
 .container {
   display: flex;
   justify-content: center;
-  align-items: flex-start; // Align items to the top
+  align-items: flex-start; /* Align items to the top */
   flex-wrap: wrap;
   min-height: 100vh;
   padding-top: 50px;
@@ -14,32 +27,56 @@
   color: white;
   font-size: 20px;
   font-weight: 900;
+  position: relative;
   font-family: "Lato", sans-serif;
-  margin: 0 20px 30px 20px; // Adjusted margins for space around the cards
-  // Use margin here to create space between cards
-  background: rgba(255, 255, 255, 0.1); // Optional: Background for better visibility
-  border-radius: 15px; // Optional: Rounded corners
-  padding: 15px; // Optional: Internal padding for the card
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); // Shadow for depth
+  margin: 0 20px 30px; /* Adjusted margins for space around the cards */
+  background: rgba(255, 255, 255, 0.1); /* Optional: Background for better visibility */
+  border-radius: 15px; /* Rounded corners */
+  padding: 15px; /* Internal padding for the card */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Shadow for depth */
+  transition: transform 0.3s, box-shadow 0.3s; /* Smooth transitions */
+}
+
+.productCard:hover {
+  transform: translateY(-5px); /* Slightly lift the card on hover */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4); /* Enhanced shadow on hover */
+}
+
+.close-icon {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  cursor: pointer;
+  color: #F8B319; /* Icon color */
+  font-size: 24px; /* Slightly larger icon size */
+  background: rgba(0, 0, 0, 0.2); /* Semi-transparent background */
+  border-radius: 50%; /* Circular background */
+  padding: 5px; /* Padding around the icon */
+  //transition: background 0.3s, color 0.3s; /* Smooth transition effects */
+}
+
+.close-icon:hover {
+  background: rgba(255, 255, 255, 0.2); /* Solid background on hover */
+  color: rgb(235, 139, 6); /* Change color on hover for better UX */
 }
 
 .productImage {
   display: block;
-  width: 250px; // Fixed width for image
-  height: 320px; // Fixed height for image
-  border-radius: 25px; // Rounded corners for the image
-  margin-bottom: 15px; // Space below the image
+  width: 250px; /* Fixed width for image */
+  height: 320px; /* Fixed height for image */
+  border-radius: 25px; /* Rounded corners for the image */
+  margin-bottom: 15px; /* Space below the image */
 }
 
 .productDate {
   font-size: 17px;
   color: #F9F9F9B2;
-  margin-bottom: 15px; // Space below the date
+  margin-bottom: 15px; /* Space below the date */
 }
 
 .star-rating {
   color: #F8B319;
-  margin-bottom: 10px; // Space below the star rating
+  margin-bottom: 10px; /* Space below the star rating */
 }
 
 .button {
@@ -49,15 +86,16 @@
   padding: 10px 15px;
   border-radius: 10px;
   cursor: pointer;
-  margin-top: 10px; // Space above the button
+  margin-top: 10px; /* Space above the button */
+  transition: background-color 0.3s; /* Smooth transition on hover */
+}
 
-  &:hover {
-    background-color: #e0a20a; // Darker shade on hover
-  }
+.button:hover {
+  background-color: #e0a20a; /* Darker shade on hover */
 }
 
 .btn-container {
   display: flex;
-  justify-content: space-between; // Space buttons evenly
-  width: 100%; // Full width for btn-container
+  justify-content: space-between; /* Space buttons evenly */
+  width: 100%; /* Full width for btn-container */
 }
