@@ -1,58 +1,22 @@
-<div class="cart-page">
-  <h2 class="cart-page__title">Your Cart</h2>
+<div class="cart-container">
+  <h2>Your Cart</h2>
 
-  <ng-container *ngIf="cartItems && cartItems.length > 0; else emptyCart">
-    <div class="cart-page__items">
-      <div *ngFor="let item of cartItems; trackBy: trackByItemId" class="cart-page__item">
-        <div class="cart-page__item-details">
-          <img
-            [src]="item.imageUrl || defaultImage"
-            [alt]="item.title"
-            class="cart-page__item-image"
-          />
-          <div class="cart-page__item-info">
-            <h3 class="cart-page__item-title">{{ item.title }}</h3>
-            <p class="cart-page__item-price">{{ item.price | currency }}</p>
-            <div class="cart-page__item-actions">
-              <label for="quantity-{{ item.id }}" class="visually-hidden">Quantity</label>
-              <input
-                id="quantity-{{ item.id }}"
-                type="number"
-                [(ngModel)]="item.quantity"
-                min="1"
-                class="cart-page__item-quantity"
-                (change)="updateCartItemQuantity(item)"
-                (input)="validateQuantity(item)"
-              />
-              <button
-                class="btn btn-danger cart-page__item-remove"
-                (click)="removeFromCart(item)"
-                [attr.aria-label]="'Remove ' + item.title + ' from cart'"
-              >
-                Remove
-              </button>
-            </div>
-          </div>
-        </div>
+  <div *ngIf="cartItems.length > 0; else emptyCart">
+    <div class="productCard" *ngFor="let item of cartItems">
+      <img [src]="item.imageUrl" alt="{{ item.name }}">
+      <h3>{{item.name}}</h3>
+      <div>&#8377;{{ item.price }} x {{ item.quantity }}</div>
+      <div class="star-rating">
+        <i class="fas fa-star" *ngFor="let star of getStars(item.rating)"></i>
       </div>
+      <button (click)="removeFromCart(item)">Remove</button>
     </div>
 
-    <div class="cart-page__summary">
-      <h3 class="cart-page__total-label">Total: <span>{{ totalPrice | currency }}</span></h3>
-      <button
-        class="btn btn-primary cart-page__checkout-btn"
-        (click)="proceedToCheckout()"
-        [disabled]="isCheckoutDisabled()"
-        [attr.aria-label]="'Proceed to checkout'"
-      >
-        Proceed to Checkout
-      </button>
-    </div>
-  </ng-container>
+    <div class="total-price">Total: &#8377;{{ totalPrice }}</div>
+    <button routerLink="/checkout" [disabled]="cartItems.length === 0">Proceed to Checkout</button>
+  </div>
 
   <ng-template #emptyCart>
-    <div class="cart-page__empty-message">
-      <p>Your cart is empty. <a routerLink="/movies" class="cart-page__continue-shopping-link">Continue Shopping</a></p>
-    </div>
+    <p>Your cart is currently empty.</p>
   </ng-template>
 </div>

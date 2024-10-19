@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; // Align items to the top
+  flex-wrap: wrap;
+  min-height: 100vh;
+  padding-top: 50px;
+}
+
+.productCard {
+  display: inline-block;
+  color: white;
+  font-size: 20px;
+  font-weight: 900;
+  font-family: "Lato", sans-serif;
+  margin: 0 20px 30px 20px; // Adjusted margins for space around the cards
+  // Use margin here to create space between cards
+  background: rgba(255, 255, 255, 0.1); // Optional: Background for better visibility
+  border-radius: 15px; // Optional: Rounded corners
+  padding: 15px; // Optional: Internal padding for the card
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); // Shadow for depth
+}
+
+.productImage {
+  display: block;
+  width: 250px; // Fixed width for image
+  height: 320px; // Fixed height for image
+  border-radius: 25px; // Rounded corners for the image
+  margin-bottom: 15px; // Space below the image
+}
+
+.productDate {
+  font-size: 17px;
+  color: #F9F9F9B2;
+  margin-bottom: 15px; // Space below the date
+}
+
+.star-rating {
+  color: #F8B319;
+  margin-bottom: 10px; // Space below the star rating
+}
+
+.button {
+  font-size: 19px;
+  background-color: #F8B319;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 10px; // Space above the button
+
+  &:hover {
+    background-color: #e0a20a; // Darker shade on hover
+  }
+}
+
+.btn-container {
+  display: flex;
+  justify-content: space-between; // Space buttons evenly
+  width: 100%; // Full width for btn-container
+}

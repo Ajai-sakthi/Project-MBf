@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartService } from '../../services/cart.service';
-import { CartItem } from '../../models/cart-item.model';
+import { CartItem } from '../../models/cart-item.model'; // Correct import
 import { OrderService } from '../../services/order.service'; // Correct import
 
 @Component({
@@ -10,12 +10,9 @@ import { OrderService } from '../../services/order.service'; // Correct import
   styleUrls: ['./checkout.component.scss']
 })
 export class CheckoutComponent implements OnInit {
-  cartItems: CartItem[] = [];
+  cartItems: CartItem[] = []; // Use CartItem
   totalPrice: number = 0;
-  //shippingDetails: any = {};
-  //paymentDetails: any = {};
   checkout: any = {};
-  // Shipping and Payment Details
   shippingDetails = {
     fullName: '',
     address: '',
@@ -30,8 +27,7 @@ export class CheckoutComponent implements OnInit {
     cvv: ''
   };
 
-  // Default image for items that don't have an image
-  defaultImage: string = 'assets/images/default-product-image.jpg'; // You can set the path to any placeholder image
+  defaultImage: string = 'assets/images/default-product-image.jpg';
 
   constructor(
     private cartService: CartService,
@@ -46,22 +42,20 @@ export class CheckoutComponent implements OnInit {
 
   // Load cart items from cart service
   loadCartItems(): void {
-    this.cartItems = this.cartService.getCartItems();
+    this.cartItems = this.cartService.getCartItems(); // Ensure getCartItems() is used
   }
 
   // Calculate the total price of the cart
   calculateTotalPrice(): void {
     this.totalPrice = this.cartItems.reduce(
-      (acc, item) => acc + item.price * item.quantity, 0
+      (acc, item) => acc + item.price * item.quantity, 0 // Use CartItem's price and quantity
     );
   }
 
-  // Track items by their unique IDs
   trackByItemId(index: number, item: CartItem): number {
-    return item.id;
+    return item.id; // CartItem has an id property
   }
 
-  // Validate form before proceeding to checkout
   isCheckoutDisabled(): boolean {
     return !this.shippingDetails.fullName ||
            !this.shippingDetails.address ||
@@ -74,7 +68,6 @@ export class CheckoutComponent implements OnInit {
            this.cartItems.length === 0;
   }
 
-  // Place the order
   placeOrder(): void {
     if (this.isCheckoutDisabled()) {
       alert('Please fill out all the required fields.');
@@ -84,14 +77,12 @@ export class CheckoutComponent implements OnInit {
     const orderDetails = {
       shippingDetails: this.shippingDetails,
       paymentDetails: this.paymentDetails,
-      cartItems: this.cartItems,
+      cartItems: this.cartItems, // cartItems are of type CartItem
       totalPrice: this.totalPrice
     };
 
-    // Send order details to order service for processing
     this.orderService.placeOrder(orderDetails).subscribe(
       response => {
-        // Navigate to the order confirmation page
         this.router.navigate(['/order-confirmation']);
       },
       error => {

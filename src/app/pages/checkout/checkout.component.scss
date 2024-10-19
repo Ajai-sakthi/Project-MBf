@@ -1,12 +1,42 @@
-.checkout-page {
+.checkout-container {
   padding: 20px;
-  text-align: center;
 
-  .btn {
-    background-color: #28a745;
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+  }
+
+  .totalPrice {
+    font-size: 1.5rem;
+    margin-top: 20px;
+  }
+
+  .button {
+    background-color: #007bff;
     color: white;
-    padding: 10px 20px;
     border: none;
+    padding: 10px;
     cursor: pointer;
+    border-radius: 5px;
+
+    &:hover {
+      background-color: #0056b3;
+    }
   }
 }

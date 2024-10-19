@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { IconDefinition } from '@fortawesome/fontawesome-common-types';
-import { faHome, faSearch, faStar, faHeart, faLanguage } from '@fortawesome/free-solid-svg-icons'; // Importing faLanguage icon
+import { faHome, faSearch, faStar , faHeart, faLanguage } from '@fortawesome/free-solid-svg-icons'; // Importing faLanguage icon
 
 @Component({
   selector: 'app-sidebar',

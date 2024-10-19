@@ -1,7 +1,9 @@
+// src/app/models/cart-item.model.ts
 export interface CartItem {
-  id: number;       // or string, depending on your ID type
-  title: string;
+  id: number;
+  name: string;
   price: number;
-  quantity: number; // This property is required
-  imageUrl?: string; // Optional property for the image URL
+  quantity: number;
+  rating: number;
+  imageUrl: string; // Use 'imageUrl' as per your previous context
 }

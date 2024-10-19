@@ -1,15 +1,20 @@
-<div class="container" >
-  <div class="productCard" *ngFor="let prod of movies">
-      <img class=productImage src="{{prod.src}}" alt="{{prod.name}}">
-      <div>{{prod.name}}</div>
-      <div class="star-rating">
-          <i class="fas fa-star" *ngFor="let star of getStars(prod.rating)"></i>
-          <i class="far fa-star" *ngFor="let star of getStars(5-(floorval(prod.rating)))"></i>
-        </div>
-      <div class="productDate">{{prod.releasedate}}</div>
-      <div>&#8377;{{prod.price}}</div>
-     <div class="btn-container">
-      <button class="button">Buy Now</button>
+<div class="container">
+  <div class="productCard" *ngFor="let movie of movies">
+    <img class="productImage" [src]="movie.src" alt="{{ movie.name }}">
+    <div>{{ movie.name }}</div>
+    <div class="star-rating">
+      <i class="fas fa-star" *ngFor="let star of getStars(movie.rating)"></i>
+      <i class="far fa-star" *ngFor="let star of getStars(5 - movie.rating)"></i>
+    </div>
+    <div class="productDate">{{ movie.releasedate }}</div>
+    <div>&#8377;{{ movie.price }}</div>
+    <div class="btn-container">
+      <button class="button" (click)="buyNow(movie)">Buy Now</button>
       <button class="button">More Info</button>
-     </div> 
+      <i
+        class="far fa-heart wishlist-icon"
+        [class.active]="isInWishlist(movie)"
+        (click)="addToWishlist(movie)"></i>
+    </div>
   </div>
+</div>

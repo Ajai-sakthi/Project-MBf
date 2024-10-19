@@ -1,0 +1,22 @@
+<div class="wishlist-container">
+  <h2>Your Wishlist</h2>
+  <div *ngIf="wishlistMovies.length > 0; else emptyWishlist">
+    <div class="productCard" *ngFor="let movie of wishlistMovies">
+      <img class="productImage" [src]="movie.src" alt="{{ movie.name }}">
+      <div>{{ movie.name }}</div>
+      <div class="star-rating">
+        <i class="fas fa-star" *ngFor="let star of getStars(movie.rating)"></i>
+        <i class="far fa-star" *ngFor="let star of getStars(5 - movie.rating)"></i>
+      </div>
+      <div class="productDate">{{ movie.releasedate }}</div>
+      <div>&#8377;{{ movie.price }}</div>
+      <div class="btn-container">
+        <button class="button" (click)="removeFromWishlist(movie)">Remove</button>
+        <button class="button" (click)="buyNow(movie)">Buy Now</button>
+      </div>
+    </div>
+  </div>
+  <ng-template #emptyWishlist>
+    <p>Your wishlist is currently empty.</p>
+  </ng-template>
+</div>

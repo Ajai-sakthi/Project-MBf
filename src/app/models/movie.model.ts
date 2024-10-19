@@ -1,8 +1,10 @@
+// src/app/models/movie.model.ts
 export interface Movie {
-  src: any;
+  id: number;
   name: string;
+  price: number; // Ensure this is a number for calculations
   rating: number;
-  releasedate: any;
-  price: any;
-  language: string;
+  src: string; // Source for the image
+  releasedate: string;
+  inWishlist?: boolean; // Optional property to track if it's in the wishlist
 }

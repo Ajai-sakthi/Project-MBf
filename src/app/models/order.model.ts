@@ -1,3 +1,6 @@
+// src/app/models/order.model.ts
+import { CartItem } from './cart-item.model';
+
 export interface Order {
   shippingDetails: {
     fullName: string;
@@ -11,11 +14,6 @@ export interface Order {
     expiryDate: string;
     cvv: string;
   };
-  cartItems: {
-    id: number;
-    title: string;
-    price: number;
-    quantity: number;
-  }[];
+  cartItems: CartItem[];
   totalPrice: number;
 }
