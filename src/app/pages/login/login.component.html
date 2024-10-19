@@ -13,11 +13,10 @@
       </div>
 
       <div class="remember-forgot">
-       <!-- <div class="remember-checkbox">
-          <input type="checkbox" id="remember"/>
-          <label for ="remember">Remember-me</label></div>-->
         <a href="#" class="forgot-password">Forgot password?</a>
       </div>
+
+      <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
 
       <button type="submit" class="btn-login">Login</button>
     </form>
