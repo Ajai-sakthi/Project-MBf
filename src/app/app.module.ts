@@ -19,7 +19,8 @@ import { CustomCarouselComponent } from './pages/home/component/custom-carousel/
 import { Custom2carouselComponent } from './pages/home/component/custom2carousel/custom2carousel.component';
 import { WishlistComponent } from './pages/wishlist/wishlist.component'; // Import your WishlistComponent
 import { CommonModule } from '@angular/common'; // Import CommonModule
-
+import { TopRatedMoviesComponent } from './pages/top-rated-movies/top-rated-movies.component';
+import { FormatPricePipe } from './format-price.pipe'; // Adjust path accordingly
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +29,7 @@ import { CommonModule } from '@angular/common'; // Import CommonModule
     SidebarComponent,
     HomeComponent,
     MovieListComponent,
+    TopRatedMoviesComponent,
     CartComponent,
     CheckoutComponent,
     LoginComponent,
@@ -35,7 +37,8 @@ import { CommonModule } from '@angular/common'; // Import CommonModule
     NotFoundComponent,
     CustomCarouselComponent,
     Custom2carouselComponent,
-    WishlistComponent // Declare your WishlistComponent here
+    WishlistComponent,
+    FormatPricePipe // Declare your WishlistComponent here
   ],
   imports: [
     BrowserModule,

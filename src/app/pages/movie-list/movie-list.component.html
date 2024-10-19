@@ -1,3 +1,7 @@
+<div class="title">
+  <h1>Movie List</h1> <!-- This is now separated from the container -->
+</div>
+
 <div class="container">
   <div class="productCard" *ngFor="let movie of movies">
     <img class="productImage" [src]="movie.src" alt="{{ movie.name }}">
@@ -10,11 +14,12 @@
     <div>&#8377;{{ movie.price }}</div>
     <div class="btn-container">
       <button class="button" (click)="buyNow(movie)">Buy Now</button>
-      <button class="button">More Info</button>
+      <button class="button" (click)="addToCart(movie)">Add to Cart</button>
       <i
         class="far fa-heart wishlist-icon"
         [class.active]="isInWishlist(movie)"
-        (click)="addToWishlist(movie)"></i>
+        (click)="addToWishlist(movie)">
+      </i>
     </div>
   </div>
 </div>

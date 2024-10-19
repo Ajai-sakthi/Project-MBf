@@ -1,22 +1,40 @@
 <div class="cart-container">
-  <h2>Your Cart</h2>
+  <h1>Shopping Cart</h1>
 
   <div *ngIf="cartItems.length > 0; else emptyCart">
-    <div class="productCard" *ngFor="let item of cartItems">
-      <img [src]="item.imageUrl" alt="{{ item.name }}">
-      <h3>{{item.name}}</h3>
-      <div>&#8377;{{ item.price }} x {{ item.quantity }}</div>
-      <div class="star-rating">
-        <i class="fas fa-star" *ngFor="let star of getStars(item.rating)"></i>
+    <div class="cart-items">
+      <div class="cart-item" *ngFor="let item of cartItems">
+        <img class="cart-item-image" [src]="item.imageUrl" alt="{{ item.name }}"> <!-- Update src to imageUrl -->
+        <div class="cart-item-details">
+          <h2>{{ item.name }}</h2>
+          <div class="cart-item-rating">
+            <i class="fas fa-star" *ngFor="let star of getStars(item.rating)"></i>
+          </div>
+          <div class="cart-item-price">
+            Price: &#8377;{{ item.price | number }}
+          </div>
+          <div class="cart-item-quantity">
+            <label>Quantity:</label>
+            <input type="number" [(ngModel)]="item.quantity" (change)="updateQuantity(item)" min="0" />
+          </div>
+
+          <button class="remove-item-button" (click)="removeFromCart(item)">Remove</button>
+        </div>
       </div>
-      <button (click)="removeFromCart(item)">Remove</button>
     </div>
 
-    <div class="total-price">Total: &#8377;{{ totalPrice }}</div>
-    <button routerLink="/checkout" [disabled]="cartItems.length === 0">Proceed to Checkout</button>
+    <div class="cart-summary">
+      <h2>Cart Summary</h2>
+      <div>Total Items: {{ totalItems }}</div>
+      <div>Total Price: &#8377;{{ totalPrice | number }}</div>
+      <button class="checkout-button" (click)="goToCheckout()">Checkout</button>
+    </div>
   </div>
 
   <ng-template #emptyCart>
-    <p>Your cart is currently empty.</p>
+    <div class="empty-cart">
+      <p>Your cart is currently empty.</p>
+      <a routerLink="/movies" class="back-to-store">Continue Shopping</a>
+    </div>
   </ng-template>
 </div>

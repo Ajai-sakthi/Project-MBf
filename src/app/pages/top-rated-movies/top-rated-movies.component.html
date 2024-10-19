@@ -1,41 +1,19 @@
-<div class="top-rated-movies">
-  <h2>Top Rated Movies</h2>
+<!-- src/app/pages/top-rated-movies/top-rated-movies.component.html -->
+<div class="container">
+  <h1>Top Rated Movies</h1>
+  <div class="productCard" *ngFor="let movie of filteredMovies">
+    <img class="productImage" [src]="movie.src" alt="{{ movie.name }}" />
+    <div class="productTitle">{{ movie.name }}</div>
 
-  <!-- Dropdown for selecting condition -->
-  <div class="condition-selection">
-    <label for="condition">Select Rating Condition:</label>
-    <select id="condition" [(ngModel)]="selectedCondition" (change)="onConditionChange(selectedCondition)">
-      <option value="all">All Movies</option>
-      <option value="below5">Movies Rated Below 5</option>
-      <option value="equal5">Movies Rated 5</option>
-      <option value="above5">Movies Rated Above 5</option>
-    </select>
-  </div>
-
-
-  <!-- Movie List Display -->
-  <div *ngIf="filteredMovies.length > 0" class="movie-list">
-    <div *ngFor="let movie of filteredMovies" class="movie-card">
-      <div class="movie-poster">
-        <img [src]="movie.imageUrl" alt="{{ movie.title }}" />
-      </div>
-      <div class="movie-info">
-        <h3 class="movie-title">{{ movie.title }}</h3>
-        <p class="movie-rating">
-          <fa-icon [icon]="faStar" class="rating-icon"></fa-icon> {{ movie.rating }}
-        </p>
-        <p class="movie-genre">
-          <fa-icon [icon]="faFilm" class="genre-icon"></fa-icon> {{ movie.genre }}
-        </p>
-        <p class="movie-year">
-          <fa-icon [icon]="faCalendar" class="year-icon"></fa-icon> {{ movie.year }}
-        </p>
-      </div>
+    <div class="star-rating">
+      <i class="fas fa-star" *ngFor="let star of getStars(movie.rating)"></i>
+      <i class="far fa-star" *ngFor="let star of getStars(5 - movie.rating)"></i>
     </div>
-  </div>
 
-  <!-- No Movies Message -->
-  <div *ngIf="filteredMovies.length === 0" class="no-movies-message">
-    <p>No movies available for the selected condition.</p>
+    <div class="productDate">{{ movie.releasedate | date: 'mediumDate' }}</div>
+    <div class="productPrice">&#8377;{{movie.price|formatPrice }}</div>
+    <div class="btn-container">
+      <button class="button">More Info</button>
+    </div>
   </div>
 </div>

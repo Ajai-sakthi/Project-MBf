@@ -2,15 +2,10 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UtilityService {
-  // Method to get an array of star ratings based on the rating number
   getStars(rating: number): number[] {
-    const stars = [];
-    for (let i = 1; i <= rating; i++) {
-      stars.push(i);
-    }
-    return stars;
+    return Array(Math.floor(rating)).fill(0); // Fill an array with the number of stars based on the rating
   }
 }

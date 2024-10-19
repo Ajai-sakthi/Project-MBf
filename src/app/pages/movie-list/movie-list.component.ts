@@ -1,11 +1,11 @@
-// src/app/pages/movie-list/movie-list.component.ts
 import { Component, OnInit } from '@angular/core';
 import { MovieService } from '../../services/movie.service';
-import { Movie } from '../../models/movie.model';
+import { Movie } from '../../models/movie.model'; // Ensure correct import path
 import { WishlistService } from './../../services/wishlist.service';
 import { UtilityService } from './../../services/utility.service';
-import { CartService } from './../../services/cart.service'; // Import CartService
-import { Router } from '@angular/router'; // Import Router
+import { CartService } from './../../services/cart.service';
+import { Router } from '@angular/router';
+import { CartItem } from './../../models/cart-item.model'; // Import the CartItem interface
 
 @Component({
   selector: 'app-movie-list',
@@ -19,8 +19,8 @@ export class MovieListComponent implements OnInit {
     private movieService: MovieService,
     private wishlistService: WishlistService,
     private utilityService: UtilityService,
-    private cartService: CartService, // Inject CartService
-    private router: Router // Inject Router
+    private cartService: CartService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -47,16 +47,36 @@ export class MovieListComponent implements OnInit {
   }
 
   buyNow(movie: Movie): void {
-    const cartItem = {
-      id: movie.id,
+    const cartItem: CartItem = {
+      id: movie.id, // Ensure movie has an id property
       name: movie.name,
-      price: movie.price,
-      quantity: 1, // Adjust as needed
+      price: movie.price.replace(/,/g, ''), // Make sure movie.price is a string
+      quantity: 1, // Initial quantity
       rating: movie.rating,
-      imageUrl: movie.src
+      src: movie.src, // Include the src property
+      imageUrl: movie.src, // You can use the same source for imageUrl if applicable
+      movie: movie // Include the entire movie object
     };
 
-    this.cartService.addToCart(cartItem); // Ensure this method exists in CartService
-    this.router.navigate(['/checkout']); // Navigate to the checkout page
+    this.cartService.addToCart(cartItem); // Pass the CartItem
+    this.router.navigate(['/checkout']); // Navigate to checkout
+  }
+
+
+
+  addToCart(movie: Movie): void {
+    const cartItem: CartItem = {
+      id: movie.id,
+      name: movie.name,
+      price: movie.price.toString().replace(/,/g, ''), // Convert to string here
+      quantity: 1, // Set initial quantity
+      rating: movie.rating,
+      imageUrl: movie.src,
+      src: movie.src, // Ensure src is included if needed
+      movie: movie // Include the movie object here
+    };
+
+    this.cartService.addToCart(cartItem); // Call the addToCart method
+    this.router.navigate(['/cart']);
   }
 }

@@ -1,5 +1,14 @@
+<!-- src/app/app.component.html -->
 <app-header (sidebarToggle)="onSidebarToggle()"></app-header>
-<app-sidebar [isOpen]="isSidebarOpen"></app-sidebar>
+
+<!-- Sidebar component with event bindings for language and rating changes -->
+<app-sidebar
+  [isOpen]="isSidebarOpen"
+  (languageChange)="onLanguageChange($event)"
+  (ratingChange)="onRatingChange($event)">
+</app-sidebar>
+
+<!-- Router outlet for displaying routed components -->
 <router-outlet></router-outlet>
 
 <!-- Footer is displayed only if it's not the login page -->

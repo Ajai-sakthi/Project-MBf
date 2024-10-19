@@ -20,6 +20,10 @@ export class MovieService {
     return this.http.get<Movie[]>(this.apiUrl);
   }
 
+  // Fetch top rated movies
+  getTopRatedMovies(): Observable<Movie[]> {
+    return this.http.get<Movie[]>(this.apiUrl + '?_sort=rating&_order=desc&_limit=5'); // Adjust limit as needed
+  }
   // Load movies into the local movies array and notify subscribers
   loadMovies(): void {
     this.getMovies().subscribe(movies => {

@@ -1,32 +1,46 @@
 // src/app/services/cart.service.ts
 import { Injectable } from '@angular/core';
-import { CartItem } from '../models/cart-item.model';
+import { CartItem } from '../models/cart-item.model'; // Adjust path as needed
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-  private cart: CartItem[] = [];
+  cartItems: CartItem[] = []; // Store cart items as CartItem[]
 
-  addToCart(item: CartItem): void {
-    const existingItem = this.cart.find(cartItem => cartItem.id === item.id);
-    if (existingItem) {
-      existingItem.quantity += item.quantity; // Increment quantity if item exists
-    } else {
-      this.cart.push(item); // Add new item to the cart
+  constructor() {}
+
+  // Retrieve cart items
+  getCartItems(): CartItem[] {
+    return this.cartItems;
+  }
+
+  // Update item quantity in the cart
+  updateItemQuantity(item: CartItem): void {
+    const cartItem = this.cartItems.find(i => i.name === item.name);
+    if (cartItem) {
+      cartItem.quantity = item.quantity; // Update quantity
     }
   }
 
-  getCartItems(): CartItem[] {
-    return this.cart; // Return the current cart items
+  // Remove item from the cart
+  removeItem(item: CartItem): void {
+    const index = this.cartItems.indexOf(item);
+    if (index > -1) {
+      this.cartItems.splice(index, 1); // Remove item from cart
+    }
   }
-
-  removeFromCart(item: CartItem): void {
-    // Filter out the item to remove it from the cart
-    this.cart = this.cart.filter(cartItem => cartItem.id !== item.id);
-  }
-
+  // Method to clear the cart
   clearCart(): void {
-    this.cart = []; // Clear the cart
+    this.cartItems = []; // Reset the cart items
+  }
+  addToCart(item: CartItem): void {
+    // Check if the item already exists in the cart
+    const existingItem = this.cartItems.find(i => i.name === item.name);
+    if (existingItem) {
+      existingItem.quantity += item.quantity; // Increase quantity if it exists
+    } else {
+      this.cartItems.push(item); // Add new item if it doesn't exist
+    }
   }
 }

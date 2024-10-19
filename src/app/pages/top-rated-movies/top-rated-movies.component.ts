@@ -1,7 +1,7 @@
+// src/app/pages/top-rated-movies/top-rated-movies.component.ts
 import { Component, OnInit } from '@angular/core';
-import { MovieService } from '../../services/movie.service';
-import { Movie } from '../../models/movie.model';
-import { faStar, faFilm, faCalendar } from '@fortawesome/free-solid-svg-icons';
+import { Movie } from '../../models/movie.model'; // Import your Movie model
+import { StateService } from '../../services/state.service'; // Adjust the import as necessary
 
 @Component({
   selector: 'app-top-rated-movies',
@@ -9,31 +9,32 @@ import { faStar, faFilm, faCalendar } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./top-rated-movies.component.scss']
 })
 export class TopRatedMoviesComponent implements OnInit {
-  allMovies: Movie[] = [];
-  filteredMovies: Movie[] = [];
-  selectedCondition: string = 'all'; // Default to 'all' condition
+  movies: Movie[] = []; // All movies list
+  filteredMovies: Movie[] = []; // Filtered movie list
+  selectedRating: string | number | null = null; // Currently selected rating
 
-  // FontAwesome icons
-  faStar = faStar;
-  faFilm = faFilm;
-  faCalendar = faCalendar;
+  constructor(private stateService: StateService) {}
 
-  constructor(private movieService: MovieService) {}
-
-  ngOnInit(): void {
-    this.fetchMovies();
-  }
-
-  fetchMovies(): void {
-    this.movieService.getTopRatedMovies(this.selectedCondition).subscribe((movies: Movie[]) => {
-      this.filteredMovies = movies; // Update the filtered movies based on condition
+  ngOnInit() {
+    this.movies = this.stateService.getMovies(); // Fetch your movies from the service
+    this.stateService.ratingChange.subscribe((rating: string | number | null) => {
+      this.selectedRating = rating;
+      this.filterMovies(); // Call the filter method whenever rating changes
     });
-
   }
 
- // Handle condition change
- onConditionChange(condition: string): void {
-  this.selectedCondition = condition; // Update selected condition
-  this.fetchMovies(); // Fetch movies based on new condition
+  filterMovies() {
+    if (this.selectedRating === 'below3') {
+      this.filteredMovies = this.movies.filter(movie => movie.rating < 3);
+    } else if (this.selectedRating) {
+      this.filteredMovies = this.movies.filter(movie => movie.rating === this.selectedRating);
+    } else {
+      this.filteredMovies = this.movies; // If no rating is selected, show all movies
+    }
+  }
+    // Method to return an array of stars for display
+    getStars(rating: number): number[] {
+      return new Array(Math.round(rating)); // Create an array with the number of stars
+    }
 }
-}
+
