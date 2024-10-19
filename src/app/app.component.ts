@@ -1,8 +1,8 @@
-// src/app/app.component.ts
 import { Component } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { Movie } from './models/movie.model'; // Assuming you have a Movie model
 import { MovieService } from './services/movie.service'; // Service to fetch movies
+import { filter } from 'rxjs/operators'; // Import filter for RxJS
 
 @Component({
   selector: 'app-root',
@@ -18,21 +18,27 @@ export class AppComponent {
   selectedLanguages: string[] = [];
   movies: Movie[] = []; // Store all movies
   filteredMovies: Movie[] = []; // Store filtered movies
+  isLoginOrRegisterPage: boolean = false; // Track if on login/register page
 
   constructor(private router: Router, private movieService: MovieService) {
-    // Subscribe to router events to detect route changes
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
-        // Check if the current URL is '/login'
-        this.isLoginPage = this.router.url === '/login';
-      }
-    });
-
     // Fetch movies initially
     this.movieService.getMovies().subscribe(data => {
       this.movies = data;
       this.filteredMovies = data; // Initialize with all movies
     });
+
+    // Subscribe to router events to track navigation
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe(() => {
+      this.isLoginOrRegisterPage = this.isLoginOrRegister();
+    });
+  }
+
+  // Check if the current route is login or register
+  isLoginOrRegister(): boolean {
+    const currentRoute = this.router.url;
+    return currentRoute === '/login' || currentRoute === '/register';
   }
 
   onSidebarToggle() {

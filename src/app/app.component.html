@@ -12,4 +12,4 @@
 <router-outlet></router-outlet>
 
 <!-- Footer is displayed only if it's not the login page -->
-<app-footer *ngIf="!isLoginPage"></app-footer>
+<app-footer *ngIf="!isLoginOrRegister()"></app-footer>
