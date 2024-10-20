@@ -4,7 +4,7 @@ import { Router, NavigationEnd } from '@angular/router';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'] // Fixed typo here (styleUrl -> styleUrls)
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
   title = 'MBF';
@@ -15,8 +15,9 @@ export class AppComponent {
     // Subscribe to router events to detect route changes
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        // Check if the current URL is '/login'
-        this.isLoginPage = this.router.url === '/login';
+        // Check if the current URL is '/login' or '/register'
+        const currentUrl = this.router.url;
+        this.isLoginPage = (currentUrl === '/login' || currentUrl === '/register');
       }
     });
   }

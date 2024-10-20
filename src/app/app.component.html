@@ -2,5 +2,5 @@
 <app-sidebar [isOpen]="isSidebarOpen"></app-sidebar>
 <router-outlet></router-outlet>
 
-<!-- Footer is displayed only if it's not the login page -->
+<!-- Footer is displayed only if it's not the login or register page -->
 <app-footer *ngIf="!isLoginPage"></app-footer>
