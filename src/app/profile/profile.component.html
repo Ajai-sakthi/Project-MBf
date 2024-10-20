@@ -1,9 +1,48 @@
 <div class="profile-container">
   <h2>User Profile</h2>
 
-  <div class="profile-details" *ngIf="email">
-    <p>Email: {{ email }}</p>
+  <div class="profile-details" *ngIf="user">
+    <img [src]="user.profilePicture" alt="Profile Picture" class="profile-picture" />
+    <p *ngIf="!isGuest">Full Name: <input [(ngModel)]="user.fullName" /></p>
+    <p *ngIf="!isGuest">Email: <input [(ngModel)]="user.email" /></p>
+    <p *ngIf="!isGuest">Username: <input [(ngModel)]="user.username" /></p>
   </div>
 
-  <button (click)="logout()" class="btn-logout">Logout</button>
+  <h3>Order History</h3>
+  <div *ngIf="user && user.orderHistory.length === 0">
+    No orders placed yet.
+  </div>
+  <ul *ngIf="user && user.orderHistory.length > 0">
+    <li *ngFor="let order of user.orderHistory" (click)="viewOrderDetails(order)">
+      {{ order.movieTitle }}
+    </li>
+  </ul>
+
+  <h3>Wishlist</h3>
+  <div *ngIf="user && user.wishlist.length === 0">
+    Your wishlist is empty.
+  </div>
+  <ul *ngIf="user && user.wishlist.length > 0">
+    <li *ngFor="let item of user.wishlist">{{ item }}</li>
+  </ul>
+
+  <h3>Payment Methods</h3>
+  <div *ngIf="user && user.paymentMethods.length === 0">
+    No payment methods added.
+  </div>
+  <ul *ngIf="user && user.paymentMethods.length > 0">
+    <li *ngFor="let method of user.paymentMethods">{{ method }}</li>
+  </ul>
+  <button *ngIf="!isGuest" (click)="addPaymentMethod()">Add Payment Method</button>
+
+  <h3>Security</h3>
+  <p *ngIf="user">
+    Two-Factor Authentication:
+    <input type="checkbox" [(ngModel)]="user.twoFactorAuthEnabled" (change)="toggleTwoFactor()" />
+  </p>
+
+  <button *ngIf="!isGuest" (click)="updateProfile()">Update Profile</button>
+
+  <p *ngIf="!isGuest">Last Logged In: {{ user ? (user.lastLoggedIn ? (user.lastLoggedIn | date:'short') : 'Never logged in') : 'Never logged in' }}</p>
+  <p *ngIf="isGuest">Welcome, Guest User!</p>
 </div>

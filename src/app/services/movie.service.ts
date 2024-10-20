@@ -19,6 +19,10 @@ export class MovieService {
   getMovies(): Observable<Movie[]> {
     return this.http.get<Movie[]>(this.apiUrl);
   }
+   // Method to search for movies
+   searchMovies(query: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/movies/search?q=${query}`);
+  }
 
   // Fetch top rated movies
   getTopRatedMovies(): Observable<Movie[]> {

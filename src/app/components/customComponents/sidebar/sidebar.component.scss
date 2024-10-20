@@ -43,7 +43,9 @@ $sidebar-height: calc(100vh - 60px); // Full viewport height minus footer height
           display: flex;
           align-items: center;
           transition: color 0.3s ease;
-
+          i {
+            margin-right: 10px; // Space between icon and text
+          }
           fa-icon {
             margin-right: 10px;
             font-size: 18px;
