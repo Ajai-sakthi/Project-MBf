@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
         this.loading = false;
         if (response) {
           // Navigate to the movie list page upon successful login
-          this.router.navigate(['/']); // Adjust the route based on your app's routing config
+          this.router.navigate(['/movies']); // Adjust the route based on your app's routing config
         } else {
           this.errorMessage = 'Invalid credentials. Please try again.';
         }
