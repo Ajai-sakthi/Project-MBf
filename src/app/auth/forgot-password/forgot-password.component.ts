@@ -1,4 +1,3 @@
-// forgot-password.component.ts
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
@@ -13,34 +12,42 @@ export class ForgotPasswordComponent {
   submitted = false;
   errorMessage: string | null = null;
   successMessage: string | null = null;
+  loading = false; // Add loading state for better UX
 
   constructor(private formBuilder: FormBuilder, private authService: AuthService) {
+    // Initialize form with email validation
     this.forgotPasswordForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
     });
   }
 
+  // Convenient getter for form controls
   get f() { return this.forgotPasswordForm.controls; }
 
   onSubmit(): void {
     this.submitted = true;
 
-    // Check if the form is valid
+    // Stop if form is invalid
     if (this.forgotPasswordForm.invalid) {
-      return; // Stop if invalid
+      return;
     }
 
     const email = this.f['email'].value;
+    this.loading = true; // Show loading indicator
 
     // Call AuthService to send the password reset email
     this.authService.forgotPassword(email).subscribe({
       next: (response) => {
-        this.successMessage = response.message; // Display success message
-        this.errorMessage = null; // Clear any previous error message
+        // Handle successful response
+        this.successMessage = 'Password reset link has been sent to your email address.';
+        this.errorMessage = null;
+        this.loading = false;
       },
       error: (err) => {
-        this.errorMessage = err.message; // Display error message
-        this.successMessage = null; // Clear any previous success message
+        // Handle error response
+        this.errorMessage = 'Failed to send reset password email. Please try again later.';
+        this.successMessage = null;
+        this.loading = false;
       }
     });
   }

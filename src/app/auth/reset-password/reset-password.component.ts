@@ -14,7 +14,7 @@ export class ResetPasswordComponent implements OnInit {
   loading: boolean = false;
   errorMessage: string = '';
   successMessage: string = '';
-  token: string = ''; // This will hold the reset token from the URL
+  token: string = ''; // Holds the reset token from the URL
 
   constructor(
     private fb: FormBuilder,
@@ -22,6 +22,7 @@ export class ResetPasswordComponent implements OnInit {
     private authService: AuthService,
     private router: Router
   ) {
+    // Initializing the form with validators
     this.resetPasswordForm = this.fb.group({
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required]
@@ -31,18 +32,19 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Get the reset token from the query parameters in the URL
+    // Extract the reset token from the URL query parameters
     this.route.queryParams.subscribe(params => {
-      this.token = params['token']; // Assuming the token is passed as a query parameter
+      this.token = params['token']; // Assuming the reset token is passed as a query parameter
     });
   }
 
-  // Custom validator for matching password and confirmPassword
+  // Custom validator to check if password and confirmPassword match
   mustMatch(password: string, confirmPassword: string) {
     return (formGroup: FormGroup) => {
       const passControl = formGroup.controls[password];
       const confirmPassControl = formGroup.controls[confirmPassword];
 
+      // Set error if passwords don't match
       if (confirmPassControl.errors && !confirmPassControl.errors['mustMatch']) {
         return;
       }
@@ -50,33 +52,36 @@ export class ResetPasswordComponent implements OnInit {
       if (passControl.value !== confirmPassControl.value) {
         confirmPassControl.setErrors({ mustMatch: true });
       } else {
-        confirmPassControl.setErrors(null);
+        confirmPassControl.setErrors(null); // Clear error if passwords match
       }
     };
   }
 
-  // Submit form handler
+  // Handler for form submission
   onSubmit(): void {
     this.submitted = true;
     this.errorMessage = '';
     this.successMessage = '';
 
+    // Check if form is valid before proceeding
     if (this.resetPasswordForm.invalid) {
-      return; // Form is invalid, don't proceed
+      return;
     }
 
     this.loading = true;
 
+    // Get the new password from the form
     const password = this.resetPasswordForm.get('password')?.value;
 
-    // Call AuthService to reset password with the token and new password
+    // Call AuthService to reset password with the provided token and new password
     this.authService.resetPassword(this.token, password).subscribe(
       response => {
         this.loading = false;
         this.successMessage = 'Password reset successful. You will be redirected to login.';
+        // Redirect to login after 3 seconds
         setTimeout(() => {
           this.router.navigate(['/login']);
-        }, 3000); // Redirect after 3 seconds
+        }, 3000);
       },
       error => {
         this.loading = false;
