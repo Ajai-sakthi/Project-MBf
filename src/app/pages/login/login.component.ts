@@ -12,10 +12,13 @@ export class LoginComponent implements OnInit {
   password: string = '';
   loading: boolean = false;
   errorMessage: string = '';
+  loading: boolean = false;
+  errorMessage: string = '';
 
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
+    this.checkLoggedInUser();
     this.checkLoggedInUser();
   }
 
@@ -24,16 +27,22 @@ export class LoginComponent implements OnInit {
     if (user && user.username && user.password) {
       this.username = user.username;
       this.password = user.password;
+    if (user && user.username && user.password) {
+      this.username = user.username;
+      this.password = user.password;
     }
   }
 
   onSubmit(): void {
     this.errorMessage = '';
+    this.errorMessage = '';
     if (!this.username || !this.password) {
+      this.errorMessage = 'Please enter both email and password.';
       this.errorMessage = 'Please enter both email and password.';
       return;
     }
 
+    this.loading = true;
     this.loading = true;
 
     this.authService.login(this.username, this.password).subscribe(
@@ -48,6 +57,7 @@ export class LoginComponent implements OnInit {
       },
       error => {
         this.loading = false;
+        this.loading = false;
         this.errorMessage = 'Login failed: ' + (error.error?.message || 'Please try again later.');
         console.error('Login error:', error);
       }
@@ -55,6 +65,8 @@ export class LoginComponent implements OnInit {
   }
 
   clearStoredCredentials() {
+    localStorage.removeItem('user');
+    this.username = '';
     localStorage.removeItem('user');
     this.username = '';
     this.password = '';

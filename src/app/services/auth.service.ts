@@ -1,22 +1,24 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
+import { Observable, throwError, of } from 'rxjs'; // Import 'of' here
+import { catchError, map, delay } from 'rxjs/operators'; // Import 'delay' here
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:3000/users';  // Your JSON Server endpoint
+  private apiUrl = 'http://localhost:3000/users'; // URL for your backend
 
   constructor(private http: HttpClient) {}
 
-  // Register a new user
-  register(email: string, password: string): Observable<any> {
-    return this.isUserRegistered(email).pipe(
-      map((existingUsers) => {
-        if (existingUsers.length > 0) {
-          throw new Error('User already registered');
+  // Method to log in the user
+  login(email: string, password: string): Observable<any> {
+    return this.http.get<any[]>(`${this.apiUrl}?email=${email}&password=${password}`).pipe(
+      map(users => {
+        if (users.length > 0) {
+          const user = users[0];
+          localStorage.setItem('user', JSON.stringify(user));
+          return user;
         } else {
           // Post new user to the JSON Server
           return this.http.post(this.apiUrl, { email, password }).subscribe(
@@ -32,45 +34,80 @@ export class AuthService {
     );
   }
 
-  // Check if user exists (used for registration)
-  isUserRegistered(email: string): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}?email=${email}`).pipe(
-      catchError((error) => {
-        console.error('Error checking user registration', error);
-        return of([]);  // Return an empty array in case of error
+  // Method to register the user
+  register(email: string, password: string): Observable<any> {
+    return this.http.post(this.apiUrl, { email, password }).pipe(
+      map(response => {
+        localStorage.setItem('user', JSON.stringify(response));
+        this.sendConfirmationEmail(email); // Call to send the confirmation email
+        return response;
+      }),
+      catchError(err => {
+        console.error('Registration error:', err);
+        return throwError(err);
       })
     );
   }
 
-  // User login
-  login(email: string, password: string): Observable<boolean> {
-    return this.http.get<any[]>(`${this.apiUrl}?email=${email}&password=${password}`).pipe(
-      map((users) => {
+  // Method to send registration confirmation email (mock implementation)
+  private sendConfirmationEmail(email: string): void {
+    console.log(`Confirmation email sent to ${email}`); // Simulating email sending
+  }
+
+  // Method to request a password reset
+  forgotPassword(email: string): Observable<any> {
+    // Simulate checking if the email exists
+    return this.http.post('http://localhost:3000/forgot-password', { email }).pipe(
+      map(response => {
+        // Simulate a successful response
+        return { message: 'Password reset email has been sent successfully.' };
+      }),
+      catchError(err => {
+        console.error('Forgot password error:', err);
+        return throwError({ message: 'Failed to send reset password email. Please try again.' });
+      })
+    );
+  }
+
+  // Method to reset password
+  resetPassword(email: string, newPassword: string): Observable<any> {
+    return this.http.patch<any[]>(`${this.apiUrl}?email=${email}`, { password: newPassword }).pipe(
+      map(users => {
         if (users.length > 0) {
-          localStorage.setItem('user', JSON.stringify(users[0]));
-          return true;
+          console.log(`Password for ${email} has been reset`); // Simulating password reset
+          return users[0]; // Return the updated user
         } else {
-          return false;
+          throw new Error('User not found');
         }
       }),
-      catchError((error) => {
-        console.error('Error during login', error);
-        return of(false);  // Return false in case of error
+      catchError(err => {
+        console.error('Reset password error:', err);
+        return throwError(err);
       })
     );
   }
 
-  // Logout the user
-  logout(): void {
-    localStorage.removeItem('user');  // Clear user session from local storage
+  // Method to check if a user is already registered
+  isUserRegistered(email: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}?email=${email}`).pipe(
+      catchError(err => {
+        console.error('Check registration error:', err);
+        return throwError(err);
+      })
+    );
   }
 
-  // Check if a user is logged in
+  // Method to log out the user
+  logout(): void {
+    localStorage.removeItem('user');
+  }
+
+  // Check if the user is logged in
   isLoggedIn(): boolean {
     return !!localStorage.getItem('user');
   }
 
-  // Get the current logged-in user
+  // Get the current logged-in user data
   getCurrentUser(): any {
     const user = localStorage.getItem('user');
     return user ? JSON.parse(user) : null;

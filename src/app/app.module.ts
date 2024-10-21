@@ -21,7 +21,10 @@ import { WishlistComponent } from './pages/wishlist/wishlist.component'; // Impo
 import { CommonModule } from '@angular/common'; // Import CommonModule
 import { TopRatedMoviesComponent } from './pages/top-rated-movies/top-rated-movies.component';
 import { FormatPricePipe } from './format-price.pipe';
-import { ProfileComponent } from './profile/profile.component'; // Adjust path accordingly
+import { ProfileComponent } from './profile/profile.component';
+import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ResetPasswordComponent } from './auth/reset-password/reset-password.component'; // Adjust path accordingly
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,13 +43,16 @@ import { ProfileComponent } from './profile/profile.component'; // Adjust path a
     Custom2carouselComponent,
     WishlistComponent,
     FormatPricePipe,
-    ProfileComponent // Declare your WishlistComponent here
+    ProfileComponent,
+    ForgotPasswordComponent,
+    ResetPasswordComponent // Declare your WishlistComponent here
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     FontAwesomeModule,
     CommonModule // Include CommonModule in the imports array
   ],

@@ -8,9 +8,12 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { NotFoundComponent } from './pages/404page/notPageFound.component';
 import { WishlistComponent } from './pages/wishlist/wishlist.component';
+import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
+import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
 import { ProfileComponent } from './profile/profile.component'; // Make sure ProfileComponent is imported
+
 const routes: Routes = [
-  { path: '', component: HomeComponent }, // Set home route to HomeComponent
+  { path: '', redirectTo: '/login', pathMatch: 'full' }, // Redirect empty path to login
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },
@@ -18,8 +21,9 @@ const routes: Routes = [
   { path: 'cart', component: CartComponent },
   { path: 'checkout', component: CheckoutComponent },
   { path: 'wishlist', component: WishlistComponent },
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: '**',component: NotFoundComponent }
+  { path: 'reset-password', component: ResetPasswordComponent }, // Component for resetting password
+  { path: 'forgot-password', component: ForgotPasswordComponent }, // Correct component for forgot password
+  { path: '**', component: NotFoundComponent } // Wildcard route for 404 page
 ];
 
 @NgModule({
