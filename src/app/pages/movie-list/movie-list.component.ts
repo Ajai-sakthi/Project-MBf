@@ -2,28 +2,26 @@ import { Component, ElementRef, OnInit, ViewChild, AfterViewInit } from '@angula
 import { MovieService } from '../../services/movie.service';
 import { Movie } from '../../models/movie.model'; // Ensure correct import path
 import { Router } from '@angular/router';
-import { CartItem } from '../../models/cart-item.model';
-import { CartService } from '../../services/cart.service';
- // Import the CartItem interface
+import { CartItem } from '../../models/cart-item.model'; // Import the CartItem interface
+import { CartService } from '../../services/cart.service'; // Import CartService
+import { WishlistService } from '../../services/wishlist.service'; // Import WishlistService
 
 @Component({
   selector: 'app-movie-list',
   templateUrl: './movie-list.component.html',
   styleUrls: ['./movie-list.component.scss'],
-  providers: [MovieService,CartService]
+  providers: [MovieService]
 })
 export class MovieListComponent implements OnInit, AfterViewInit {
   movies: Movie[] = []; // Initialize an empty array to store movies
-  @ViewChild('container', { static: false }) container!: ElementRef; 
-  CartService: any;
+
+  @ViewChild('container', { static: false }) container!: ElementRef;
 
   constructor(
     private movieService: MovieService,
     private router: Router,
-   // private wishlistService: WishlistService,
-   // private utilityService: UtilityService,
-    private cartService: CartService,
-   
+    private cartService: CartService, // Inject CartService
+    private wishlistService: WishlistService // Inject WishlistService
   ) {}
 
   ngOnInit(): void {
@@ -32,10 +30,9 @@ export class MovieListComponent implements OnInit, AfterViewInit {
     });
   }
 
-  ngAfterViewInit(): void {
-  }
+  ngAfterViewInit(): void {}
 
-  floorval(val: number) {
+  floorval(val: number): number {
     return Math.floor(val);
   }
 
@@ -47,15 +44,13 @@ export class MovieListComponent implements OnInit, AfterViewInit {
     return stars;
   }
 
-  viewMoreInfo(movie: any): void {
-    // Logic to show more info about the movie, e.g., navigating to a detailed view or opening a modal
+  viewMoreInfo(movie: Movie): void {
     console.log('More info about:', movie);
-    // You might navigate to a detail page or open a modal
-    // this.router.navigate(['/movie-details', movie.id]); // Example if you have a detailed view
+    // Navigate to a detailed view or open a modal if needed
+    // this.router.navigate(['/movie-details', movie.id]);
   }
 
   addToCart(movie: Movie): void {
-    console.log("hello");
     const cartItem: CartItem = {
       id: movie.id,
       name: movie.name,
@@ -67,15 +62,30 @@ export class MovieListComponent implements OnInit, AfterViewInit {
       movie: movie // Include the movie object here
     };
 
-    this.cartService.addToCart(cartItem); // Call the addToCart method
-    this.router.navigate(['/cart']);
+    this.cartService.addToCart(cartItem); // Call the addToCart method from CartService
+    alert(`${movie.name} has been added to your cart!`); // Show a confirmation message
+    this.router.navigate(['/cart']); // Navigate to the cart page
   }
 
-  swipeRight() {
+  toggleWishlist(movie: Movie): void {
+    if (this.wishlistService.isInWishlist(movie)) {
+      this.wishlistService.removeFromWishlist(movie);
+      alert(`${movie.name} has been removed from your wishlist!`); // Show removal confirmation
+    } else {
+      this.wishlistService.addToWishlist(movie);
+      alert(`${movie.name} has been added to your wishlist!`); // Show addition confirmation
+    }
+  }
+
+  isInWishlist(movie: Movie): boolean {
+    return this.wishlistService.isInWishlist(movie);
+  }
+
+  swipeRight(): void {
     if (this.container) {
       this.container.nativeElement.scrollBy({
         top: 0,
-        left: 500, // Scroll by 300px to the right (adjust as needed)
+        left: 500, // Scroll by 500px to the right (adjust as needed)
         behavior: 'smooth' // Smooth scroll effect
       });
     }

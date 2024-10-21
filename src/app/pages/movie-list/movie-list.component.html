@@ -1,18 +1,22 @@
 <div class="container" #container>
-<div class="productCard" *ngFor="let prod of movies">
-<img class="productImage" src="{{prod.src}}" alt="{{prod.name}}">
-<p class="productName">{{prod.name}}</p>
-<div class="star-rating">
-  <i class="fas fa-star" *ngFor="let star of getStars(prod.rating)"></i>
-  <i class="far fa-star" *ngFor="let star of getStars(5-(floorval(prod.rating)))"></i></div>
-<p class="productDate">{{prod.releasedate}}</p>
-<p>&#8377;{{prod.price}}</p>
-<div class="btn-container">
-<button class="button" (click)="addToCart(prod)">Add to Cart</button>
-<button class="button" (click)="viewMoreInfo(prod)">More Info</button>
-</div>
-</div>
-<div class="swipe-button-container">
-  <p class="swipe-button" (click)="swipeRight()">Swipe <span style="word-spacing: 15px;">Now ></span></p>
-</div>
+  <div class="productCard" *ngFor="let prod of movies">
+    <img class="productImage" src="{{ prod.src }}" alt="{{ prod.name }}">
+    <button class="wishlist-button" (click)="toggleWishlist(prod)">
+      <i class="fas fa-heart" [ngClass]="{'filled': isInWishlist(prod)}"></i>
+    </button>
+    <p class="productName">{{ prod.name }}</p>
+    <div class="star-rating">
+      <i class="fas fa-star" *ngFor="let star of getStars(prod.rating)"></i>
+      <i class="far fa-star" *ngFor="let star of getStars(5 - floorval(prod.rating))"></i>
+    </div>
+    <p class="productDate">{{ prod.releasedate }}</p>
+    <p>&#8377;{{ prod.price }}</p>
+    <div class="btn-container">
+      <button class="button" (click)="addToCart(prod)">Add to Cart</button>
+      <button class="button" (click)="viewMoreInfo(prod)">More Info</button>
+    </div>
+  </div>
+  <div class="swipe-button-container">
+    <p class="swipe-button" (click)="swipeRight()">Swipe <span style="word-spacing: 15px;">Now ></span></p>
+  </div>
 </div>

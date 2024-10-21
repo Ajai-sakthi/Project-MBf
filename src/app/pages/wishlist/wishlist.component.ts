@@ -4,7 +4,7 @@ import { CartService } from './../../services/cart.service';
 import { CartItem } from './../../models/cart-item.model';
 import { Movie } from './../../models/movie.model';
 import { UtilityService } from './../../services/utility.service'; // Import UtilityService for getStars
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-wishlist',
   templateUrl: './wishlist.component.html',
@@ -16,7 +16,9 @@ export class WishlistComponent implements OnInit {
   constructor(
     private wishlistService: WishlistService,
     private cartService: CartService,
-    private utilityService: UtilityService // Inject UtilityService
+    private utilityService: UtilityService,// Inject UtilityService
+    private router: Router // Inject Router
+
   ) {}
 
   ngOnInit(): void {
@@ -41,6 +43,7 @@ export class WishlistComponent implements OnInit {
 
     this.cartService.addToCart(cartItem); // Pass the CartItem
     console.log(`${movie.name} added to cart!`);
+    this.router.navigate(['/cart']);
   }
 
   removeFromWishlist(movie: Movie): void {

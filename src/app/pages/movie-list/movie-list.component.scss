@@ -1,4 +1,5 @@
 @import '../../../styles.scss';
+
 /* Container with scrolling movie cards */
 .container {
     position: relative;
@@ -9,79 +10,119 @@
     scroll-snap-type: x mandatory; /* Snapping for better scrolling experience */
     margin-bottom: 70px; /* Add margin to prevent overlap with the button */
     max-width: 100%; /* Make sure the container doesn't overflow horizontally */
+
     .productCard {
-    display: flex;
-    flex-direction: column;
-    font-size: 19px;
-    font-weight: 900;
-    border-radius: 25px;
-    padding: 20px;
-    width: 300px;
-    min-height: 70vh;
-    scroll-snap-align:start; /* Each card snaps to viewport */
-    transition: transform 0.4s ease; /* Smooth transition for hover effect */
-    &.productCard:hover {
-        transform: scale(1.07);
-        cursor: pointer; }
+        display: flex;
+        flex-direction: column;
+        font-size: 19px;
+        font-weight: 900;
+        border-radius: 25px;
+        padding: 20px;
+        width: 300px;
+        position: relative;
+        min-height: 70vh;
+        scroll-snap-align: start; /* Each card snaps to viewport */
+        transition: transform 0.4s ease; /* Smooth transition for hover effect */
+
+        &.productCard:hover {
+            transform: scale(1.07);
+            cursor: pointer;
+        }
+
+        /* Wishlist icon positioning */
+        .wishlist-button {
+          position: absolute;
+          top: 25px; /* Adjust as needed */
+          right: 35px; /* Adjust as needed */
+          background: rgba(0,0,0,0.1); /* Temporary background */
+          border: none; /* Remove border */
+          cursor: pointer; /* Change cursor to pointer */
+          color: #fff; /* Change wishlist icon color to white */
+          font-size: 1.5rem; /* Adjust size as needed */
+          z-index: 10; /* Ensure it's on top of the image */
+        }
+
+        i {
+          //color: #fff; /* Default color (white) when not in wishlist */
+          font-size: 1.5rem; /* Adjust size as needed */
+          transition: color 0.3s ease; /* Smooth color transition */
+
+          &.filled {
+            color: #ff4081; /* Color when added to wishlist */
+          }
+
+          &:hover {
+            color: lightpink; /* Color on hover */
+          }
+        }
+
     }
-.productImage {
-    width: 250px;
-    height: 320px;
-    border-radius: 25px;
-    margin-bottom: 15px;
-}
-.productName {
-    text-align: center; /* Center the movie name */
-    width: 100%;
-    font-weight: 900;
-    margin-bottom: 10px;
-    white-space: nowrap;
-    overflow-x: scroll; /* Allow horizontal scrolling */
-    overflow-y: hidden; /* No vertical scrolling */
-    scrollbar-width: none; /* Hide the scrollbar in Firefox */
-    -ms-overflow-style: none; /* Hide scrollbar in Internet Explorer and Edge */
-}
 
-/* Hide the scrollbar in WebKit browsers (Chrome, Safari, etc.) */
-.productName::-webkit-scrollbar {
-    display: none;
-}
-.productDate {
-    font-size: 16px;
-    color: #F9F9F9B2;
-}
+    .productImage {
+        width: 250px;
+        height: 320px;
+        border-radius: 25px;
+        margin-bottom: 15px;
+    }
 
-.star-rating {
-    color: $primary;
-    margin-bottom: 10px;
-}
+    .productName {
+        text-align: center; /* Center the movie name */
+        width: 100%;
+        font-weight: 900;
+        margin-bottom: 10px;
+        white-space: nowrap;
+        overflow-x: scroll; /* Allow horizontal scrolling */
+        overflow-y: hidden; /* No vertical scrolling */
+        scrollbar-width: none; /* Hide the scrollbar in Firefox */
+        -ms-overflow-style: none; /* Hide scrollbar in Internet Explorer and Edge */
+    }
 
-.btn-container {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    .button {
+    /* Hide the scrollbar in WebKit browsers (Chrome, Safari, etc.) */
+    .productName::-webkit-scrollbar {
+        display: none;
+    }
+
+    .productDate {
         font-size: 16px;
-        background-color: $primary;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 15px;
-        cursor: pointer;
-        margin: 0;
+        color: #F9F9F9B2;
     }
-}
-.swipe-button-container {
-    position: fixed;
-    bottom: 100px;
-    left: 50%; /* Horizontally center */
-    transform: translateX(-50%); /* Adjust position so it's perfectly centered */
-    .swipe-button {
-        font-size: 20px;
-        font-weight: 600;
-        cursor: pointer;
+
+    /* Star rating color */
+    .star-rating {
+        color: rgb(255, 183, 0); /* Set star color to yellow */
+        margin-bottom: 10px;
     }
-}
-&.container::-webkit-scrollbar{
-    display: none;
-}
+
+    .btn-container {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+
+        .button {
+            font-size: 16px;
+            background-color: $primary;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 15px;
+            cursor: pointer;
+            margin: 0;
+        }
+    }
+
+    .swipe-button-container {
+        position: fixed;
+        bottom: 100px;
+        left: 50%; /* Horizontally center */
+        transform: translateX(-50%); /* Adjust position so it's perfectly centered */
+
+        .swipe-button {
+            font-size: 20px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+    }
+
+    &.container::-webkit-scrollbar {
+        display: none;
+    }
 }
