@@ -46,21 +46,13 @@ export class MovieListComponent implements OnInit {
     return this.wishlistService.isInWishlist(movie);
   }
 
-  buyNow(movie: Movie): void {
-    const cartItem: CartItem = {
-      id: movie.id, // Ensure movie has an id property
-      name: movie.name,
-      price: movie.price.replace(/,/g, ''), // Make sure movie.price is a string
-      quantity: 1, // Initial quantity
-      rating: movie.rating,
-      src: movie.src, // Include the src property
-      imageUrl: movie.src, // You can use the same source for imageUrl if applicable
-      movie: movie // Include the entire movie object
-    };
-
-    this.cartService.addToCart(cartItem); // Pass the CartItem
-    this.router.navigate(['/checkout']); // Navigate to checkout
+  viewMoreInfo(movie: any): void {
+    // Logic to show more info about the movie, e.g., navigating to a detailed view or opening a modal
+    console.log('More info about:', movie);
+    // You might navigate to a detail page or open a modal
+    // this.router.navigate(['/movie-details', movie.id]); // Example if you have a detailed view
   }
+
 
 
 

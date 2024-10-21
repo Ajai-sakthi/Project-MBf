@@ -13,7 +13,7 @@
     <div class="productDate">{{ movie.releasedate }}</div>
     <div>&#8377;{{ movie.price }}</div>
     <div class="btn-container">
-      <button class="button" (click)="buyNow(movie)">Buy Now</button>
+      <button class="button" (click)="viewMoreInfo(movie)">More Info</button> <!-- Changed here -->
       <button class="button" (click)="addToCart(movie)">Add to Cart</button>
       <i
         class="far fa-heart wishlist-icon"
