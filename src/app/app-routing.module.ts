@@ -13,7 +13,8 @@ import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.
 import { ProfileComponent } from './profile/profile.component'; // Make sure ProfileComponent is imported
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' }, // Redirect empty path to login
+  { path: 'home', component: HomeComponent },
+  { path: '', redirectTo: '/home', pathMatch: 'full' }, // Redirect empty path to login
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },

@@ -21,16 +21,16 @@ export class LoginComponent implements OnInit {
 
   checkLoggedInUser() {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
-    if (user && user.username && user.password) {
+    if (user && user.username) {
       this.username = user.username;
-      this.password = user.password;
+      this.password = user.password; // Consider removing the password for security reasons
     }
   }
 
   onSubmit(): void {
     this.errorMessage = '';
     if (!this.username || !this.password) {
-      this.errorMessage = 'Please enter both email and password.';
+      this.errorMessage = 'Please enter both username and password.';
       return;
     }
 
@@ -39,9 +39,12 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.username, this.password).subscribe(
       response => {
         this.loading = false;
-        if (response) {
-          // Navigate to the movie list page upon successful login
-          this.router.navigate(['/movies']); // Adjust the route based on your app's routing config
+        // Assuming response contains a success flag or user object
+        if (response && response.success) {
+          // Store the user data in local storage, consider what data you want to store
+          localStorage.setItem('user', JSON.stringify(response.user));
+          // Navigate to the home page upon successful login
+          this.router.navigate(['/']); // Adjust the route based on your app's routing config
         } else {
           this.errorMessage = 'Invalid credentials. Please try again.';
         }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, throwError, of } from 'rxjs'; // Import 'of' here
-import { catchError, map, delay } from 'rxjs/operators'; // Import 'delay' here
+import { Observable, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -18,14 +18,14 @@ export class AuthService {
         if (users.length > 0) {
           const user = users[0];
           localStorage.setItem('user', JSON.stringify(user));
-          return user;
+          return { success: true, user }; // Return a success flag along with user
         } else {
-          throw new Error('Invalid email or password');
+          return { success: false, message: 'Invalid email or password' }; // Handle invalid credentials
         }
       }),
       catchError(err => {
         console.error('Login error:', err);
-        return throwError(err);
+        return throwError(err); // Pass the error to the caller
       })
     );
   }
@@ -36,7 +36,7 @@ export class AuthService {
       map(response => {
         localStorage.setItem('user', JSON.stringify(response));
         this.sendConfirmationEmail(email); // Call to send the confirmation email
-        return response;
+        return response; // Return the registration response
       }),
       catchError(err => {
         console.error('Registration error:', err);
@@ -52,11 +52,9 @@ export class AuthService {
 
   // Method to request a password reset
   forgotPassword(email: string): Observable<any> {
-    // Simulate checking if the email exists
     return this.http.post('http://localhost:3000/forgot-password', { email }).pipe(
       map(response => {
-        // Simulate a successful response
-        return { message: 'Password reset email has been sent successfully.' };
+        return { message: 'Password reset email has been sent successfully.' }; // Simulate successful response
       }),
       catchError(err => {
         console.error('Forgot password error:', err);
@@ -71,14 +69,14 @@ export class AuthService {
       map(users => {
         if (users.length > 0) {
           console.log(`Password for ${email} has been reset`); // Simulating password reset
-          return users[0]; // Return the updated user
+          return { success: true, user: users[0] }; // Return success flag and updated user
         } else {
-          throw new Error('User not found');
+          return { success: false, message: 'User not found' }; // Handle user not found
         }
       }),
       catchError(err => {
         console.error('Reset password error:', err);
-        return throwError(err);
+        return throwError(err); // Pass the error to the caller
       })
     );
   }
