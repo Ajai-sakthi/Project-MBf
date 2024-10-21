@@ -14,10 +14,12 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component'; 
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { MatSidenavModule } from '@angular/material/sidenav'
 import { NotFoundComponent } from './pages/404page/notPageFound.component';
 import { CustomCarouselComponent } from './pages/home/component/custom-carousel/custom-carousel.component';
 import { Custom2carouselComponent } from './pages/home/component/custom2carousel/custom2carousel.component';
-
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { MatNativeDateModule } from '@angular/material/core';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,10 +38,13 @@ import { Custom2carouselComponent } from './pages/home/component/custom2carousel
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    MatNativeDateModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    MatSidenavModule
   ],
   providers: [],
   bootstrap: [AppComponent]

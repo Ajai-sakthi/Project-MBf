@@ -1,15 +1,18 @@
-<div class="container" >
-  <div class="productCard" *ngFor="let prod of movies">
-      <img class=productImage src="{{prod.src}}" alt="{{prod.name}}">
-      <div>{{prod.name}}</div>
-      <div class="star-rating">
-          <i class="fas fa-star" *ngFor="let star of getStars(prod.rating)"></i>
-          <i class="far fa-star" *ngFor="let star of getStars(5-(floorval(prod.rating)))"></i>
-        </div>
-      <div class="productDate">{{prod.releasedate}}</div>
-      <div>&#8377;{{prod.price}}</div>
-     <div class="btn-container">
-      <button class="button">Buy Now</button>
-      <button class="button">More Info</button>
-     </div> 
-  </div>
+<div class="container" #container>
+<div class="productCard" *ngFor="let prod of movies">
+<img class="productImage" src="{{prod.src}}" alt="{{prod.name}}">
+<p class="productName">{{prod.name}}</p>
+<div class="star-rating">
+  <i class="fas fa-star" *ngFor="let star of getStars(prod.rating)"></i>
+  <i class="far fa-star" *ngFor="let star of getStars(5-(floorval(prod.rating)))"></i></div>
+<p class="productDate">{{prod.releasedate}}</p>
+<p>&#8377;{{prod.price}}</p>
+<div class="btn-container">
+<button class="button">Buy Now</button>
+<button class="button">More Info</button>
+</div>
+</div>
+<div class="swipe-button-container">
+  <p class="swipe-button" (click)="swipeRight()">Swipe <span style="word-spacing: 15px;">Now ></span></p>
+</div>
+</div>

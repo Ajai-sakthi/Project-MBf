@@ -1,49 +1,86 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
-
-.productCard{
-    display: inline-block;
-    /* border:2px solid white; */
-    color: white;
-    font-size: 20px;
-    font-weight:900;
-    font-family: "Lato", sans-serif;
-  
-}
-.productImage{
-    display: block;
-    width:250px;
-    height:320px;
+@import '../../../styles.scss';
+/* Container with scrolling movie cards */
+.container {
+    position: relative;
+    display: flex;
+    overflow-x: auto; /* Enable horizontal scroll */
+    gap: 40px;
+    padding: 20px;
+    scroll-snap-type: x mandatory; /* Snapping for better scrolling experience */
+    margin-bottom: 70px; /* Add margin to prevent overlap with the button */
+    max-width: 100%; /* Make sure the container doesn't overflow horizontally */
+    .productCard {
+    display: flex;
+    flex-direction: column;
+    font-size: 19px;
+    font-weight: 900;
+    border-radius: 25px;
+    padding: 20px;
+    width: 300px;
+    scroll-snap-align:start; /* Each card snaps to viewport */
+    transition: transform 0.4s ease; /* Smooth transition for hover effect */
+    &.productCard:hover {
+        transform: scale(1.07);
+        cursor: pointer; }
+    }
+.productImage {
+    width: 250px;
+    height: 320px;
     border-radius: 25px;
     margin-bottom: 15px;
 }
-.container{
+.productName {
+    text-align: center; /* Center the movie name */
+    width: 100%;
+    font-weight: 900;
+    margin-bottom: 10px;
+    white-space: nowrap;
+    overflow-x: scroll; /* Allow horizontal scrolling */
+    overflow-y: hidden; /* No vertical scrolling */
+    scrollbar-width: none; /* Hide the scrollbar in Firefox */
+    -ms-overflow-style: none; /* Hide scrollbar in Internet Explorer and Edge */
+}
+
+/* Hide the scrollbar in WebKit browsers (Chrome, Safari, etc.) */
+.productName::-webkit-scrollbar {
+    display: none;
+}
+.productDate {
+    font-size: 16px;
+    color: #F9F9F9B2;
+}
+
+.star-rating {
+    color: $primary;
+    margin-bottom: 10px;
+}
+
+.btn-container {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    min-height: 100vh;
-    padding-top: 50px;
-    gap:80px;
+    justify-content: space-between;
+    width: 100%;
+    .button {
+        font-size: 16px;
+        background-color: $primary;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 15px;
+        cursor: pointer;
+        margin: 0;
+    }
 }
-.productDate{
-    font-size: 17px;
-    color:#F9F9F9B2;
-margin-bottom: 25px;
+.swipe-button-container {
+    position: fixed;
+    bottom:60px;
+    left: 50%; /* Horizontally center */
+    transform: translateX(-50%); /* Adjust position so it's perfectly centered */
+    .swipe-button {
+        font-size: 20px;
+        font-weight: 600;
+        cursor: pointer;
+    }
 }
-.star-rating{
-    color: #F8B319;
+&.container::-webkit-scrollbar{
+    display: none;
 }
-.button{
-    font-size: 19px;
-    background-color:#F8B319 ;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 10px;
-    margin-top: 35px;
-    cursor: pointer;
-}
-.btn-container{
-    display: flex;
-    justify-content: space-between;;
 }

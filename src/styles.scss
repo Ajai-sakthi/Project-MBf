@@ -1,24 +1,34 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 // Override Bootstrap variables
-$primary:rgb(255, 196, 0);  // Change the primary color
+$bg-primary:#020202;
+$primary:#F8B319;  // Change the primary color
 $secondary: #6c757d; // Change the secondary color
 $success: #28a745;   // Change the success color
-$danger: #dc3545;    // Change the danger color
+$danger: #dc3545;
+$color:#F9F9F9;
+$bg-sidenav:#1a1b1f;
 /* Bootstrap import */
 @import 'bootstrap/scss/bootstrap';
 
 //font awesome icons
 @import "font-awesome/css/font-awesome.css";
+body{
+    background-color: $bg-primary;
+    color: $color;
+}
 
 * {
-    padding: 0;
-    margin: 0;
+    padding: 0px;
+    margin: 0px;
     box-sizing: border-box;
+
 }
-body{
-    background-color: #020202;
-    color: #F9F9F9;
+:root{
+    --mat-sidenav-content-text-color:$color ;
+    --mat-sidenav-container-background-color:rgb(6, 38, 61);
+    --mat-sidenav-content-background-color:$bg-sidenav;
+    --mat-sidenav-container-shape:0px ;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family:"Lato", sans-serif; }

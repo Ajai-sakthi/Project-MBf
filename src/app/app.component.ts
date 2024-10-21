@@ -8,7 +8,7 @@ import { Router, NavigationEnd } from '@angular/router';
 })
 export class AppComponent {
   title = 'MBF';
-  isSidebarOpen: boolean = false;
+  isSidebarOpen: boolean = true;
   isLoginPage: boolean = false;
 
   constructor(private router: Router) {
@@ -22,6 +22,10 @@ export class AppComponent {
   }
 
   onSidebarToggle() {
-    this.isSidebarOpen = !this.isSidebarOpen; // Toggle the sidebar open/close state
+    this.opened = !this.opened; // Toggle the sidebar open/close state
   }
+  
+  opened!: boolean;
+
+  shouldRun = true;
 }
