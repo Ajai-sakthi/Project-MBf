@@ -30,6 +30,7 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component'; //
 import { MatNativeDateModule } from '@angular/material/core';
 // app.module.ts
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,7 +66,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CommonModule, // Include CommonModule in the imports array,
     MatSidenavModule
   ],
-  providers: [],
+  providers: [
+    provideAnimationsAsync()
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

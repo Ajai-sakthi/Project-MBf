@@ -1,5 +1,5 @@
 {
-  "Movie": [ 
+  "Movie": [
     {
       "src": "../../../assets/images/SOK.jpg",
       "name": "Sillunu Oru Kadhal",
@@ -310,7 +310,9 @@
     {
       "id": "4a8e",
       "email": "swethamurugan2222@gmail.com",
-      "password": "1234"
+      "password": "1234",
+      "lastLoggedIn": "2024-10-21T10:46:34.435Z",
+      "name": "swetha"
     },
     {
       "id": "9e51",

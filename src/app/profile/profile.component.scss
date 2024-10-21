@@ -1,49 +1,66 @@
 .profile-container {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  background-color: #000;
+  max-width: 600px;  // Constrain the container width for readability
+  margin: 50px auto;  // Add margin for vertical spacing and center horizontally
+  padding: 30px;  // Increase padding for breathing room
+  border: 1px solid #333;  // Darker border to blend better with the dark background
+  border-radius: 10px;  // More rounded corners for a modern look
+  background-color: #1c1c1c;  // Use a softer black for the background
+  min-height: 65vh;  // Ensure the container has a minimum height
 
   h2 {
-    text-align: center;
-    color: #fff;
+    text-align: center;  // Center the heading
+    color: #f9f9f9;  // Lighter white for text contrast
+    font-size: 24px;  // Increase font size for better emphasis
+    margin-bottom: 20px;  // Add space below the heading
+    font-weight: 600;  // Bolder heading
   }
 
   .user-info {
-    margin: 20px 0;
+    margin: 20px 0;  // Maintain spacing between user info sections
 
     h3 {
-      margin-bottom: 10px;
-      color: #fff;
+      margin-bottom: 12px;  // Increase spacing below the subheading
+      color: #e0e0e0;  // Use a medium gray for subheadings
+      font-size: 20px;  // Increase font size for subheadings
+      font-weight: 500;  // Slightly bold
     }
 
     p {
-      font-size: 16px;
-      margin: 5px 0;
-      color: #fff;
+      font-size: 16px;  // Maintain readable text size
+      margin: 8px 0;  // Increase vertical space between paragraphs
+      color: #c0c0c0;  // Light gray for body text to maintain contrast
     }
   }
 
   .action-buttons {
-    display: flex;
-    justify-content: space-between;
+    display: flex;  // Flexbox for better alignment
+    justify-content: center;  // Center align the buttons
+    gap: 20px;  // Add gap between buttons for spacing
+    margin-top: 30px;  // Add space above the buttons
 
     .btn {
-      padding: 10px 15px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 16px;
-      transition: background-color 0.3s;
+      padding: 12px 20px;  // Increase padding for larger, more clickable buttons
+      border: none;  // Remove borders
+      border-radius: 6px;  // Slightly rounder corners for a modern look
+      cursor: pointer;  // Pointer cursor for buttons
+      font-size: 16px;  // Maintain readable button text size
+      transition: background-color 0.3s ease;  // Smooth hover transition
 
       &.edit-btn {
-        background-color: #4CAF50;
+        background-color: #4CAF50;  // Bright green for the edit button
+        color: white;  // White text for contrast
+
+        &:hover {
+          background-color: #43a047;  // Slightly darker green on hover
+        }
+      }
+
+      &.delete-btn {
+        background-color: #e53935;  // Bright red for the delete button
         color: white;
 
         &:hover {
-          background-color: #45a049;
+          background-color: #d32f2f;  // Darker red on hover
         }
       }
     }
