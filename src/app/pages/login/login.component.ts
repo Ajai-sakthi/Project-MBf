@@ -17,18 +17,19 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.checkLoggedInUser();
+
   }
 
   checkLoggedInUser() {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     if (user && user.username) {
       this.username = user.username;
-      this.password = user.password; // Consider removing the password for security reasons
-    }
+      this.password = user.password;
   }
-
+  }
   onSubmit(): void {
     this.errorMessage = '';
+
     if (!this.username || !this.password) {
       this.errorMessage = 'Please enter both username and password.';
       return;
@@ -39,10 +40,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.username, this.password).subscribe(
       response => {
         this.loading = false;
-        // Assuming response contains a success flag or user object
-        if (response && response.success) {
-          // Store the user data in local storage, consider what data you want to store
-          localStorage.setItem('user', JSON.stringify(response.user));
+        if (response) {
           // Navigate to the home page upon successful login
           this.router.navigate(['/']); // Adjust the route based on your app's routing config
         } else {
