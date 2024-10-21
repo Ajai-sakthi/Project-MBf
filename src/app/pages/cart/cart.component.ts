@@ -1,69 +1,75 @@
+// src/app/cart/cart.component.ts
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../services/cart.service';
 import { Router } from '@angular/router';
-import { CartItem } from '../../models/cart-item.model'; // Ensure this model is correctly defined
+import { CartItem } from '../../models/cart-item.model'; // Adjust path as needed
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss']
 })
-export class CartPageComponent implements OnInit {
-  cartItems: CartItem[] = []; // List of items in the cart
-  defaultImage: string = 'assets/images/default-product.png'; // Fallback image
-  totalPrice: number = 0; // Total price of the cart
+export class CartComponent implements OnInit {
+  cartItems: CartItem[] = []; // Specify the type as CartItem[]
+  totalItems: number = 0;
+  totalPrice: number = 0;
 
-  constructor(
-    private cartService: CartService,
-    private router: Router
-  ) {}
+  constructor(private cartService: CartService, private router: Router) {}
 
   ngOnInit(): void {
-    this.loadCart();
+    this.loadCart(); // Load cart items when the component initializes
   }
 
-  // Load cart items and calculate total price
+  // Load items from the cart
   loadCart(): void {
-    this.cartItems = this.cartService.getCartItems();
-    this.calculateTotalPrice();
+    this.cartItems = this.cartService.getCartItems(); // Load items from the cart service
+    this.updateTotals(); // Calculate totals on load
   }
 
-  // Calculate total price based on cart items
-  calculateTotalPrice(): void {
-    this.totalPrice = this.cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+  // Update the total items and total price in the cart
+  updateTotals(): void {
+    this.totalItems = this.cartItems.reduce((sum, item) => sum + item.quantity, 0);
+    this.totalPrice = this.cartItems.reduce((sum, item) => {
+      const cleanPrice = parseFloat(item.price.replace(/,/g, '')); // Clean the price string of commas
+      return sum + (cleanPrice * item.quantity); // Multiply price by quantity
+    }, 0);
+  }
+
+  // Called when the user changes the quantity of a product in the cart
+  updateQuantity(item: CartItem): void {
+    // Ensure quantity is at least 1
+    if (item.quantity < 0) {
+      item.quantity = 0;
+    }
+
+    // Update the cart service with the new quantity
+    this.cartService.updateItemQuantity(item);
+
+    // Recalculate totals after the quantity change
+    this.updateTotals();
   }
 
   // Remove an item from the cart
   removeFromCart(item: CartItem): void {
-    this.cartService.removeFromCart(item);
-    this.loadCart(); // Reload the cart after removal
-  }
-
-  // Update the quantity of a cart item
-  updateCartItemQuantity(item: CartItem): void {
-    this.cartService.updateCartItemQuantity(item);
-    this.calculateTotalPrice(); // Recalculate the total price
-  }
-
-  validateQuantity(item: CartItem): void {
-    // Ensure quantity is a number and greater than 0
-    if (item.quantity < 1) {
-      item.quantity = 1; // Reset to minimum quantity
-    }
+    this.cartService.removeItem(item); // Remove item from cart service
+    this.loadCart(); // Reload the cart to reflect removal
   }
 
   // Navigate to the checkout page
-  proceedToCheckout(): void {
-    this.router.navigate(['/checkout']);
+  goToCheckout(): void {
+    this.router.navigate(['/checkout']); // Redirect to the checkout page
   }
 
-  // Check if checkout should be disabled
-  isCheckoutDisabled(): boolean {
-    return this.cartItems.length === 0;
-  }
+  // Method to generate star ratings
+  getStars(rating: number): number[] {
+    const fullStars = Math.floor(rating);
+    const halfStar = rating % 1 !== 0 ? 1 : 0;
+    const emptyStars = 5 - fullStars - halfStar;
 
-  // Track items by unique id for performance
-  trackByItemId(index: number, item: CartItem): number {
-    return item.id; // Track items by unique id
+    return [
+      ...Array(fullStars).fill(1),
+      ...Array(halfStar).fill(0.5),
+      ...Array(emptyStars).fill(0)
+    ];
   }
 }

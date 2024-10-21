@@ -1,0 +1,19 @@
+<!-- src/app/pages/top-rated-movies/top-rated-movies.component.html -->
+<div class="container">
+  <h1>Top Rated Movies</h1>
+  <div class="productCard" *ngFor="let movie of filteredMovies">
+    <img class="productImage" [src]="movie.src" alt="{{ movie.name }}" />
+    <div class="productTitle">{{ movie.name }}</div>
+
+    <div class="star-rating">
+      <i class="fas fa-star" *ngFor="let star of getStars(movie.rating)"></i>
+      <i class="far fa-star" *ngFor="let star of getStars(5 - movie.rating)"></i>
+    </div>
+
+    <div class="productDate">{{ movie.releasedate | date: 'mediumDate' }}</div>
+    <div class="productPrice">&#8377;{{movie.price|formatPrice }}</div>
+    <div class="btn-container">
+      <button class="button">More Info</button>
+    </div>
+  </div>
+</div>

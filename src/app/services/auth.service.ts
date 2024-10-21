@@ -1,35 +1,38 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:3000/users';
-
-  // Add a user property to store user data
-  private user: any;
+  private apiUrl = 'http://localhost:3000/users'; // URL for the JSON server
 
   constructor(private http: HttpClient) {}
 
-  // Simulating a login request to the server
-  login(username: string, password: string): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/login`, { username, password });
+  // Method to log in the user
+  login(email: string, password: string): Observable<any> {
+    return this.http.get<any[]>(`${this.apiUrl}?email=${email}&password=${password}`).pipe(
+      catchError(err => {
+        console.error('Login error:', err);
+        return throwError(err);
+      })
+    );
   }
 
-  // Simulating a registration request to the server
-  register(username: string, password: string): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/register`, { username, password });
+  // Method to register the user
+  register(email: string, password: string): Observable<any> {
+    return this.http.post(this.apiUrl, { email, password }).pipe(
+      catchError(err => {
+        console.error('Registration error:', err);
+        return throwError(err);
+      })
+    );
   }
 
-  // Save user data after login
-  setUser(user: any) {
-    this.user = user;
-  }
-
-  // Method to return the user data
-  getUser() {
-    return this.user;
+  // Method to check if a user is already registered
+  isUserRegistered(email: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}?email=${email}`);
   }
 }
