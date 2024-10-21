@@ -16,9 +16,8 @@ export class AuthService {
     return this.http.get<any[]>(`${this.apiUrl}?email=${email}&password=${password}`).pipe(
       map(users => {
         if (users.length > 0) {
-          // Assuming the user exists, store user info in localStorage
           const user = users[0];
-          localStorage.setItem('user', JSON.stringify(user)); // Store user in localStorage
+          localStorage.setItem('user', JSON.stringify(user));
           return user;
         } else {
           throw new Error('Invalid email or password');
@@ -30,6 +29,7 @@ export class AuthService {
       })
     );
   }
+
 
   // Method to register the user
   register(email: string, password: string): Observable<any> {
