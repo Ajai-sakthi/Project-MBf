@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -11,7 +12,7 @@ export class ProfileComponent implements OnInit {
   welcomeMessage: string = 'Welcome, Guest'; // Default message for guests
   lastLoggedIn: string | null = null; // To hold the last logged-in time
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
     this.loadUserData();
@@ -21,10 +22,13 @@ export class ProfileComponent implements OnInit {
     const currentUser = this.authService.getCurrentUser();
     if (currentUser) {
       this.user = currentUser;
-      this.welcomeMessage = `Welcome, ${this.user.email}`; // Display user's email
-
-      // Get the last logged-in time if available
-      this.lastLoggedIn = currentUser.lastLoggedIn || 'N/A';
+      this.welcomeMessage = `Welcome, ${this.user.name}`; // Display user's name instead of email
+      this.lastLoggedIn = currentUser.lastLoggedIn ? new Date(currentUser.lastLoggedIn).toLocaleString() : 'N/A';
     }
+  }
+
+  // Method to navigate to the edit profile page
+  editProfile(): void {
+    this.router.navigate(['/edit-profile']); // Adjust the route as necessary
   }
 }

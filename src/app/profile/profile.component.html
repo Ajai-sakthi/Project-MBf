@@ -1,11 +1,13 @@
 <div class="profile-container">
   <h2>{{ welcomeMessage }}</h2>
-  <div *ngIf="user">
-    <p><strong>Email:</strong> {{ user.email }}</p>
-    <p><strong>Last Logged In:</strong> {{ user.lastLoggedIn || 'N/A' }}</p>
-    <!-- Add more user fields as needed -->
+
+  <div class="user-info">
+    <h3>User Information</h3>
+    <p><strong>Name:</strong> {{ user?.name }}</p> <!-- Display user's name -->
+    <p><strong>Last Logged In:</strong> {{ lastLoggedIn }}</p>
   </div>
-  <div *ngIf="!user">
-    <p>No user information available. Please log in.</p>
+
+  <div class="action-buttons">
+    <button class="btn edit-btn" (click)="editProfile()">Edit Profile</button>
   </div>
 </div>

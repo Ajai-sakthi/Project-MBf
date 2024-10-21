@@ -110,4 +110,19 @@ export class AuthService {
     const user = localStorage.getItem('user');
     return user ? JSON.parse(user) : null;
   }
+  // Method to update user data
+updateUser(updatedUser: any): Observable<any> {
+  return this.http.put(`${this.apiUrl}/${updatedUser.id}`, updatedUser).pipe(
+    map(response => {
+      // Update the user data in local storage if necessary
+      localStorage.setItem('user', JSON.stringify(updatedUser));
+      return response; // Return the response
+    }),
+    catchError(err => {
+      console.error('Update user error:', err);
+      return throwError(err); // Pass the error to the caller
+    })
+  );
+}
+
 }
