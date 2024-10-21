@@ -1,5 +1,5 @@
 // src/app/cart/cart.component.ts
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { CartService } from '../../services/cart.service';
 import { Router } from '@angular/router';
 import { CartItem } from '../../models/cart-item.model'; // Adjust path as needed
@@ -11,18 +11,21 @@ import { CartItem } from '../../models/cart-item.model'; // Adjust path as neede
 })
 export class CartComponent implements OnInit {
   cartItems: CartItem[] = []; // Specify the type as CartItem[]
+  cartItemsSignal = signal<CartItem[]>([]);
   totalItems: number = 0;
   totalPrice: number = 0;
 
   constructor(private cartService: CartService, private router: Router) {}
 
   ngOnInit(): void {
+    this.cartService.loadCartItems();
     this.loadCart(); // Load cart items when the component initializes
   }
 
   // Load items from the cart
   loadCart(): void {
     this.cartItems = this.cartService.getCartItems(); // Load items from the cart service
+    this.cartItemsSignal.set(this.cartItems);
     this.updateTotals(); // Calculate totals on load
   }
 

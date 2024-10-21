@@ -15,7 +15,7 @@ export class CartService {
   }
 
   // Load cart items from local storage
-  private loadCartItems(): void {
+   loadCartItems(): void {
     const items = JSON.parse(localStorage.getItem('cart') || '[]');
     this.cartItems = items;
     this.cartCountSubject.next(this.cartItems.length); // Update the cart count

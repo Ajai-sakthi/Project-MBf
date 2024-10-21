@@ -138,7 +138,7 @@
             "language":"Mollywood" 
         },
         {
-            "src":"../../../assets/images/.jpg",
+            "src":"../../../assets/images/harrypotter.jpg",
             "name":"Harry Potter & The Philosopher's Stone",
             "rating":3.9,
             "releasedate":"12/04/2002",
@@ -224,6 +224,14 @@
             "releasedate":"15/12/2006",
             "price":"8,100",
             "language":"Hollywood"  
+        },
+        {
+            "src":"../../../assets/images/sitaramam.jpg",
+            "name":"Sita Ramam",
+            "rating":4.1,
+            "releasedate":"05/08/2022",
+            "price":"8,300",
+            "language":"Kollywood"   
         },
         {
             "src":"../../../assets/images/chhichhore.jpg",

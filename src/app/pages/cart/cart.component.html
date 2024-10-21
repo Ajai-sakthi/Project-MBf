@@ -1,9 +1,9 @@
 <div class="cart-container">
   <h1>Shopping Cart</h1>
 
-  <div *ngIf="cartItems.length > 0; else emptyCart">
+  <div *ngIf="cartItemsSignal().length > 0; else emptyCart">
     <div class="cart-items">
-      <div class="cart-item" *ngFor="let item of cartItems">
+      <div class="cart-item" *ngFor="let item of cartItemsSignal()">
         <img class="cart-item-image" [src]="item.imageUrl" alt="{{ item.name }}"> <!-- Update src to imageUrl -->
         <div class="cart-item-details">
           <h2>{{ item.name }}</h2>

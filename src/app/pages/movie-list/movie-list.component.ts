@@ -3,23 +3,27 @@ import { MovieService } from '../../services/movie.service';
 import { Movie } from '../../models/movie.model'; // Ensure correct import path
 import { Router } from '@angular/router';
 import { CartItem } from '../../models/cart-item.model';
+import { CartService } from '../../services/cart.service';
  // Import the CartItem interface
 
 @Component({
   selector: 'app-movie-list',
   templateUrl: './movie-list.component.html',
   styleUrls: ['./movie-list.component.scss'],
-  providers: [MovieService]
+  providers: [MovieService,CartService]
 })
 export class MovieListComponent implements OnInit, AfterViewInit {
   movies: Movie[] = []; // Initialize an empty array to store movies
-
   @ViewChild('container', { static: false }) container!: ElementRef; 
-  cartService: any;
+  CartService: any;
 
   constructor(
     private movieService: MovieService,
-    private router: Router
+    private router: Router,
+   // private wishlistService: WishlistService,
+   // private utilityService: UtilityService,
+    private cartService: CartService,
+   
   ) {}
 
   ngOnInit(): void {
@@ -50,9 +54,8 @@ export class MovieListComponent implements OnInit, AfterViewInit {
     // this.router.navigate(['/movie-details', movie.id]); // Example if you have a detailed view
   }
 
-
-
   addToCart(movie: Movie): void {
+    console.log("hello");
     const cartItem: CartItem = {
       id: movie.id,
       name: movie.name,
