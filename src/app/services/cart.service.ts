@@ -1,75 +1,75 @@
+// src/app/services/cart.service.ts
 import { Injectable } from '@angular/core';
-import { CartItem } from '../models/cart-item.model'; // Make sure this path is correct
+import { CartItem } from '../models/cart-item.model'; // Adjust path as needed
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-  private cartItems: CartItem[] = []; // Use CartItem type for better type safety
+  private cartItems: CartItem[] = []; // Array to hold cart items
+  public cartCountSubject = new BehaviorSubject<number>(0); // Observable to hold cart count
 
   constructor() {
-    this.loadCart(); // Load cart items from local storage on service initialization
+    this.loadCartItems();
   }
 
   // Load cart items from local storage
-  private loadCart(): void {
-    const storedCart = localStorage.getItem('cart');
-    if (storedCart) {
-      this.cartItems = JSON.parse(storedCart);
-    }
+  private loadCartItems(): void {
+    const items = JSON.parse(localStorage.getItem('cart') || '[]');
+    this.cartItems = items;
+    this.cartCountSubject.next(this.cartItems.length); // Update the cart count
   }
 
-  // Save cart items to local storage
-  private saveCart(): void {
-    localStorage.setItem('cart', JSON.stringify(this.cartItems));
-  }
-
-  // Add an item to the cart
-  addToCart(item: CartItem): void {
-    const foundItem = this.cartItems.find(cartItem => cartItem.id === item.id);
-    if (foundItem) {
-      foundItem.quantity++;
-    } else {
-      this.cartItems.push({ ...item, quantity: 1 }); // Initialize quantity to 1
-    }
-    this.saveCart(); // Save the cart to local storage after adding an item
-    this.notifyCartUpdate(item.title); // Notify user that item is added to cart
-  }
-
-  // Notify the user that an item was added to the cart
-  notifyCartUpdate(movieTitle: string): void {
-    console.log(`${movieTitle} was added to your cart.`);
-    // You can integrate a notification system here (e.g., a UI toast)
-  }
-
-  // Remove an item from the cart
-  removeFromCart(movie: CartItem): void {
-    this.cartItems = this.cartItems.filter(item => item.id !== movie.id);
-    this.saveCart(); // Save the updated cart to local storage
-  }
-
-  // Get all items in the cart
+  // Retrieve cart items
   getCartItems(): CartItem[] {
     return this.cartItems;
   }
 
-  // Get the total price of items in the cart
-  getTotalPrice(): number {
-    return this.cartItems.reduce((total, movie) => total + (movie.price * movie.quantity), 0);
-  }
-
-  // Clear the entire cart
-  clearCart(): void {
-    this.cartItems = [];
-    this.saveCart(); // Save the empty cart to local storage
-  }
-
-  // Update the quantity of a specific item in the cart
-  updateCartItemQuantity(item: CartItem): void {
-    const index = this.cartItems.findIndex(cartItem => cartItem.id === item.id);
-    if (index !== -1) {
-      this.cartItems[index].quantity = item.quantity;
-      this.saveCart(); // Save after updating quantity
+  // Update item quantity in the cart
+  updateItemQuantity(item: CartItem): void {
+    const cartItem = this.cartItems.find(i => i.name === item.name);
+    if (cartItem) {
+      cartItem.quantity = item.quantity; // Update quantity
+      this.updateLocalStorage(); // Ensure local storage is updated
     }
+  }
+
+  // Remove item from the cart
+  removeItem(item: CartItem): void {
+    const index = this.cartItems.indexOf(item);
+    if (index > -1) {
+      this.cartItems.splice(index, 1); // Remove item from cart
+      this.updateLocalStorage(); // Ensure local storage is updated
+    }
+  }
+
+  // Clear the cart
+  clearCart(): void {
+    this.cartItems = []; // Reset the cart items
+    this.updateLocalStorage(); // Ensure local storage is cleared
+  }
+
+  // Add item to the cart
+  addToCart(item: CartItem): void {
+    // Check if the item already exists in the cart
+    const existingItem = this.cartItems.find(i => i.name === item.name);
+    if (existingItem) {
+      existingItem.quantity += item.quantity; // Increase quantity if it exists
+    } else {
+      this.cartItems.push(item); // Add new item if it doesn't exist
+    }
+    this.updateLocalStorage(); // Update local storage after adding
+  }
+
+  // Update local storage and emit new cart count
+  private updateLocalStorage(): void {
+    localStorage.setItem('cart', JSON.stringify(this.cartItems));
+    this.cartCountSubject.next(this.cartItems.length); // Update the count
+  }
+
+  // Get the current cart count as an observable
+  getCartCount(): BehaviorSubject<number> {
+    return this.cartCountSubject;
   }
 }

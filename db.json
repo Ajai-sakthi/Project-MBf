@@ -1,4 +1,141 @@
 {
+  "Movie": [
+    {
+      "src": "../../../assets/images/SOK.jpg",
+      "name": "Sillunu Oru Kadhal",
+      "rating": 5,
+      "releasedate": "04/04/2008",
+      "price": "10,000",
+      "language": "Kollywood",
+      "id": "00d7"
+    },
+    {
+      "src": "../../../assets/images/VV.jpg",
+      "name": "Vinnaithaandi Varuvaaya",
+      "rating": 3.8,
+      "releasedate": "26/02/2010",
+      "price": "8,600",
+      "language": "Kollywood",
+      "id": "c087"
+    },
+    {
+      "src": "../../../assets/images/ViVe.jpg",
+      "name": "Vikram vedha",
+      "rating": 4.1,
+      "releasedate": "21/07/2017",
+      "price": "7,700",
+      "language": "Kollywood",
+      "id": "e8e6"
+    },
+    {
+      "src": "../../../assets/images/OKK.jpg",
+      "name": "O Kadhal Kanmani",
+      "rating": 4.3,
+      "releasedate": "17/04/2015",
+      "price": "8,500",
+      "language": "Kollywood",
+      "id": "1670"
+    },
+    {
+      "src": "../../../assets/images/YNM.jpeg",
+      "name": "Yaaradi Nee Mohini",
+      "rating": 3.8,
+      "releasedate": "08/09/2006",
+      "price": "8,300",
+      "language": "Kollywood",
+      "id": "fd86"
+    },
+    {
+      "src": "../../../assets/images/Raanjhaana.jpg",
+      "name": "Raanjhaana",
+      "rating": 3.9,
+      "releasedate": "21/06/2013",
+      "price": "5,250",
+      "language": "Bollywood",
+      "id": "00ff"
+    },
+    {
+      "src": "../../../assets/images/KPC.jpg",
+      "name": "Kai Po Che",
+      "rating": 4.3,
+      "releasedate": "22/02/2013",
+      "price": "8,500",
+      "language": "Bollywood",
+      "id": "e733"
+    },
+    {
+      "src": "../../../assets/images/charlie.jpg",
+      "name": "Charlie",
+      "rating": 3.9,
+      "releasedate": "24/12/2015",
+      "price": "6,250",
+      "language": "Mollywood",
+      "id": "d6b3"
+    },
+    {
+      "src": "../../../assets/images/OSO.jpg",
+      "name": "Ohm Shanthi Oshaana",
+      "rating": 4.3,
+      "releasedate": "07/02/2014",
+      "price": "7,700",
+      "language": "Mollywood",
+      "id": "dd6d"
+    },
+    {
+      "src": "../../../assets/images/premam.jpg",
+      "name": "Premam",
+      "rating": 3.9,
+      "releasedate": "29/05/2015",
+      "price": "7,500",
+      "language": "Mollywood",
+      "id": "fd48"
+    },
+    {
+      "src": "../../../assets/images/Dangal.jpg",
+      "name": "Dangal",
+      "rating": 4.2,
+      "releasedate": "23/12/2016",
+      "price": "7,500",
+      "language": "Bollywood",
+      "id": "a5da"
+    },
+    {
+      "src": "../../../assets/images/3.jpg",
+      "name": "3",
+      "rating": 4.3,
+      "releasedate": "30/03/2012",
+      "price": "7,000",
+      "language": "Kollywood",
+      "id": "1374"
+    },
+    {
+      "src": "../../../assets/images/aavesham.jpg",
+      "name": "Aavesham",
+      "rating": 3.7,
+      "releasedate": "11/04/2024",
+      "price": "6,600",
+      "language": "Mollywood",
+      "id": "3620"
+    },
+    {
+      "src": "../../../assets/images/premalu.jpg",
+      "name": "Premalu",
+      "rating": 4.4,
+      "releasedate": "09/02/2024",
+      "price": "8,900",
+      "language": "Mollywood",
+      "id": "2fc3"
+    },
+    {
+      "src": "../../../assets/images/shershaah.jpg",
+      "name": "Shershaah",
+      "rating": 4,
+      "releasedate": "30/10/2021",
+      "price": "9,000",
+      "language": "Bollywood",
+      "id": "7493"
+    }
+  ],
   "Movie":[
         {  "src":"../../../assets/images/SOK.jpg",
             "name":"Sillunu Oru Kadhal",
@@ -292,18 +429,24 @@
     ],
   "users": [
     {
-      "id": 1,
-      "username": "Severus",
-      "password": "ulbsureves",
-      "email": "severus@gmail.com",
-      "isAdmin": false
+      "id": "dce6",
+      "email": "bhuvanamurugan1215@gmail.com",
+      "password": "1234"
     },
     {
-      "id": 2,
-      "username": "Klaus_mikaelson",
-      "password": "sualknosleakim",
-      "email": "klaus@gmail.com",
-      "isAdmin": true
+      "id": "4a8e",
+      "email": "swethamurugan2222@gmail.com",
+      "password": "1234"
+    },
+    {
+      "id": "9e51",
+      "email": "severusblu@gmail.com",
+      "password": "Klaus_mikaelson@25"
+    },
+    {
+      "id": "5f7b",
+      "email": "arunajith056@gmail.com",
+      "password": "123456"
     }
   ]
 }

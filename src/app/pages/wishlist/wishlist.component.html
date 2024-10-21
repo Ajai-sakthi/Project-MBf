@@ -1,0 +1,22 @@
+<div class="title">
+  <h1>Wishlist</h1>
+</div>
+<div class="container">
+  <div class="productCard" *ngFor="let movie of wishlistMovies">
+    <div class="close-icon" (click)="removeFromWishlist(movie)" title="Remove from Wishlist">
+      <i class="fas fa-times-circle"></i> <!-- Use a circle close icon for a professional look -->
+    </div>
+    <img class="productImage" [src]="movie.src" alt="{{ movie.name }}">
+    <div>{{ movie.name }}</div>
+    <div class="star-rating">
+      <i class="fas fa-star" *ngFor="let star of getStars(movie.rating)"></i>
+      <i class="far fa-star" *ngFor="let star of getStars(5 - movie.rating)"></i>
+    </div>
+    <div class="productDate">{{ movie.releasedate }}</div>
+    <div>&#8377;{{ movie.price }}</div>
+    <div class="btn-container">
+      <button class="button" (click)="addToCart(movie)">Add to Cart</button>
+      <button class="button" (click)="buyNow(movie)">Buy Now</button>
+    </div>
+  </div>
+</div>

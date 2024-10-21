@@ -1,9 +1,14 @@
 import { Component, ElementRef, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MovieService } from '../../services/movie.service';
-import { Movie } from '../../models/movie.model';
+import { Movie } from '../../models/movie.model'; // Ensure correct import path
+import { WishlistService } from './../../services/wishlist.service';
+import { UtilityService } from './../../services/utility.service';
+import { CartService } from './../../services/cart.service';
+import { Router } from '@angular/router';
+import { CartItem } from './../../models/cart-item.model'; // Import the CartItem interface
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-movie-list',
   templateUrl: './movie-list.component.html',
   styleUrls: ['./movie-list.component.scss'],
   providers: [MovieService]
@@ -13,10 +18,15 @@ export class MovieListComponent implements OnInit, AfterViewInit {
 
   @ViewChild('container', { static: false }) container!: ElementRef; 
 
-  constructor(private movieService: MovieService) {}
+  constructor(
+    private movieService: MovieService,
+    private wishlistService: WishlistService,
+    private utilityService: UtilityService,
+    private cartService: CartService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    // Fetch movies when the component is initialized
     this.movieService.getMovies().subscribe((data: Movie[]) => {
       this.movies = data;
     });

@@ -17,6 +17,8 @@
         <input type="password" id="confirm-password" [(ngModel)]="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required />
       </div>
 
+      <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+
       <button type="submit" class="btn-register">Register</button>
     </form>
 

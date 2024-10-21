@@ -1,3 +1,4 @@
+<!-- src/app/app.component.html -->
 <app-header (sidebarToggle)="onSidebarToggle()"></app-header>
 @if (shouldRun) {
   <mat-sidenav-container>
@@ -14,4 +15,4 @@
 
 
 <!-- Footer is displayed only if it's not the login page -->
-<app-footer *ngIf="!isLoginPage"></app-footer>
+<app-footer *ngIf="!isLoginOrRegister()"></app-footer>

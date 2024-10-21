@@ -35,7 +35,9 @@ $muted-color: #b0b0b0;     // Muted text color for headings
           display: flex;
           align-items: center;
           transition: color 0.3s ease;
-
+          i {
+            margin-right: 10px; // Space between icon and text
+          }
           fa-icon {
             margin-right: 10px;
             font-size: 18px;
