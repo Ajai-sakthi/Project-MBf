@@ -1,11 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MovieService } from '../../services/movie.service';
 import { Movie } from '../../models/movie.model'; // Ensure correct import path
-import { WishlistService } from './../../services/wishlist.service';
-import { UtilityService } from './../../services/utility.service';
-import { CartService } from './../../services/cart.service';
 import { Router } from '@angular/router';
-import { CartItem } from './../../models/cart-item.model'; // Import the CartItem interface
+ // Import the CartItem interface
 
 @Component({
   selector: 'app-movie-list',
@@ -20,9 +17,6 @@ export class MovieListComponent implements OnInit, AfterViewInit {
 
   constructor(
     private movieService: MovieService,
-    private wishlistService: WishlistService,
-    private utilityService: UtilityService,
-    private cartService: CartService,
     private router: Router
   ) {}
 

@@ -5,14 +5,10 @@
     <mat-sidenav #sidenav mode="side" [(opened)]="opened" >
                 <app-sidebar [isOpen]="isSidebarOpen"></app-sidebar>
     </mat-sidenav>
-
     <mat-sidenav-content>
       <router-outlet></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>
 }
-
-
-
 <!-- Footer is displayed only if it's not the login page -->
 <app-footer *ngIf="!isLoginOrRegister()"></app-footer>

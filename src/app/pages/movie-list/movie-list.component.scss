@@ -17,6 +17,7 @@
     border-radius: 25px;
     padding: 20px;
     width: 300px;
+    min-height: 70vh;
     scroll-snap-align:start; /* Each card snaps to viewport */
     transition: transform 0.4s ease; /* Smooth transition for hover effect */
     &.productCard:hover {
@@ -71,7 +72,7 @@
 }
 .swipe-button-container {
     position: fixed;
-    bottom:60px;
+    bottom: 100px;
     left: 50%; /* Horizontally center */
     transform: translateX(-50%); /* Adjust position so it's perfectly centered */
     .swipe-button {

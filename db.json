@@ -1,153 +1,17 @@
 {
-  "Movie": [
+  "Movie": [ 
     {
       "src": "../../../assets/images/SOK.jpg",
       "name": "Sillunu Oru Kadhal",
       "rating": 5,
       "releasedate": "04/04/2008",
       "price": "10,000",
-      "language": "Kollywood",
-      "id": "00d7"
+      "language": "Kollywood"
     },
-    {
-      "src": "../../../assets/images/VV.jpg",
-      "name": "Vinnaithaandi Varuvaaya",
-      "rating": 3.8,
-      "releasedate": "26/02/2010",
-      "price": "8,600",
-      "language": "Kollywood",
-      "id": "c087"
-    },
-    {
-      "src": "../../../assets/images/ViVe.jpg",
-      "name": "Vikram vedha",
-      "rating": 4.1,
-      "releasedate": "21/07/2017",
-      "price": "7,700",
-      "language": "Kollywood",
-      "id": "e8e6"
-    },
-    {
-      "src": "../../../assets/images/OKK.jpg",
-      "name": "O Kadhal Kanmani",
-      "rating": 4.3,
-      "releasedate": "17/04/2015",
-      "price": "8,500",
-      "language": "Kollywood",
-      "id": "1670"
-    },
-    {
-      "src": "../../../assets/images/YNM.jpeg",
-      "name": "Yaaradi Nee Mohini",
-      "rating": 3.8,
-      "releasedate": "08/09/2006",
-      "price": "8,300",
-      "language": "Kollywood",
-      "id": "fd86"
-    },
-    {
-      "src": "../../../assets/images/Raanjhaana.jpg",
-      "name": "Raanjhaana",
-      "rating": 3.9,
-      "releasedate": "21/06/2013",
-      "price": "5,250",
-      "language": "Bollywood",
-      "id": "00ff"
-    },
-    {
-      "src": "../../../assets/images/KPC.jpg",
-      "name": "Kai Po Che",
-      "rating": 4.3,
-      "releasedate": "22/02/2013",
-      "price": "8,500",
-      "language": "Bollywood",
-      "id": "e733"
-    },
-    {
-      "src": "../../../assets/images/charlie.jpg",
-      "name": "Charlie",
-      "rating": 3.9,
-      "releasedate": "24/12/2015",
-      "price": "6,250",
-      "language": "Mollywood",
-      "id": "d6b3"
-    },
-    {
-      "src": "../../../assets/images/OSO.jpg",
-      "name": "Ohm Shanthi Oshaana",
-      "rating": 4.3,
-      "releasedate": "07/02/2014",
-      "price": "7,700",
-      "language": "Mollywood",
-      "id": "dd6d"
-    },
-    {
-      "src": "../../../assets/images/premam.jpg",
-      "name": "Premam",
-      "rating": 3.9,
-      "releasedate": "29/05/2015",
-      "price": "7,500",
-      "language": "Mollywood",
-      "id": "fd48"
-    },
-    {
-      "src": "../../../assets/images/Dangal.jpg",
-      "name": "Dangal",
-      "rating": 4.2,
-      "releasedate": "23/12/2016",
-      "price": "7,500",
-      "language": "Bollywood",
-      "id": "a5da"
-    },
-    {
-      "src": "../../../assets/images/3.jpg",
-      "name": "3",
-      "rating": 4.3,
-      "releasedate": "30/03/2012",
-      "price": "7,000",
-      "language": "Kollywood",
-      "id": "1374"
-    },
-    {
-      "src": "../../../assets/images/aavesham.jpg",
-      "name": "Aavesham",
-      "rating": 3.7,
-      "releasedate": "11/04/2024",
-      "price": "6,600",
-      "language": "Mollywood",
-      "id": "3620"
-    },
-    {
-      "src": "../../../assets/images/premalu.jpg",
-      "name": "Premalu",
-      "rating": 4.4,
-      "releasedate": "09/02/2024",
-      "price": "8,900",
-      "language": "Mollywood",
-      "id": "2fc3"
-    },
-    {
-      "src": "../../../assets/images/shershaah.jpg",
-      "name": "Shershaah",
-      "rating": 4,
-      "releasedate": "30/10/2021",
-      "price": "9,000",
-      "language": "Bollywood",
-      "id": "7493"
-    }
-  ],
-  "Movie":[
-        {  "src":"../../../assets/images/SOK.jpg",
-            "name":"Sillunu Oru Kadhal",
-            "rating":"5.0",
-            "releasedate":"04/04/2008",
-            "price":"10,000",
-            "language":"Kollywood"
-        },
-        {
+     {
             "src":"../../../assets/images/VV.jpg",
             "name":"Vinnaithaandi Varuvaaya",
-            "rating":"3.8",
+            "rating":3.8,
             "releasedate":"26/02/2010",
             "price":"8,600",
             "language":"Kollywood"
@@ -155,7 +19,7 @@
         {
             "src":"../../../assets/images/ViVe.jpg",
             "name":"Vikram vedha",
-            "rating":"4.1",
+            "rating":4.1,
             "releasedate":"21/07/2017",
             "price":"7,700",
             "language":"Kollywood"   
@@ -163,7 +27,7 @@
         {
             "src":"../../../assets/images/ironman.jpg",
             "name":"Ironman",
-            "rating":"4.6",
+            "rating":4.6,
             "releasedate":"01/05/2008",
             "price":"9,100",
             "language":"Hollywood"  
@@ -171,7 +35,7 @@
         {
             "src":"../../../assets/images/OKK.jpg",
             "name":"O Kadhal Kanmani",
-            "rating":"4.3",
+            "rating":4.3,
             "releasedate":"17/04/2015",
             "price":"8,500",
             "language":"Kollywood"   
@@ -179,7 +43,7 @@
         {
             "src":"../../../assets/images/chakdeindia.jpg",
             "name":"Chak De India",
-            "rating":"3.7",
+            "rating":3.7,
             "releasedate":"10/08/2007",
             "price":"7,650",
             "language":"Bollywood"    
@@ -187,7 +51,7 @@
         {
             "src":"../../../assets/images/spiderman.jpg",
             "name":"Spiderman",
-            "rating":"4.1",
+            "rating":4.1,
             "releasedate":"03/05/2002",
             "price":"9,200",
             "language":"Hollywood"  
@@ -195,7 +59,7 @@
         {
             "src":"../../../assets/images/YNM.jpeg",
             "name":"Yaaradi Nee Mohini",
-            "rating":"3.8",
+            "rating":3.8,
             "releasedate":"08/09/2006",
             "price":"8,300",
             "language":"Kollywood"  
@@ -204,7 +68,7 @@
         {
             "src":"../../../assets/images/Raanjhaana.jpg",
             "name":"Raanjhaana",
-            "rating":"3.9",
+            "rating":3.9,
             "releasedate":"21/06/2013",
             "price":"5,250",
             "language":"Bollywood"    
@@ -212,7 +76,7 @@
         {
             "src":"../../../assets/images/KPC.jpg",
             "name":"Kai Po Che",
-            "rating":"4.3",
+            "rating":4.3,
             "releasedate":"22/02/2013",
             "price":"8,500",
             "language":"Bollywood"  
@@ -220,7 +84,7 @@
         {
             "src":"../../../assets/images/pirates.jpg",
             "name":"Pirates Of The Carribean: The Curse Of The Black Pearl",
-            "rating":"4.1",
+            "rating":4.1,
             "releasedate":"15/08/2003",
             "price":"9,100",
             "language":"Hollywood"  
@@ -228,7 +92,7 @@
         {
             "src":"../../../assets/images/charlie.jpg",
             "name":"Charlie",
-            "rating":"3.9",
+            "rating":3.9,
             "releasedate":"24/12/2015",
             "price":"6,250",
             "language":"Mollywood"     
@@ -236,7 +100,7 @@
         {
             "src":"../../../assets/images/aadukalam.jpg",
             "name":"Aadukalam",
-            "rating":"4.5",
+            "rating":4.5,
             "releasedate":"14/01/2011",
             "price":"8,300",
             "language":"Kollywood"   
@@ -244,7 +108,7 @@
         {
             "src":"../../../assets/images/83.jpg",
             "name":"83",
-            "rating":"3.7",
+            "rating":3.7,
             "releasedate":"24/12/2021",
             "price":"7,450",
             "language":"Bollywood"    
@@ -252,7 +116,7 @@
         {
             "src":"../../../assets/images/OSO.jpg",
             "name":"Ohm Shanthi Oshaana",
-            "rating":"4.3",
+            "rating":4.3,
             "releasedate":"07/02/2014",
             "price":"7,700",
             "language":"Mollywood"  
@@ -260,7 +124,7 @@
         {
             "src":"../../../assets/images/msd.jpg",
             "name":"M.S.Dhoni:The Untold Story",
-            "rating":"4.3",
+            "rating":4.3,
             "releasedate":"30/09/2016",
             "price":"8,550",
             "language":"Bollywood"    
@@ -268,7 +132,7 @@
         {
             "src":"../../../assets/images/premam.jpg",
             "name":"Premam",
-            "rating":"3.9",
+            "rating":3.9,
             "releasedate":"29/05/2015",
             "price":"7,500",
             "language":"Mollywood" 
@@ -276,7 +140,7 @@
         {
             "src":"../../../assets/images/.jpg",
             "name":"Harry Potter & The Philosopher's Stone",
-            "rating":"3.9",
+            "rating":3.9,
             "releasedate":"12/04/2002",
             "price":"8,300",
             "language":"Hollywood"  
@@ -284,7 +148,7 @@
         {
             "src":"../../../assets/images/Dangal.jpg",
             "name":"Dangal",
-            "rating":"4.2",
+            "rating":4.2,
             "releasedate":"23/12/2016",
             "price":"7,500",
             "language":"Bollywood" 
@@ -292,7 +156,7 @@
         {
             "src":"../../../assets/images/3.jpg",
             "name":"3",
-            "rating":"4.3",
+            "rating":4.3,
             "releasedate":"30/03/2012",
             "price":"7,000",
             "language":"Kollywood"
@@ -300,7 +164,7 @@
         {
             "src":"../../../assets/images/aavesham.jpg",
             "name":"Aavesham",
-            "rating":"3.7",
+            "rating":3.7,
             "releasedate":"11/04/2024",
             "price":"6,600",
             "language":"Mollywood" 
@@ -308,7 +172,7 @@
         {
             "src":"../../../assets/images/rabnebanadijodi.jpg",
             "name":"Rabne Bana Di Jodi",
-            "rating":"3.8",
+            "rating":3.8,
             "releasedate":"12/12/2008",
             "price":"7,625",
             "language":"Bollywood" 
@@ -316,7 +180,7 @@
         {
             "src":"../../../assets/images/mayakkamenna.jpg",
             "name":"Mayakkam Enna",
-            "rating":"4.3",
+            "rating":4.3,
             "releasedate":"25/11/2011",
             "price":"8,800",
             "language":"Kollywood"   
@@ -324,7 +188,7 @@
         {
             "src":"../../../assets/images/premalu.jpg",
             "name":"Premalu",
-            "rating":"4.4",
+            "rating":4.4,
             "releasedate":"09/02/2024",
             "price":"8,900",
             "language":"Mollywood" 
@@ -332,7 +196,7 @@
         {
             "src":"../../../assets/images/sooraraipotru.jpg",
             "name":"Soorarai Potru",
-            "rating":"4.6",
+            "rating":4.6,
             "releasedate":"12/11/2020",
             "price":"8,700",
             "language":"Kollywood"  
@@ -340,7 +204,7 @@
         {
             "src":"../../../assets/images/bangaloredays.jpg",
             "name":"Bangalore Days",
-            "rating":"3.9",
+            "rating":3.9,
             "releasedate":"30/05/2014",
             "price":"7,825",
             "language":"Mollywood"     
@@ -348,7 +212,7 @@
         {
             "src":"../../../assets/images/irudhisuttru.jpg",
             "name":"Irudhi Suttru",
-            "rating":"4.6",
+            "rating":4.6,
             "releasedate":"29/01/2016",
             "price":"8,300",
             "language":"Kollywood"  
@@ -356,7 +220,7 @@
         {
             "src":"../../../assets/images/thepursuitofhappyness.jpg",
             "name":"The Pursuit Of Happyness",
-            "rating":"4.2",
+            "rating":4.2,
             "releasedate":"15/12/2006",
             "price":"8,100",
             "language":"Hollywood"  
@@ -364,7 +228,7 @@
         {
             "src":"../../../assets/images/chhichhore.jpg",
             "name":"Chhichhore",
-            "rating":"4.6",
+            "rating":4.6,
             "releasedate":"06/09/2019",
             "price":"8,000",
             "language":"Bollywood" 
@@ -372,7 +236,7 @@
         {
             "src":"../../../assets/images/hridhayam.jpg",
             "name":"Hridhayam",
-            "rating":"4.2",
+            "rating":4.2,
             "releasedate":"21/01/2022",
             "price":"7,650",
             "language":"Mollywood"     
@@ -380,7 +244,7 @@
         {
             "src":"../../../assets/images/aashiqui.jpg",
             "name":"Aashiqui",
-            "rating":"4.3",
+            "rating":4.3,
             "releasedate":"26/04/2013",
             "price":"8,350",
             "language":"Bollywood" 
@@ -388,7 +252,7 @@
         {
             "src":"../../../assets/images/7g.jpg",
             "name":"7g Rainbow Colony",
-            "rating":"4.4",
+            "rating":4.4,
             "releasedate":"15/10/2004",
             "price":"8,650",
             "language":"Kollywood"   
@@ -396,7 +260,7 @@
         {
             "src":"../../../assets/images/kumbalanginights.jpg",
             "name":"Kumbalangi Nights",
-            "rating":"4.3",
+            "rating":4.3,
             "releasedate":"07/02/2019",
             "price":"8,150",
             "language":"Mollywood"     
@@ -404,7 +268,7 @@
         {
             "src":"../../../assets/images/ak.jpg",
             "name":"Ayyappanum Koshiyum",
-            "rating":"4.1",
+            "rating":4.1,
             "releasedate":"07/02/2020",
             "price":"8,050",
             "language":"Mollywood"     
@@ -412,7 +276,7 @@
         {
             "src":"../../../assets/images/shershaah.jpg",
             "name":"Shershaah",
-            "rating":"4.5",
+            "rating":4.5,
             "releasedate":"12/08/2021",
             "price":"8,200",
             "language":"Bollywood" 
@@ -420,7 +284,7 @@
         {
             "src":"../../../assets/images/theevandi.jpg",
             "name":"Theevandi",
-            "rating":"3.9",
+            "rating":3.9,
             "releasedate":"07/09/2018",
             "price":"7,550",
             "language":"Mollywood"     

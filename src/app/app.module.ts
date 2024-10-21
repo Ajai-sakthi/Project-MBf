@@ -27,6 +27,8 @@ import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.
 import { ReactiveFormsModule } from '@angular/forms';
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component'; // Adjust path accordinglyimport {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MatNativeDateModule } from '@angular/material/core';
+// app.module.ts
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,15 +52,15 @@ import { MatNativeDateModule } from '@angular/material/core';
     ResetPasswordComponent // Declare your WishlistComponent here
   ],
   imports: [
-    BrowserModule,
     BrowserAnimationsModule,
+    BrowserModule,
     MatNativeDateModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     FontAwesomeModule,
-    CommonModule // Include CommonModule in the imports array,
+    CommonModule, // Include CommonModule in the imports array,
     MatSidenavModule
   ],
   providers: [],
