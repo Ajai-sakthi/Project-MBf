@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild, AfterViewInit } from '@angula
 import { MovieService } from '../../services/movie.service';
 import { Movie } from '../../models/movie.model'; // Ensure correct import path
 import { Router } from '@angular/router';
+import { CartItem } from '../../models/cart-item.model';
  // Import the CartItem interface
 
 @Component({
@@ -14,6 +15,7 @@ export class MovieListComponent implements OnInit, AfterViewInit {
   movies: Movie[] = []; // Initialize an empty array to store movies
 
   @ViewChild('container', { static: false }) container!: ElementRef; 
+  cartService: any;
 
   constructor(
     private movieService: MovieService,
@@ -39,6 +41,31 @@ export class MovieListComponent implements OnInit, AfterViewInit {
       stars.push(i);
     }
     return stars;
+  }
+
+  viewMoreInfo(movie: any): void {
+    // Logic to show more info about the movie, e.g., navigating to a detailed view or opening a modal
+    console.log('More info about:', movie);
+    // You might navigate to a detail page or open a modal
+    // this.router.navigate(['/movie-details', movie.id]); // Example if you have a detailed view
+  }
+
+
+
+  addToCart(movie: Movie): void {
+    const cartItem: CartItem = {
+      id: movie.id,
+      name: movie.name,
+      price: movie.price.toString().replace(/,/g, ''), // Convert to string here
+      quantity: 1, // Set initial quantity
+      rating: movie.rating,
+      imageUrl: movie.src,
+      src: movie.src, // Ensure src is included if needed
+      movie: movie // Include the movie object here
+    };
+
+    this.cartService.addToCart(cartItem); // Call the addToCart method
+    this.router.navigate(['/cart']);
   }
 
   swipeRight() {

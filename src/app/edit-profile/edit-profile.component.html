@@ -1,0 +1,19 @@
+<div class="edit-profile-container">
+  <h2>Edit Profile</h2>
+  <form [formGroup]="editProfileForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input id="name" formControlName="name" placeholder="Enter your name" required />
+      <div *ngIf="editProfileForm.controls['name'].errors && editProfileForm.controls['name'].errors['required'] && editProfileForm.controls['name'].touched">
+        Name is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input id="email" formControlName="email" placeholder="someone@example.com" />
+    </div>
+
+    <button type="submit" [disabled]="editProfileForm.invalid">Update Profile</button>
+  </form>
+</div>

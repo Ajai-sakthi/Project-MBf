@@ -25,7 +25,8 @@ import { FormatPricePipe } from './format-price.pipe';
 import { ProfileComponent } from './profile/profile.component';
 import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ResetPasswordComponent } from './auth/reset-password/reset-password.component'; // Adjust path accordinglyimport {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component'; // Adjust path accordinglyimport {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MatNativeDateModule } from '@angular/material/core';
 // app.module.ts
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -49,7 +50,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormatPricePipe,
     ProfileComponent,
     ForgotPasswordComponent,
-    ResetPasswordComponent // Declare your WishlistComponent here
+    ResetPasswordComponent,
+    EditProfileComponent // Declare your WishlistComponent here
   ],
   imports: [
     BrowserAnimationsModule,

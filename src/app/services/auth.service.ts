@@ -16,8 +16,8 @@ export class AuthService {
     return this.http.get<any[]>(`${this.apiUrl}?email=${email}&password=${password}`).pipe(
       map(users => {
         if (users.length > 0) {
-          const user = users[0];
-          localStorage.setItem('user', JSON.stringify(user));
+          const user = { ...users[0], lastLoggedIn: new Date().toISOString() }; // Add last logged in time
+          localStorage.setItem('user', JSON.stringify(user)); // Store user with last logged in time
           return { success: true, user }; // Return a success flag along with user
         } else {
           return { success: false, message: 'Invalid email or password' }; // Handle invalid credentials
@@ -52,9 +52,13 @@ export class AuthService {
 
   // Method to request a password reset
   forgotPassword(email: string): Observable<any> {
-    return this.http.post('http://localhost:3000/forgot-password', { email }).pipe(
-      map(response => {
-        return { message: 'Password reset email has been sent successfully.' }; // Simulate successful response
+    return this.http.get<any[]>(`${this.apiUrl}?email=${email}`).pipe(
+      map(users => {
+        if (users.length > 0) {
+          return { message: 'Password reset email has been sent successfully.' }; // Simulate success
+        } else {
+          throw new Error('Email not found'); // Simulate email not found error
+        }
       }),
       catchError(err => {
         console.error('Forgot password error:', err);
@@ -106,4 +110,19 @@ export class AuthService {
     const user = localStorage.getItem('user');
     return user ? JSON.parse(user) : null;
   }
+  // Method to update user data
+updateUser(updatedUser: any): Observable<any> {
+  return this.http.put(`${this.apiUrl}/${updatedUser.id}`, updatedUser).pipe(
+    map(response => {
+      // Update the user data in local storage if necessary
+      localStorage.setItem('user', JSON.stringify(updatedUser));
+      return response; // Return the response
+    }),
+    catchError(err => {
+      console.error('Update user error:', err);
+      return throwError(err); // Pass the error to the caller
+    })
+  );
+}
+
 }
