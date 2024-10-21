@@ -10,64 +10,53 @@ import { AuthService } from '../../services/auth.service'; // Adjust the path as
 export class LoginComponent implements OnInit {
   username: string = '';
   password: string = '';
-  loading: boolean = false; // To indicate loading state
-  errorMessage: string = ''; // To hold error messages
+  loading: boolean = false;
+  errorMessage: string = '';
 
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
-    this.checkLoggedInUser(); // Check for logged-in user on initialization
+    this.checkLoggedInUser();
   }
 
-  // Pre-fill the form with previously stored user credentials
   checkLoggedInUser() {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
-
-    if (user && user.username) {
-      this.username = user.username; // Pre-fill the username
-      this.password = user.password; // Pre-fill the password
+    if (user && user.username && user.password) {
+      this.username = user.username;
+      this.password = user.password;
     }
   }
 
-  // Handle the login form submission
   onSubmit(): void {
-    this.errorMessage = ''; // Clear any previous error messages
-
+    this.errorMessage = '';
     if (!this.username || !this.password) {
-      this.errorMessage = 'Please enter both email and password.'; // Validate input
+      this.errorMessage = 'Please enter both email and password.';
       return;
     }
 
-    this.loading = true; // Show loading state while processing
+    this.loading = true;
 
-    // Call the login method of the AuthService
     this.authService.login(this.username, this.password).subscribe(
       response => {
-        this.loading = false; // Reset loading state
-
-        if (response.length > 0) {
-          // User is authenticated successfully
-          const userDetails = { username: this.username, password: this.password }; // Store credentials
-          localStorage.setItem('user', JSON.stringify(userDetails)); // Save user credentials in local storage
-
-          // Navigate to the movies page or desired route after successful login
-          this.router.navigate(['/movies']); // Adjust the route as needed
+        this.loading = false;
+        if (response) {
+          // Navigate to the movie list page upon successful login
+          this.router.navigate(['/']); // Adjust the route based on your app's routing config
         } else {
           this.errorMessage = 'Invalid credentials. Please try again.';
         }
       },
       error => {
-        this.loading = false; // Reset loading state on error
+        this.loading = false;
         this.errorMessage = 'Login failed: ' + (error.error?.message || 'Please try again later.');
         console.error('Login error:', error);
       }
     );
   }
 
-  // Optional: Method to clear stored credentials (e.g., during logout)
   clearStoredCredentials() {
-    localStorage.removeItem('user'); // Clear user details from local storage
-    this.username = ''; // Reset form fields
+    localStorage.removeItem('user');
+    this.username = '';
     this.password = '';
   }
 }

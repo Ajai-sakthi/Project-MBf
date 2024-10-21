@@ -141,6 +141,11 @@
       "id": "dce6",
       "email": "bhuvanamurugan1215@gmail.com",
       "password": "1234"
+    },
+    {
+      "id":"dec7",
+      "email":"swethamurugan2222@gmail.com",
+      "password":"1234"
     }
   ]
 }
