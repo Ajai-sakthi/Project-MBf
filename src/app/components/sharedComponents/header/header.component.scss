@@ -22,10 +22,8 @@
   .logo {
     display: flex;
     align-items: center;
-    background: url('../../../../assets/images/logo.png'); // Path to logo
-    background-repeat: no-repeat;
+    background: url('../../../../assets/images/logo.png') no-repeat left center;
     background-size: contain;
-    background-position: left center;
     height: 50px;
 
     h2 {
@@ -76,15 +74,14 @@
     input {
       width: 100%;
       padding: 10px 40px; // Add padding to make space for icons
-      border: 1px solid #ccc; // Add border styling
+      border: 1px solid #ccc;
       border-radius: 20px;
       outline: none;
-      color: gray; // Set text color to grey
-      background: #F9F9F9AB; // Optional: Set background color for better visibility
+      color: gray;
+      background: #F9F9F9AB;
 
-      // Adjust placeholder color
       &::placeholder {
-        color: lightgray; // Light color for the placeholder
+        color: lightgray;
       }
     }
 
@@ -93,17 +90,15 @@
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      color: #e3e4e4; // Set icon color to grey
-      cursor: pointer; // Make icons clickable
+      color: #e3e4e4;
+      cursor: pointer;
 
-      // Search icon position
       &.search-icon {
-        left: 10px; // Adjust as needed
+        left: 10px;
       }
 
-      // Filter icon position
       &.filter-icon {
-        right: 10px; // Adjust as needed
+        right: 10px;
       }
     }
   }
@@ -112,16 +107,15 @@
   .auth-links {
     display: flex;
     align-items: center;
-    list-style: none;
 
     ul {
       display: flex;
       padding: 0;
       margin: 0;
+      list-style: none;
 
       li {
         margin: 0 10px;
-        list-style: none;
 
         a {
           display: flex;
@@ -148,62 +142,82 @@
     align-items: center;
 
     .notification-icon,
-    .fa-user-circle,
-    .fa-shopping-cart { // Add styling for cart icon
+    .wishlist-icon,
+    .fa-shopping-cart {
       margin: 0 10px;
       color: white;
-      position: relative; // Needed for cart count positioning
+      cursor: pointer;
+      position: relative; // Positioning for cart count badge
 
       &:hover {
-        color: #fdc602; // Change color on hover
+        color: #fdc602; // Highlight color on hover
       }
+    }
+
+    // Add more space specifically between wishlist and cart icons
+    .wishlist-icon {
+      margin-right: 20px; // Increase the space after the wishlist icon
     }
 
     .cart-count {
       position: absolute;
-      top: -5px; // Adjust as needed
-      right: -10px; // Adjust as needed
-      background-color: red; // Background color for cart count
-      color: white; // Text color for cart count
+      top: 1px;
+      right: 1px;
+      background-color: red;
+      color: white;
       border-radius: 50%;
-      padding: 2px 6px; // Padding for the count
-      font-size: 0.8rem; // Font size for count
+      padding: 2px 6px;
+      font-size: 0.8rem;
     }
   }
+  .search-results {
+    position: absolute;
+    background: white;
+    border: 1px solid #ccc;
+    z-index: 1000;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
 
-  .dropdown {
-    position: relative; // Added to manage dropdown positioning
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
 
-    .profile-dropdown {
-      position: absolute;
-      top: 30px; // Adjust position as needed
-      right: 0;
-      background-color: #333; // Dropdown background color
-      border-radius: 5px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      z-index: 10; // Ensure it appears above other elements
+      li {
+        padding: 10px;
+        cursor: pointer;
 
-      ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-
-        li {
-          padding: 10px 20px; // Padding for dropdown items
-
-          a {
-            text-decoration: none;
-            color: white;
-            transition: color 0.3s;
-
-            &:hover {
-              color: #fdc602; // Change color on hover
-            }
-          }
+        &:hover {
+          background: #f0f0f0;
         }
       }
     }
   }
+
+  .filter-menu {
+    position: absolute;
+    background: black;
+    border: 1px solid #ccc;
+    padding: 10px;
+    z-index: 1000;
+
+    h4 {
+      margin: 0 0 10px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    select {
+      margin-bottom: 10px;
+      color: #000000;
+    }
+  }
+
+
 
   // Responsive Design
   @media (max-width: 768px) {
