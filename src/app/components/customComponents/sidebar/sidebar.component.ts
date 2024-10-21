@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 // src/app/components/customComponents/sidebar/sidebar.component.ts
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { IconDefinition } from '@fortawesome/fontawesome-common-types';
@@ -23,7 +24,7 @@ export class SidebarComponent {
 
   showRatingSelection = false; // Controls the rating dropdown
   showLanguageSelection = false; // Controls the language dropdown
-
+  isProfileOpen:boolean=false;
   languages: string[] = ['Tamil', 'Malayalam', 'Hindi', 'English']; // Available languages
   selectedLanguages: string[] = []; // Currently selected languages
 
@@ -36,7 +37,7 @@ export class SidebarComponent {
 
   selectedRatings: string | number | null = null; // Store selected rating
 
-  constructor(private stateService: StateService) {}
+  constructor(private stateService: StateService,private router: Router) {}
 
   // Toggle language selection dropdown
   toggleLanguageSelection() {
@@ -63,5 +64,20 @@ export class SidebarComponent {
   toggleRating(rating: number | string) {
     this.selectedRatings = this.selectedRatings === rating ? null : rating;
     this.ratingChange.emit(this.selectedRatings); // Emit selected rating
+  }
+
+  // Toggle profile navigation
+  toggleProfile() {
+    if (this.isProfileOpen) {
+      // Close the profile by navigating to a different page (e.g., Home)
+      this.isProfileOpen = false;
+      this.router.navigate(['/home']);
+      console.log('Navigating back to home');
+    } else {
+      // Open the profile by navigating to the profile page
+      this.isProfileOpen = true;
+      this.router.navigate(['/profile']);
+      console.log('Navigating to profile page');
+    }
   }
 }
