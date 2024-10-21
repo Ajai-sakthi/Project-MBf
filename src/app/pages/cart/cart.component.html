@@ -1,40 +1,47 @@
 <div class="cart-container">
-  <h1>Shopping Cart</h1>
-
-  <div *ngIf="cartItemsSignal().length > 0; else emptyCart">
-    <div class="cart-items">
-      <div class="cart-item" *ngFor="let item of cartItemsSignal()">
-        <img class="cart-item-image" [src]="item.imageUrl" alt="{{ item.name }}"> <!-- Update src to imageUrl -->
+  <h1 class="cart-title">Shopping Cart</h1>
+  <div *ngIf="cartItems.length > 0; else emptyCart">
+    <div *ngFor="let item of cartItems" class="cart-item">
+      <div class="cart-item-content">
+        <div class="cart-item-image">
+          <img [src]="item.imageUrl" alt="{{ item.name }}">
+        </div>
         <div class="cart-item-details">
           <h2>{{ item.name }}</h2>
           <div class="cart-item-rating">
-            <i class="fas fa-star" *ngFor="let star of getStars(item.rating)"></i>
+            <span *ngFor="let star of getStars(item.rating)">
+              <ng-container *ngIf="star === 1">★</ng-container>
+              <ng-container *ngIf="star === 0.5">☆</ng-container>
+            </span>
           </div>
-          <div class="cart-item-price">
-            Price: &#8377;{{ item.price | number }}
-          </div>
-          <div class="cart-item-quantity">
-            <label>Quantity:</label>
-            <input type="number" [(ngModel)]="item.quantity" (change)="updateQuantity(item)" min="0" />
-          </div>
+          <p>Price: ₹{{ item.price }}</p>
 
-          <button class="remove-item-button" (click)="removeFromCart(item)">Remove</button>
+          <!-- Quantity controls -->
+          <div class="quantity-control">
+            <button (click)="updateQuantity(item, false)" class="quantity-btn">-</button>
+            <input type="number" [value]="item.quantity" readonly class="quantity-input" />
+            <button (click)="updateQuantity(item, true)" class="quantity-btn">+</button>
+          </div>
+          
+          <!-- Remove item button -->
+          <button class="remove-btn" (click)="removeFromCart(item)">Remove</button>
         </div>
       </div>
     </div>
 
+    <!-- Total Price & Checkout Button -->
     <div class="cart-summary">
-      <h2>Cart Summary</h2>
-      <div>Total Items: {{ totalItems }}</div>
-      <div>Total Price: &#8377;{{ totalPrice | number }}</div>
-      <button class="checkout-button" (click)="goToCheckout()">Checkout</button>
+      <p>Total Items: {{ totalItems }}</p>
+      <p>Total Price: ₹{{ totalPrice | number: '1.0-0' }}</p>
+      <button class="checkout-btn" (click)="goToCheckout()">Proceed to Checkout</button>
     </div>
   </div>
 
+  <!-- If the cart is empty -->
   <ng-template #emptyCart>
     <div class="empty-cart">
-      <p>Your cart is currently empty.</p>
-      <a routerLink="/movies" class="back-to-store">Continue Shopping</a>
+      <p>Your cart is empty.</p>
+      <a routerLink="/movies" class="back-link">Continue Shopping</a>
     </div>
   </ng-template>
 </div>

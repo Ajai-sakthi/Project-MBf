@@ -1,4 +1,3 @@
-// src/app/cart/cart.component.ts
 import { Component, OnInit, signal } from '@angular/core';
 import { CartService } from '../../services/cart.service';
 import { Router } from '@angular/router';
@@ -25,13 +24,15 @@ export class CartComponent implements OnInit {
   // Load items from the cart
   loadCart(): void {
     this.cartItems = this.cartService.getCartItems(); // Load items from the cart service
-    this.cartItemsSignal.set(this.cartItems);
+    this.cartItemsSignal.set(this.cartItems); // Update signal
     this.updateTotals(); // Calculate totals on load
   }
 
   // Update the total items and total price in the cart
   updateTotals(): void {
     this.totalItems = this.cartItems.reduce((sum, item) => sum + item.quantity, 0);
+
+    // Calculate total price and format it with commas
     this.totalPrice = this.cartItems.reduce((sum, item) => {
       const cleanPrice = parseFloat(item.price.replace(/,/g, '')); // Clean the price string of commas
       return sum + (cleanPrice * item.quantity); // Multiply price by quantity
@@ -39,10 +40,12 @@ export class CartComponent implements OnInit {
   }
 
   // Called when the user changes the quantity of a product in the cart
-  updateQuantity(item: CartItem): void {
-    // Ensure quantity is at least 1
-    if (item.quantity < 0) {
-      item.quantity = 0;
+  updateQuantity(item: CartItem, increase: boolean): void {
+    // Adjust quantity based on button press (+/-)
+    if (increase) {
+      item.quantity++;
+    } else {
+      item.quantity = Math.max(item.quantity - 1, 1); // Ensure quantity is at least 1
     }
 
     // Update the cart service with the new quantity
@@ -50,6 +53,9 @@ export class CartComponent implements OnInit {
 
     // Recalculate totals after the quantity change
     this.updateTotals();
+
+    // Update the cart signal for reactive UI updates
+    this.cartItemsSignal.set(this.cartItems);
   }
 
   // Remove an item from the cart
