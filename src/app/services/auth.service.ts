@@ -7,7 +7,7 @@ import { catchError, map } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:3000/users'; // Mock backend API URL
+  private apiUrl = 'http://localhost:3000/users'; // URL for your backend
 
   constructor(private http: HttpClient) {}
 
@@ -16,16 +16,16 @@ export class AuthService {
     return this.http.get<any[]>(`${this.apiUrl}?email=${email}&password=${password}`).pipe(
       map(users => {
         if (users.length > 0) {
-          const user = users[0];
-          localStorage.setItem('user', JSON.stringify(user)); // Save user to localStorage
-          return { success: true, user }; // Return success response with user data
+          const user = { ...users[0], lastLoggedIn: new Date().toISOString() }; // Add last logged in time
+          localStorage.setItem('user', JSON.stringify(user)); // Store user with last logged in time
+          return { success: true, user }; // Return a success flag along with user
         } else {
           return { success: false, message: 'Invalid email or password' }; // Handle invalid credentials
         }
       }),
       catchError(err => {
         console.error('Login error:', err);
-        return throwError(err); // Propagate error to the caller
+        return throwError(err); // Pass the error to the caller
       })
     );
   }
@@ -34,20 +34,20 @@ export class AuthService {
   register(email: string, password: string): Observable<any> {
     return this.http.post(this.apiUrl, { email, password }).pipe(
       map(response => {
-        localStorage.setItem('user', JSON.stringify(response)); // Save registered user to localStorage
-        this.sendConfirmationEmail(email); // Simulate sending a confirmation email
-        return response; // Return registration response
+        localStorage.setItem('user', JSON.stringify(response));
+        this.sendConfirmationEmail(email); // Call to send the confirmation email
+        return response; // Return the registration response
       }),
       catchError(err => {
         console.error('Registration error:', err);
-        return throwError(err); // Propagate error to the caller
+        return throwError(err);
       })
     );
   }
 
-  // Mock method to send a registration confirmation email
+  // Method to send registration confirmation email (mock implementation)
   private sendConfirmationEmail(email: string): void {
-    console.log(`Confirmation email sent to ${email}`); // Simulate sending an email
+    console.log(`Confirmation email sent to ${email}`); // Simulating email sending
   }
 
   // Method to request a password reset
@@ -67,49 +67,62 @@ export class AuthService {
     );
   }
 
-
   // Method to reset password
   resetPassword(email: string, newPassword: string): Observable<any> {
-    // Update password using PATCH to modify existing user data
     return this.http.patch<any[]>(`${this.apiUrl}?email=${email}`, { password: newPassword }).pipe(
       map(users => {
         if (users.length > 0) {
-          console.log(`Password for ${email} has been reset`); // Log reset action
-          return { success: true, user: users[0] }; // Return success response with updated user data
+          console.log(`Password for ${email} has been reset`); // Simulating password reset
+          return { success: true, user: users[0] }; // Return success flag and updated user
         } else {
-          return { success: false, message: 'User not found' }; // Handle case where user is not found
+          return { success: false, message: 'User not found' }; // Handle user not found
         }
       }),
       catchError(err => {
         console.error('Reset password error:', err);
-        return throwError(err); // Propagate error to the caller
+        return throwError(err); // Pass the error to the caller
       })
     );
   }
 
-  // Method to check if a user is already registered by email
+  // Method to check if a user is already registered
   isUserRegistered(email: string): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}?email=${email}`).pipe(
       catchError(err => {
         console.error('Check registration error:', err);
-        return throwError(err); // Propagate error to the caller
+        return throwError(err);
       })
     );
   }
 
   // Method to log out the user
   logout(): void {
-    localStorage.removeItem('user'); // Remove user data from localStorage
+    localStorage.removeItem('user');
   }
 
   // Check if the user is logged in
   isLoggedIn(): boolean {
-    return !!localStorage.getItem('user'); // Return true if user data is found in localStorage
+    return !!localStorage.getItem('user');
   }
 
   // Get the current logged-in user data
   getCurrentUser(): any {
     const user = localStorage.getItem('user');
-    return user ? JSON.parse(user) : null; // Parse user data if present in localStorage
+    return user ? JSON.parse(user) : null;
   }
+  // Method to update user data
+updateUser(updatedUser: any): Observable<any> {
+  return this.http.put(`${this.apiUrl}/${updatedUser.id}`, updatedUser).pipe(
+    map(response => {
+      // Update the user data in local storage if necessary
+      localStorage.setItem('user', JSON.stringify(updatedUser));
+      return response; // Return the response
+    }),
+    catchError(err => {
+      console.error('Update user error:', err);
+      return throwError(err); // Pass the error to the caller
+    })
+  );
+}
+
 }
