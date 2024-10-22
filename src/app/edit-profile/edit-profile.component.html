@@ -4,14 +4,38 @@
     <div class="form-group">
       <label for="name">Name</label>
       <input id="name" formControlName="name" placeholder="Enter your name" required />
-      <div *ngIf="editProfileForm.controls['name'].errors && editProfileForm.controls['name'].errors['required'] && editProfileForm.controls['name'].touched">
+      <div *ngIf="editProfileForm.controls['name'].errors?.['required'] && editProfileForm.controls['name'].touched">
         Name is required.
       </div>
     </div>
 
     <div class="form-group">
       <label for="email">Email</label>
-      <input id="email" formControlName="email" placeholder="someone@example.com" />
+      <input id="email" formControlName="email" placeholder="someone@example.com"/>
+    </div>
+
+    <div class="form-group">
+      <label for="phone">Phone Number</label>
+      <input id="phone" formControlName="phone" placeholder="Enter your phone number" required />
+      <div *ngIf="editProfileForm.controls['phone'].errors?.['required'] && editProfileForm.controls['phone'].touched">
+        Phone number is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="address">Address</label>
+      <input id="address" formControlName="address" placeholder="Enter your address" required />
+      <div *ngIf="editProfileForm.controls['address'].errors?.['required'] && editProfileForm.controls['address'].touched">
+        Address is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" id="password" formControlName="password" placeholder="Enter a new password" required />
+      <div *ngIf="editProfileForm.controls['password'].errors?.['required'] && editProfileForm.controls['password'].touched">
+        Password is required.
+      </div>
     </div>
 
     <button type="submit" [disabled]="editProfileForm.invalid">Update Profile</button>
