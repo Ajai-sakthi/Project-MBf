@@ -1,5 +1,5 @@
 // Define a primary color for consistency
-$primary-color: #007bff;
+$primary-color: #ffae00;
 $error-color: #dc3545;
 $success-color: #28a745;
 $border-radius: 8px; // Define a consistent border-radius
@@ -9,10 +9,10 @@ $border-radius: 8px; // Define a consistent border-radius
   max-width: 450px; // Slightly wider container for better spacing
   margin: 40px auto; // More margin for cleaner centering
   padding: 30px; // Increased padding for better content spacing
-  border: 1px solid #e0e0e0; // Softer, lighter border
+  border: 1px solid #222; // Softer, lighter border
   border-radius: $border-radius; // Consistent rounded corners
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); // Slightly deeper shadow for better depth
-  background-color: #f8f9fa; // Soft light gray background for contrast
+  background-color: #000; // Soft light gray background for contrast
 
   h2 {
     text-align: center; // Center the title
@@ -29,18 +29,19 @@ $border-radius: 8px; // Define a consistent border-radius
       display: block; // Ensure label is on a new line
       margin-bottom: 8px; // More space between label and input
       font-weight: 500; // Medium weight for labels
-      color: #444; // Slightly lighter gray for labels
+      color: #fff; // Slightly lighter gray for labels
       font-size: 0.95rem; // Slightly larger label font size
     }
 
     input {
       width: 100%; // Full-width input fields
       padding: 12px; // More padding for comfort and visual balance
-      border: 1px solid #ddd; // Softer border for input fields
+      border:1px; // Softer border for input fields
       border-radius: $border-radius; // Consistent rounded corners
       font-size: 1rem; // Standard input text size
-      background-color: #fff; // White background for contrast
+      background-color: #222; // White background for contrast
       transition: all 0.3s ease; // Smooth transition for interactions
+      color:#fff;
 
       &:focus {
         border-color: $primary-color; // Change border color on focus
@@ -59,7 +60,7 @@ $border-radius: 8px; // Define a consistent border-radius
   button {
     width: 100%; // Full-width button
     padding: 12px; // Slightly more padding for comfort
-    background-color: $primary-color; // Primary color for the button
+    background-color: #ffae00; // Primary color for the button
     color: #fff; // White text on button
     border: none; // Remove default border
     border-radius: $border-radius; // Consistent rounded corners
@@ -69,7 +70,7 @@ $border-radius: 8px; // Define a consistent border-radius
     transition: background-color 0.3s ease; // Smooth transition for background color
 
     &:hover {
-      background-color: darken($primary-color, 10%); // Darken color on hover
+      background-color: darken(#ffae00, 10%); // Darken color on hover
     }
 
     &:disabled {

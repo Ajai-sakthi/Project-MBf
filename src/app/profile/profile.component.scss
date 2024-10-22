@@ -47,11 +47,11 @@
       transition: background-color 0.3s ease;  // Smooth hover transition
 
       &.edit-btn {
-        background-color: #4CAF50;  // Bright green for the edit button
+        background-color: #ffae00;  // Bright green for the edit button
         color: white;  // White text for contrast
 
         &:hover {
-          background-color: #43a047;  // Slightly darker green on hover
+          background-color: #ffae00;  // Slightly darker green on hover
         }
       }
 
