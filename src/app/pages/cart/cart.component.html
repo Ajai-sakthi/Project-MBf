@@ -1,43 +1,69 @@
 <div class="cart-container">
   <h1 class="cart-title">Shopping Cart</h1>
+
   <div *ngIf="cartItems.length > 0; else emptyCart">
     <div *ngFor="let item of cartItems" class="cart-item">
       <div class="cart-item-content">
+        <!-- Image on the left -->
         <div class="cart-item-image">
           <img [src]="item.imageUrl" alt="{{ item.name }}">
         </div>
+
+        <!-- Item details on the right -->
         <div class="cart-item-details">
           <h2>{{ item.name }}</h2>
+
           <div class="cart-item-rating">
             <span *ngFor="let star of getStars(item.rating)">
               <ng-container *ngIf="star === 1">★</ng-container>
               <ng-container *ngIf="star === 0.5">☆</ng-container>
             </span>
           </div>
-          <p>Price: ₹{{ item.price }}</p>
 
-          <!-- Quantity controls -->
-          <div class="quantity-control">
-            <button (click)="updateQuantity(item, false)" class="quantity-btn">-</button>
-            <input type="number" [value]="item.quantity" readonly class="quantity-input" />
-            <button (click)="updateQuantity(item, true)" class="quantity-btn">+</button>
+          <!-- Quantity controls and other actions -->
+          <div class="cart-actions">
+            <div class="quantity-control">
+              <button *ngIf="item.quantity > 1" (click)="updateQuantity(item, false)" class="quantity-btn">-</button>
+              <button *ngIf="item.quantity === 1" (click)="removeFromCart(item)" class="quantity-btn trash-btn">
+               <!-- <i class="fa-regular fa-trash-can"></i> -->
+               <i class="fa-solid fa-trash"></i>
+              </button>
+              <input type="number" [value]="item.quantity" readonly class="quantity-input" />
+              <button (click)="updateQuantity(item, true)" class="quantity-btn">+</button>
+            </div>
+            
+            
           </div>
-          
-          <!-- Remove item button -->
-          <button class="remove-btn" (click)="removeFromCart(item)">Remove</button>
+
+          <!-- Price at the corner -->
+          <div class="cart-item-price">
+            <p>₹{{ item.price }}</p>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Total Price & Checkout Button -->
+    <!-- Subtotal and Checkout Button 
     <div class="cart-summary">
-      <p>Total Items: {{ totalItems }}</p>
-      <p>Total Price: ₹{{ totalPrice | number: '1.0-0' }}</p>
-     <!-- <button class="checkout-btn" (click)="goToCheckout()">Proceed to Checkout</button>-->
+      <p class="subtotal">Subtotal ({{ totalItems }} items): ₹{{ totalPrice | number: '1.0-0' }}</p>
+
+       Proceed to Checkout Button 
+      <button class="checkout-btn" [disabled]="totalItems === 0" (click)="proceedToCheckout()">
+        Proceed to Checkout
+      </button>
+    </div>-->
+    <div class="cart-summary">
+      <p class="subtotal">Subtotal ({{ totalItems }} items): ₹{{ totalPrice | number: '1.0-0' }}</p>
     </div>
+    
+    <div class="checkout-wrapper">  <!--New wrapper for checkout button -->
+      <button class="checkout-btn" [disabled]="totalItems === 0" (click)="proceedToCheckout()">
+        Proceed to Checkout
+      </button>
+    </div>
+    
   </div>
 
-  <!-- If the cart is empty -->
   <ng-template #emptyCart>
     <div class="empty-cart">
       <p>Your cart is empty.</p>
