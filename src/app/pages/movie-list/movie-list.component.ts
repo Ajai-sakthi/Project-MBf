@@ -4,7 +4,6 @@ import { Movie } from '../../models/movie.model'; // Ensure correct import path
 import { Router } from '@angular/router';
 import { CartItem } from '../../models/cart-item.model'; // Import the CartItem interface
 import { CartService } from '../../services/cart.service'; // Import CartService
-import { WishlistService } from '../../services/wishlist.service'; // Import WishlistService
 
 @Component({
   selector: 'app-movie-list',
@@ -21,7 +20,6 @@ export class MovieListComponent implements OnInit, AfterViewInit {
     private movieService: MovieService,
     private router: Router,
     private cartService: CartService, // Inject CartService
-    private wishlistService: WishlistService // Inject WishlistService
   ) {}
 
   ngOnInit(): void {
@@ -66,28 +64,5 @@ export class MovieListComponent implements OnInit, AfterViewInit {
     alert(`${movie.name} has been added to your cart!`); // Show a confirmation message
     this.router.navigate(['/cart']); // Navigate to the cart page
   }
-
-  toggleWishlist(movie: Movie): void {
-    if (this.wishlistService.isInWishlist(movie)) {
-      this.wishlistService.removeFromWishlist(movie);
-      alert(`${movie.name} has been removed from your wishlist!`); // Show removal confirmation
-    } else {
-      this.wishlistService.addToWishlist(movie);
-      alert(`${movie.name} has been added to your wishlist!`); // Show addition confirmation
-    }
   }
 
-  isInWishlist(movie: Movie): boolean {
-    return this.wishlistService.isInWishlist(movie);
-  }
-
-  swipeRight(): void {
-    if (this.container) {
-      this.container.nativeElement.scrollBy({
-        top: 0,
-        left: 500, // Scroll by 500px to the right (adjust as needed)
-        behavior: 'smooth' // Smooth scroll effect
-      });
-    }
-  }
-}
