@@ -110,11 +110,14 @@ export class AuthService {
     const user = localStorage.getItem('user');
     return user ? JSON.parse(user) : null;
   }
+
   // Method to update user data
+// Add this method in your existing AuthService
+
 updateUser(updatedUser: any): Observable<any> {
   return this.http.put(`${this.apiUrl}/${updatedUser.id}`, updatedUser).pipe(
     map(response => {
-      // Update the user data in local storage if necessary
+      // Optionally update local storage
       localStorage.setItem('user', JSON.stringify(updatedUser));
       return response; // Return the response
     }),

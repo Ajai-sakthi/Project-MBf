@@ -1,70 +1,155 @@
 .checkout-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 30px;
-  background-color: #000;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
+  background-color: #121212;  // Dark background for a modern look
+  color: white;                // White text for contrast
+  padding: 20px;              // General padding
+  border-radius: 8px;         // Rounded corners
+  max-width: 800px;           // Max width for the checkout container
+  margin: auto;               // Center the container
 
-  h1 {
-    text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 30px;
+  // Style for the rewards message
+  .rewards-message {
+    background-color: #1f1f1f; // Slightly lighter for distinction
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 20px;
   }
 
-  form {
+  // Style for the progress indicator
+  .progress-indicator {
+    display: flex;
+    margin-bottom: 20px;
+
+    .step {
+      flex: 1;               // Each step takes equal space
+      text-align: center;    // Center the text
+      padding: 10px;
+      position: relative;    // For underline effect
+
+      &.active {
+        font-weight: bold;    // Bold text for the active step
+        color: #4CAF50;       // Green color for active step
+
+        &:after {
+          content: '';
+          position: absolute;
+          width: 100%;
+          height: 3px;
+          background: #4CAF50; // Green underline for active step
+          bottom: 0;
+          left: 0;
+        }
+      }
+    }
+  }
+
+  // Style for the checkout form
+  .checkout-form {
+    h2 {
+      margin-bottom: 15px;
+    }
+
     .form-group {
-      margin-bottom: 20px;
+      margin-bottom: 15px;
 
       label {
         display: block;
-        font-size: 1.6rem;
-        margin-bottom: 10px;
+        margin-bottom: 5px;
       }
 
       input,
-      textarea,
-      select {
+      textarea {
         width: 100%;
         padding: 10px;
-        font-size: 1.4rem;
-        color: #000;
-        border: 1px;
-        border-radius: 5px;
+        border: 1px solid #444; // Dark border
+        border-radius: 4px;
+        background-color: #222; // Dark input background
+        color: white;
+
+        &:focus {
+          outline: none;
+          border-color: #4CAF50; // Highlight border on focus
+        }
       }
 
       textarea {
-        resize: vertical;
-        color: #000;
+        resize: vertical; // Allow vertical resizing
       }
-    }
-
-    h2 {
-      font-size: 2rem;
-      margin-bottom: 20px;
-    }
-
-    .total-price {
-      font-size: 1.8rem;
-      font-weight: bold;
-      margin-top: 20px;
-      text-align: right;
     }
 
     .place-order-button {
-      display: block;
-      width: 100%;
-      background-color: #ffdd00;
-      color: black;
-      padding: 15px;
-      font-size: 1.6rem;
+      background-color: #28a745; // Green background
+      color: white;
       border: none;
-      border-radius: 5px;
+      border-radius: 4px;
+      padding: 10px 20px;
       cursor: pointer;
 
       &:hover {
-        background-color: #b37d00;
+        background-color: #218838; // Darker green on hover
       }
     }
+  }
+
+  // Style for order summary
+  .order-summary-container {
+    h2 {
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }
+
+    .order-item {
+      display: flex;
+      align-items: center; // Align items vertically
+      margin-bottom: 10px;
+
+      .item-info {
+        display: flex;
+        align-items: center; // Center align the item details
+        flex: 1;
+
+        .item-image {
+          width: 80px;       // Fixed width for item images
+          height: 120px;     // Fixed height for item images
+          border-radius: 4px; // Rounded corners for images
+          margin-right: 15px; // Space between image and details
+        }
+
+        .item-details {
+          h3 {
+            margin: 0;      // Remove default margin
+            font-size: 16px; // Font size for item name
+          }
+          p {
+            margin: 5px 0;  // Space between price details
+            font-size: 14px; // Font size for item price
+          }
+        }
+      }
+    }
+
+    .total-price {
+      font-weight: bold;
+      margin-top: 10px;
+      font-size: 18px; // Larger font for total price
+    }
+
+    .shipping-details {
+      margin-top: 10px;
+
+      a {
+        color: #1e90ff; // Bright color for links
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline; // Underline on hover
+        }
+      }
+    }
+  }
+
+  // Style for support link
+  .support-link {
+    margin-top: 20px;
+    text-align: center; // Center align the support message
   }
 }

@@ -28,6 +28,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component'; // Adjust path accordinglyimport {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MatNativeDateModule } from '@angular/material/core';
+import { PaymentComponent } from './pages/payment/payment.component';
 // app.module.ts
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
@@ -38,6 +39,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     FooterComponent,
     SidebarComponent,
     HomeComponent,
+    PaymentComponent,
     MovieListComponent,
     TopRatedMoviesComponent,
     CartComponent,

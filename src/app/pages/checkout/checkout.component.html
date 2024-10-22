@@ -1,35 +1,75 @@
 <div class="checkout-container">
-  <h1>Checkout</h1>
+  <!-- Rewards Message Banner -->
+  <div class="rewards-message">
+    <p>Earn rewards on your movie purchases! Sign up now to start earning.</p>
+  </div>
 
-  <form (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="name">Full Name:</label>
-      <input type="text" id="name" [(ngModel)]="checkoutData.name" name="name" required>
-    </div>
+  <!-- Progress Indicator -->
+  <div class="progress-indicator">
+    <div class="step active">Shipping</div>
+    <div class="step">Payment</div>
+    <div class="step">Confirmation</div>
+  </div>
 
-    <div class="form-group">
-      <label for="address">Shipping Address:</label>
-      <textarea id="address" [(ngModel)]="checkoutData.address" name="address" required></textarea>
-    </div>
+  <!-- Checkout Form -->
+  <div class="checkout-form">
+    <h2>Shipping Details</h2>
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" [(ngModel)]="checkoutData.name" name="name" required />
+      </div>
 
-    <div class="form-group">
-      <label for="paymentMethod">Payment Method:</label>
-      <select id="paymentMethod" [(ngModel)]="checkoutData.paymentMethod" name="paymentMethod">
-        <option value="creditCard">Credit Card</option>
-        <option value="paypal">PayPal</option>
-        <option value="netBanking">Net Banking</option>
-      </select>
-    </div>
+      <div class="form-group">
+        <label for="address">Shipping Address:</label>
+        <textarea id="address" [(ngModel)]="checkoutData.address" name="address" required></textarea>
+      </div>
 
+      <div class="form-group">
+        <label for="phone">Phone for Delivery Contact:</label>
+        <input type="tel" id="phone" [(ngModel)]="checkoutData.phone" name="phone" required />
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email for Order Tracking:</label>
+        <input type="email" id="email" [(ngModel)]="checkoutData.email" name="email" required />
+      </div>
+
+      <div class="form-group">
+        <label for="text-alerts">
+          <input type="checkbox" id="text-alerts" [(ngModel)]="checkoutData.textAlerts" name="text-alerts" />
+          Get text alerts for your order on your mobile
+        </label>
+      </div>
+
+      <button type="submit" class="place-order-button" (click)="navigateToPayment()">Continue to Payment</button>
+
+    </form>
+  </div>
+
+  <!-- Order Summary Container -->
+  <div class="order-summary-container">
     <h2>Order Summary</h2>
-    <div *ngFor="let item of cartItems">
-      <div>{{ item.name }} - &#8377;{{ item.price }} x {{ item.quantity }}</div>
+    <div *ngFor="let item of cartItems" class="order-item">
+      <div class="item-info">
+        <img [src]="item.src" alt="{{ item.name }}" class="item-image" />
+        <div class="item-details">
+          <h3>{{ item.name }}</h3>
+          <p>Price: &#8377;{{ item.price }} x {{ item.quantity }}</p>
+        </div>
+      </div>
     </div>
-
     <div class="total-price">
       Total Price: &#8377;{{ totalPrice }}
     </div>
+    <div class="shipping-details">
+      <span>Shipping Cost: &#8377;{{ shippingCost }}</span>
+      <a (click)="openShippingInfo()">Details</a>
+    </div>
+  </div>
 
-    <button type="submit" class="place-order-button">Place Order</button>
-  </form>
+  <!-- Support Link -->
+  <div class="support-link">
+    <p>Need help? <a href="support.html">Contact Support</a></p>
+  </div>
 </div>

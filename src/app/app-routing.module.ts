@@ -12,6 +12,7 @@ import { ResetPasswordComponent } from './auth/reset-password/reset-password.com
 import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
 import { ProfileComponent } from './profile/profile.component'; // Make sure ProfileComponent is imported
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { PaymentComponent } from './pages/payment/payment.component'; // Adjust this path based on your new structure
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' }, // Redirect empty path to login
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'movies', component: MovieListComponent },
   { path: 'cart', component: CartComponent },
   { path: 'checkout', component: CheckoutComponent },
+  { path: 'payment', component: PaymentComponent },
   { path: 'wishlist', component: WishlistComponent },
   { path: 'reset-password', component: ResetPasswordComponent }, // Component for resetting password
   { path: 'forgot-password', component: ForgotPasswordComponent }, // Correct component for forgot password

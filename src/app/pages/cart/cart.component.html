@@ -22,7 +22,7 @@
             <input type="number" [value]="item.quantity" readonly class="quantity-input" />
             <button (click)="updateQuantity(item, true)" class="quantity-btn">+</button>
           </div>
-          
+
           <!-- Remove item button -->
           <button class="remove-btn" (click)="removeFromCart(item)">Remove</button>
         </div>
@@ -33,7 +33,7 @@
     <div class="cart-summary">
       <p>Total Items: {{ totalItems }}</p>
       <p>Total Price: ₹{{ totalPrice | number: '1.0-0' }}</p>
-     <!-- <button class="checkout-btn" (click)="goToCheckout()">Proceed to Checkout</button>-->
+     <button class="checkout-btn" (click)="goToCheckout()">Proceed to Checkout</button>
     </div>
   </div>
 
