@@ -64,10 +64,10 @@ export class CartComponent implements OnInit {
     this.loadCart(); // Reload the cart to reflect removal
   }
 
-  // Navigate to the checkout page
+  /* Navigate to the checkout page
   goToCheckout(): void {
     this.router.navigate(['/checkout']); // Redirect to the checkout page
-  }
+  }*/
 
   // Method to generate star ratings
   getStars(rating: number): number[] {

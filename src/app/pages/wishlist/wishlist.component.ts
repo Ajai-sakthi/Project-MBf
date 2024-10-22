@@ -43,7 +43,7 @@ export class WishlistComponent implements OnInit {
 
     this.cartService.addToCart(cartItem); // Pass the CartItem
     console.log(`${movie.name} added to cart!`);
-    this.router.navigate(['/cart']);
+    //this.router.navigate(['/cart']);
   }
 
   removeFromWishlist(movie: Movie): void {

@@ -64,7 +64,7 @@ export class MovieListComponent implements OnInit, AfterViewInit {
 
     this.cartService.addToCart(cartItem); // Call the addToCart method from CartService
     alert(`${movie.name} has been added to your cart!`); // Show a confirmation message
-    this.router.navigate(['/cart']); // Navigate to the cart page
+   // this.router.navigate(['/cart']); // Navigate to the cart page
   }
 
   toggleWishlist(movie: Movie): void {
