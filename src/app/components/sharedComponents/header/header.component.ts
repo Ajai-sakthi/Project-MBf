@@ -37,11 +37,14 @@ export class HeaderComponent {
     this.cartService.cartCountSubject.subscribe(count => {
       this.cartCount = count; // Update the cart count from the service
     });
+    
   }
 
   toggleSidebar(): void {
     this.sidebarToggle.emit(); // Emit event to parent to toggle sidebar
   }
+
+ 
 
   onSearch(): void {
     console.log("Search Query: ", this.searchQuery);
