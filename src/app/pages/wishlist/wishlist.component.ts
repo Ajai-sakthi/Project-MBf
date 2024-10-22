@@ -42,7 +42,8 @@ export class WishlistComponent implements OnInit {
     };
 
     this.cartService.addToCart(cartItem); // Pass the CartItem
-    console.log(`${movie.name} added to cart!`);
+    //console.log(`${movie.name} added to cart!`);
+    alert(`${movie.name} has been added to your cart!`);
     //this.router.navigate(['/cart']);
   }
 
