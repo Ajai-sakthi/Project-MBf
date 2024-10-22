@@ -58,6 +58,15 @@ export class CartComponent implements OnInit {
     this.loadCart();
   }
 
+<<<<<<< HEAD
+=======
+  //Navigate to the checkout page
+  goToCheckout(): void {
+    this.router.navigate(['/checkout']); // Redirect to the checkout page
+  }
+  
+  // Method to generate star ratings
+>>>>>>> 2ee4c1071c079fd4022cd2c104c16586e18cbc8d
   getStars(rating: number): number[] {
     const fullStars = Math.floor(rating);
     const halfStar = rating % 1 !== 0 ? 1 : 0;

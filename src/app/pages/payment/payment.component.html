@@ -1,0 +1,54 @@
+<script async src="https://pay.google.com/gp/p/js/pay.js" onload="onGooglePayLoaded()"></script>
+<script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID"></script>
+<div class="payment-container">
+  <h2>Payment Details</h2>
+
+  <form (ngSubmit)="onSubmit()">
+    <div class="payment-methods">
+      <h3>Select Payment Method</h3>
+      <div>
+        <label>
+          <input type="radio" name="paymentMethod" [(ngModel)]="selectedPaymentMethod" value="creditOrDebitCard" required />
+          Credit/Debit Card
+        </label>
+      </div>
+      <div *ngIf="selectedPaymentMethod === 'creditOrDebitCard'">
+        <div class="form-group">
+          <label for="cardNumber">Card Number:</label>
+          <input type="text" id="cardNumber" [(ngModel)]="paymentData.cardNumber" name="cardNumber" required />
+        </div>
+        <div class="form-group">
+          <label for="expiryDate">Expiry Date (MM/YY):</label>
+          <input type="text" id="expiryDate" [(ngModel)]="paymentData.expiryDate" name="expiryDate" required />
+        </div>
+        <div class="form-group">
+          <label for="cvv">CVV:</label>
+          <input type="text" id="cvv" [(ngModel)]="paymentData.cvv" name="cvv" required />
+        </div>
+      </div>
+
+      <div>
+        <label>
+          <input type="radio" name="paymentMethod" [(ngModel)]="selectedPaymentMethod" value="googlePay" />
+          Google Pay
+        </label>
+      </div>
+
+      <div>
+        <label>
+          <input type="radio" name="paymentMethod" [(ngModel)]="selectedPaymentMethod" value="paypal" />
+          PayPal
+        </label>
+      </div>
+
+      <div>
+        <label>
+          <input type="radio" name="paymentMethod" [(ngModel)]="selectedPaymentMethod" value="cashOnDelivery" />
+          Cash on Delivery
+        </label>
+      </div>
+    </div>
+
+    <button type="submit" class="submit-button">Complete Payment</button>
+  </form>
+</div>
