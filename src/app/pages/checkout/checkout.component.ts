@@ -3,6 +3,7 @@ import { CartService } from '../../services/cart.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { HttpClient } from '@angular/common/http';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-checkout',
@@ -13,14 +14,7 @@ export class CheckoutComponent implements OnInit {
   cartItems: any[] = [];
   totalPrice: number = 0;
   shippingCost: number = 0; // Property for shipping cost
-  checkoutData = {
-    name: '',
-    address: '',
-    paymentMethod: 'creditCard',
-    phone: '',
-    email: '',
-    textAlerts: false // Boolean for opting in/out of text alerts
-  };
+  checkoutForm: FormGroup; // Reactive form
 
   userId: number | null = null; // User ID which can be null
   private apiUrl = 'http://localhost:3000/users';
@@ -29,8 +23,19 @@ export class CheckoutComponent implements OnInit {
     private cartService: CartService,
     private router: Router,
     private authService: AuthService,
-    private http: HttpClient
-  ) {}
+    private http: HttpClient,
+    private fb: FormBuilder // FormBuilder for Reactive Forms
+  ) {
+    // Initialize the reactive form
+    this.checkoutForm = this.fb.group({
+      name: ['', Validators.required],
+      address: ['', Validators.required],
+      phone: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      paymentMethod: ['creditCard', Validators.required],
+      textAlerts: [false]
+    });
+  }
 
   ngOnInit(): void {
     this.cartItems = this.cartService.getCartItems();
@@ -42,10 +47,14 @@ export class CheckoutComponent implements OnInit {
     const currentUser = this.authService.getCurrentUser();
     if (currentUser) {
       this.userId = currentUser.id;
-      this.checkoutData.address = currentUser.address || ''; // Get saved address if available
-      this.checkoutData.phone = currentUser.phone || ''; // Pre-fill saved phone if available
-      this.checkoutData.email = currentUser.email || ''; // Pre-fill saved email if available
-      this.checkoutData.textAlerts = currentUser.textAlerts || false; // Pre-fill saved text alerts preference
+
+      // Populate the form with user's saved details
+      this.checkoutForm.patchValue({
+        address: currentUser.address || '',
+        phone: currentUser.phone || '',
+        email: currentUser.email || '',
+        textAlerts: currentUser.textAlerts || false
+      });
     }
   }
 
@@ -57,23 +66,24 @@ export class CheckoutComponent implements OnInit {
   // Method to open shipping information
   openShippingInfo(): void {
     // Logic to show shipping information can be implemented here.
-    // For example, opening a modal or displaying additional text.
     alert('Shipping Information: Free shipping on orders over $500!');
   }
 
   onSubmit(): void {
-    if (this.checkoutData.name && this.checkoutData.address) {
+    if (this.checkoutForm.valid) { // Validate form before submission
+      const checkoutData = this.checkoutForm.value;
+
       // Process the order (e.g., send data to a server)
-      console.log('Order placed:', this.checkoutData);
+      console.log('Order placed:', checkoutData);
 
       // Update the user's details if userId is available
       if (this.userId !== null) {
         const updatedUser = {
           ...this.authService.getCurrentUser(),
-          address: this.checkoutData.address,
-          phone: this.checkoutData.phone,
-          email: this.checkoutData.email,
-          textAlerts: this.checkoutData.textAlerts
+          address: checkoutData.address,
+          phone: checkoutData.phone,
+          email: checkoutData.email,
+          textAlerts: checkoutData.textAlerts
         };
         this.authService.updateUser(updatedUser).subscribe(
           response => {
@@ -87,9 +97,12 @@ export class CheckoutComponent implements OnInit {
 
       this.cartService.clearCart(); // Clear the cart after placing the order
       this.router.navigate(['/payment']); // Navigate to confirmation page
+    } else {
+      console.error('Form is invalid. Please fill in all required fields.');
     }
   }
-  //navigate to payment
+
+  // Navigate to payment
   navigateToPayment(): void {
     this.router.navigate(['/payment']);
   }

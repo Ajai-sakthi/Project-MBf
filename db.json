@@ -345,10 +345,12 @@
     {
       "name": "swetha",
       "email": "swethamurugan2222@gmail.com",
-      "phone": "9361144096",
-      "address": "32/A, vriddhachalam",
+      "phone": "2333346779",
+      "address": "23",
       "password": "1234",
-      "id": "4a8e"
+      "id": "4a8e",
+      "lastLoggedIn": "2024-10-23T06:14:18.115Z",
+      "textAlerts": false
     },
     {
       "id": "9e51",
@@ -359,6 +361,11 @@
       "id": "5f7b",
       "email": "arunajith056@gmail.com",
       "password": "123456"
+    },
+    {
+      "id": "68e9",
+      "email": "user123@gmail.com",
+      "password": "12345"
     }
   ]
 }
