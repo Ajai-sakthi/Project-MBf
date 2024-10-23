@@ -6,6 +6,8 @@ import { HeaderComponent } from './components/sharedComponents/header/header.com
 import { SidebarComponent } from './components/customComponents/sidebar/sidebar.component';
 import { FooterComponent } from './components/sharedComponents/footer/footer.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { HomeComponent } from './pages/home/home.component';
 import { MovieListComponent } from './pages/movie-list/movie-list.component';
 import { CartComponent } from './pages/cart/cart.component';
@@ -28,7 +30,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component'; // Adjust path accordinglyimport {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MatNativeDateModule } from '@angular/material/core';
-// app.module.ts
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 @NgModule({
@@ -71,4 +72,8 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+  constructor(library: FaIconLibrary) {
+    library.addIcons(faHeart); // Ensure the heart icon is added
+  }
+}

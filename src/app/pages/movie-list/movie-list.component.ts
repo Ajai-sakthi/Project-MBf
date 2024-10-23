@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, AfterViewInit, signal, Signal } from '@angular/core';
 import { MovieService } from '../../services/movie.service';
 import { Movie } from '../../models/movie.model'; // Ensure correct import path
 import { Router } from '@angular/router';
@@ -12,10 +12,10 @@ import { CartService } from '../../services/cart.service'; // Import CartService
   providers: [MovieService]
 })
 export class MovieListComponent implements OnInit, AfterViewInit {
-  movies: Movie[] = []; // Initialize an empty array to store movies
 
+  movies:Movie[]=[];
+// Initialize an empty array to store movies
   @ViewChild('container', { static: false }) container!: ElementRef;
-
   constructor(
     private movieService: MovieService,
     private router: Router,
@@ -23,6 +23,10 @@ export class MovieListComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit(): void {
+    this.loadMovies();
+  }
+
+  loadMovies(){
     this.movieService.getMovies().subscribe((data: Movie[]) => {
       this.movies = data;
     });
@@ -42,12 +46,6 @@ export class MovieListComponent implements OnInit, AfterViewInit {
     return stars;
   }
 
-  viewMoreInfo(movie: Movie): void {
-    console.log('More info about:', movie);
-    // Navigate to a detailed view or open a modal if needed
-    // this.router.navigate(['/movie-details', movie.id]);
-  }
-
   addToCart(movie: Movie): void {
     const cartItem: CartItem = {
       id: movie.id,
@@ -58,11 +56,22 @@ export class MovieListComponent implements OnInit, AfterViewInit {
       imageUrl: movie.src,
       src: movie.src, // Ensure src is included if needed
       movie: movie // Include the movie object here
-    };
-
+    }
     this.cartService.addToCart(cartItem); // Call the addToCart method from CartService
     alert(`${movie.name} has been added to your cart!`); // Show a confirmation message
     this.router.navigate(['/cart']); // Navigate to the cart page
   }
+  addToWishlist(id:number,prod :Movie){
+    let payload={
+ ...prod,
+        isWishListed:!prod.isWishListed
+    }
+this.movieService.updateWishList(id,payload).subscribe(()=>{
+  this.loadMovies();
+});
+
   }
+
+  }
+
 

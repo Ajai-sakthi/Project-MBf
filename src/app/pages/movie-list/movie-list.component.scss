@@ -20,7 +20,7 @@
         padding: 20px;
         width: 300px;
         position: relative;
-        min-height: 70vh;
+        min-height: 75vh;
         scroll-snap-align: start; /* Each card snaps to viewport */
         transition: transform 0.4s ease; /* Smooth transition for hover effect */
 
@@ -29,32 +29,6 @@
             cursor: pointer;
         }
 
-        /* Wishlist icon positioning */
-        .wishlist-button {
-          position: absolute;
-          top: 25px; /* Adjust as needed */
-          right: 35px; /* Adjust as needed */
-          background: rgba(0,0,0,0.1); /* Temporary background */
-          border: none; /* Remove border */
-          cursor: pointer; /* Change cursor to pointer */
-          color: #fff; /* Change wishlist icon color to white */
-          font-size: 1.5rem; /* Adjust size as needed */
-          z-index: 10; /* Ensure it's on top of the image */
-        }
-
-        i {
-          //color: #fff; /* Default color (white) when not in wishlist */
-          font-size: 1.5rem; /* Adjust size as needed */
-          transition: color 0.3s ease; /* Smooth color transition */
-
-          &.filled {
-            color: #ff4081; /* Color when added to wishlist */
-          }
-
-          &:hover {
-            color: lightpink; /* Color on hover */
-          }
-        }
 
     }
 
@@ -126,12 +100,22 @@
         display: none;
     }
     .productRating{
-        background-color: $primary;
+        background-color: #F8B319;
         position: absolute;
-        right: 25px;
-        top: 26px;
-        border-radius: 8px;
-        padding: 0px 5px;
+        right: 10%;
+        top: 4.6%;
+        border-radius: 10px;
+        padding: 0px 8px;
         font-size: 14px;
+        color:$bg-primary;
+    }
+    .btn-wishlist{
+        position: absolute;
+        top: 48%;
+        right:13%;
+        background-color: transparent;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
     }
 }
