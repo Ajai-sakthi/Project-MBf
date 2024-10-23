@@ -18,7 +18,7 @@ h1 {
   justify-content: center;
   align-items: flex-start; /* Align items to the top */
   flex-wrap: wrap;
-  min-height: 100vh;
+  min-height: 85vh;
   padding-top: 50px;
 }
 
@@ -31,14 +31,14 @@ h1 {
   font-family: "Lato", sans-serif;
   margin: 0 20px 30px; /* Adjusted margins for space around the cards */
   background: rgba(255, 255, 255, 0.1); /* Optional: Background for better visibility */
-  border-radius: 15px; /* Rounded corners */
-  padding: 15px; /* Internal padding for the card */
+  border-radius: 25px; /* Rounded corners */
+  padding:15px 20px; /* Internal padding for the card */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Shadow for depth */
   transition: transform 0.3s, box-shadow 0.3s; /* Smooth transitions */
 }
 
 .productCard:hover {
-  transform: translateY(-5px); /* Slightly lift the card on hover */
+  transform: translateY(-9px); /* Slightly lift the card on hover */
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4); /* Enhanced shadow on hover */
 }
 

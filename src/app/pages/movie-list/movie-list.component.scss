@@ -1,121 +1,120 @@
-@import '../../../styles.scss';
+@import "../../../styles.scss";
 
 /* Container with scrolling movie cards */
 .container {
-    position: relative;
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow-x: auto; /* Enable horizontal scroll */
+  gap: 40px;
+  padding: 20px;
+  scroll-snap-type: x mandatory;
+  min-height: 85vh; /* Snapping for better scrolling experience */
+  max-width: 100%; /* Make sure the container doesn't overflow horizontally */
+
+  .productCard {
     display: flex;
-    overflow-x: auto; /* Enable horizontal scroll */
-    gap: 40px;
+    flex-direction: column;
+    font-size: 19px;
+    font-weight: 900;
+    border-radius: 25px;
     padding: 20px;
-    scroll-snap-type: x mandatory; /* Snapping for better scrolling experience */
-    margin-bottom: 70px; /* Add margin to prevent overlap with the button */
-    max-width: 100%; /* Make sure the container doesn't overflow horizontally */
+    width: 300px;
+    position: relative;
+    scroll-snap-align: start; /* Each card snaps to viewport */
+    transition: transform 0.4s ease; /* Smooth transition for hover effect */
 
-    .productCard {
-        display: flex;
-        flex-direction: column;
-        font-size: 19px;
-        font-weight: 900;
-        border-radius: 25px;
-        padding: 20px;
-        width: 300px;
-        position: relative;
-        min-height: 75vh;
-        scroll-snap-align: start; /* Each card snaps to viewport */
-        transition: transform 0.4s ease; /* Smooth transition for hover effect */
-
-        &.productCard:hover {
-            transform: scale(1.07);
-            cursor: pointer;
-        }
-
-
+    &.productCard:hover {
+      transform: scale(1.07);
+      cursor: pointer;
     }
+  }
+  .productImage {
+    width: 250px;
+    height: 320px;
+    border-radius: 25px;
+    margin-bottom: 15px;
+  }
 
-    .productImage {
-        width: 250px;
-        height: 320px;
-        border-radius: 25px;
-        margin-bottom: 15px;
-    }
+  .productName {
+    text-align: center; /* Center the movie name */
+    width: 100%;
+    font-weight: 900;
+    margin-bottom: 10px;
+    white-space: nowrap;
+    overflow-x: scroll; /* Allow horizontal scrolling */
+    overflow-y: hidden; /* No vertical scrolling */
+    scrollbar-width: none; /* Hide the scrollbar in Firefox */
+    -ms-overflow-style: none; /* Hide scrollbar in Internet Explorer and Edge */
+  }
 
-    .productName {
-        text-align: center; /* Center the movie name */
-        width: 100%;
-        font-weight: 900;
-        margin-bottom: 10px;
-        white-space: nowrap;
-        overflow-x: scroll; /* Allow horizontal scrolling */
-        overflow-y: hidden; /* No vertical scrolling */
-        scrollbar-width: none; /* Hide the scrollbar in Firefox */
-        -ms-overflow-style: none; /* Hide scrollbar in Internet Explorer and Edge */
-    }
+  /* Hide the scrollbar in WebKit browsers (Chrome, Safari, etc.) */
+  .productName::-webkit-scrollbar {
+    display: none;
+  }
 
-    /* Hide the scrollbar in WebKit browsers (Chrome, Safari, etc.) */
-    .productName::-webkit-scrollbar {
-        display: none;
-    }
+  .productDate {
+    font-size: 16px;
+    color: #f9f9f9b2;
+  }
 
-    .productDate {
-        font-size: 16px;
-        color: #F9F9F9B2;
-    }
+  /* Star rating color */
+  .star-rating {
+    color: rgb(255, 183, 0); /* Set star color to yellow */
+    margin-bottom: 10px;
+  }
 
-    /* Star rating color */
-    .star-rating {
-        color: rgb(255, 183, 0); /* Set star color to yellow */
-        margin-bottom: 10px;
-    }
+  .btn-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 
-    .btn-container {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
+    .button {
+      font-size: 16px;
+      background-color: $primary;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 15px;
+      cursor: pointer;
+      margin: 0;
+    }
+  }
 
-        .button {
-            font-size: 16px;
-            background-color: $primary;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 15px;
-            cursor: pointer;
-            margin: 0;
-        }
-    }
+  .swipe-button-container {
+    position: fixed;
+    bottom: 100px;
+    left: 50%; /* Horizontally center */
+    transform: translateX(
+      -50%
+    ); /* Adjust position so it's perfectly centered */
 
-    .swipe-button-container {
-        position: fixed;
-        bottom: 100px;
-        left: 50%; /* Horizontally center */
-        transform: translateX(-50%); /* Adjust position so it's perfectly centered */
+    .swipe-button {
+      font-size: 20px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+  }
 
-        .swipe-button {
-            font-size: 20px;
-            font-weight: 600;
-            cursor: pointer;
-        }
-    }
-
-    &.container::-webkit-scrollbar {
-        display: none;
-    }
-    .productRating{
-        background-color: #F8B319;
-        position: absolute;
-        right: 10%;
-        top: 4.6%;
-        border-radius: 10px;
-        padding: 0px 8px;
-        font-size: 14px;
-        color:$bg-primary;
-    }
-    .btn-wishlist{
-        position: absolute;
-        top: 48%;
-        right:13%;
-        background-color: transparent;
-        border: none;
-        font-size: 1.5rem;
-        cursor: pointer;
-    }
+  &.container::-webkit-scrollbar {
+    display: none;
+  }
+  .productRating {
+    background-color: #f8b319;
+    position: absolute;
+    right: 10%;
+    top: 4.6%;
+    border-radius: 10px;
+    padding: 0px 8px;
+    font-size: 14px;
+    color: $bg-primary;
+  }
+  .btn-wishlist {
+    position: absolute;
+    top: 53.5%;
+    right: 12.5%;
+    background-color: transparent;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
 }

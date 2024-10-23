@@ -4,7 +4,7 @@ import { Movie } from '../../models/movie.model'; // Ensure correct import path
 import { Router } from '@angular/router';
 import { CartItem } from '../../models/cart-item.model'; // Import the CartItem interface
 import { CartService } from '../../services/cart.service'; // Import CartService
-
+import { UtilityService } from '../../services/utility.service';
 @Component({
   selector: 'app-movie-list',
   templateUrl: './movie-list.component.html',
@@ -19,33 +19,26 @@ export class MovieListComponent implements OnInit, AfterViewInit {
   constructor(
     private movieService: MovieService,
     private router: Router,
-    private cartService: CartService, // Inject CartService
+    private cartService: CartService,
+    private utilityService:UtilityService
   ) {}
 
   ngOnInit(): void {
     this.loadMovies();
   }
-
   loadMovies(){
     this.movieService.getMovies().subscribe((data: Movie[]) => {
       this.movies = data;
     });
   }
-
   ngAfterViewInit(): void {}
 
   floorval(val: number): number {
-    return Math.floor(val);
+    return this.utilityService.floorval(val);
   }
-
-  getStars(rating: number): number[] {
-    const stars = [];
-    for (let i = 1; i <= rating; i++) {
-      stars.push(i);
-    }
-    return stars;
+  getStars(rating: number):number[]{
+   return this.utilityService.getStars(rating);
   }
-
   addToCart(movie: Movie): void {
     const cartItem: CartItem = {
       id: movie.id,
@@ -61,17 +54,16 @@ export class MovieListComponent implements OnInit, AfterViewInit {
     alert(`${movie.name} has been added to your cart!`); // Show a confirmation message
     this.router.navigate(['/cart']); // Navigate to the cart page
   }
-  addToWishlist(id:number,prod :Movie){
-    let payload={
- ...prod,
-        isWishListed:!prod.isWishListed
+  updateWishlist(id:number,prod :Movie){
+    prod.isWishListed=!prod.isWishListed;
+      let payload={
+      ...prod,
+             isWishListed:prod.isWishListed
+         }
+         this.movieService.updateWishList(id,payload).subscribe(()=>{
+             this.loadMovies();
+           });       
     }
-this.movieService.updateWishList(id,payload).subscribe(()=>{
-  this.loadMovies();
-});
-
-  }
-
   }
 
 

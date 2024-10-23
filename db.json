@@ -38,7 +38,7 @@
       "releasedate": "01/05/2008",
       "price": "410",
       "language": "Hollywood",
-      "isWishListed": "false"
+      "isWishListed": true
     },
     {
       "id": "5",
@@ -48,7 +48,7 @@
       "releasedate": "17/04/2015",
       "price": "430",
       "language": "Kollywood",
-      "isWishListed": "false"
+      "isWishListed": false
     },
     {
       "id": "6",
@@ -58,7 +58,7 @@
       "releasedate": "10/08/2007",
       "price": "360",
       "language": "Bollywood",
-      "isWishListed": "false"
+      "isWishListed": false
     },
     {
       "id": "7",
@@ -68,7 +68,7 @@
       "releasedate": "03/05/2002",
       "price": "345",
       "language": "Hollywood",
-      "isWishListed": "false"
+      "isWishListed": false
     },
     {
       "id": "8",
@@ -78,7 +78,7 @@
       "releasedate": "08/09/2006",
       "price": "365",
       "language": "Kollywood",
-      "isWishListed": "false"
+      "isWishListed": false
     },
     {
       "id": "9",
@@ -88,7 +88,7 @@
       "releasedate": "21/06/2013",
       "price": "380",
       "language": "Bollywood",
-      "isWishListed": "false"
+      "isWishListed": false
     },
     {
       "id": "10",
@@ -98,7 +98,7 @@
       "releasedate": "22/02/2013",
       "price": "425",
       "language": "Bollywood",
-      "isWishListed": "false"
+      "isWishListed": false
     },
     {
       "id": "11",
@@ -148,7 +148,7 @@
       "releasedate": "07/02/2014",
       "price": "435",
       "language": "Mollywood",
-      "isWishListed": "false"
+      "isWishListed": false
     },
     {
       "id": "16",
@@ -158,7 +158,7 @@
       "releasedate": "30/09/2016",
       "price": "455",
       "language": "Bollywood",
-      "isWishListed": "false"
+      "isWishListed": false
     },
     {
       "id": "17",
@@ -168,7 +168,7 @@
       "releasedate": "29/05/2015",
       "price": "370",
       "language": "Mollywood",
-      "isWishListed": "false"
+      "isWishListed": false
     },
     {
       "id": "18",

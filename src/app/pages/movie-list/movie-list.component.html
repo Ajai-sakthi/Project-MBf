@@ -5,7 +5,7 @@
     <button
         class="btn-wishlist"
         [ngStyle]="{ color: prod.isWishListed === true ? 'red' : '#F8B319' }"
-        (click)="addToWishlist(prod.id, prod)">
+        (click)="updateWishlist(prod.id, prod)">
         <fa-icon [icon]="['fas', 'heart']"></fa-icon></button>
     <p class="productName">{{ prod.name }}</p>
     <div class="star-rating">

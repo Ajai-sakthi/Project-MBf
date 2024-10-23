@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Movie } from '../models/movie.model'; // Adjust the path based on your project structure
 
 @Injectable({
@@ -8,7 +8,6 @@ import { Movie } from '../models/movie.model'; // Adjust the path based on your 
 })
 export class MovieService {
   private apiUrl = 'http://localhost:3000/Movie'; // The URL of your JSON server
-  private movies: Movie[] = [];
 constructor(private http: HttpClient) {}
 // Fetch all movies from the server
   getMovies(): Observable<Movie[]> {
@@ -16,6 +15,14 @@ constructor(private http: HttpClient) {}
   }
     updateWishList(id: number, updatedData: Movie): Observable<Movie> {
     const url = `${this.apiUrl}/${id}`; // Use the movie's id to create the correct URL
-    return this.http.put<Movie>(url, updatedData); // Use the movie object for the update
+    return this.http.put<Movie>(url, updatedData);
   }
+  // getStars(rating:number):number[]{
+  //   const stars = [];
+  //   for (let i = 1; i <= rating; i++) {
+  //     stars.push(i);
+  //   }
+  //   return stars;
+  // }
+  
 }
