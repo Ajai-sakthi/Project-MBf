@@ -37,7 +37,7 @@ export class RegisterComponent {
     this.authService.isUserRegistered(this.username).subscribe(existingUsers => {
       if (existingUsers.length > 0) {
         this.loading = false; // Reset loading state
-        this.errorMessage = 'User already registered. Please login.';
+        this.errorMessage = 'User already registered, Please login.';
         return;
       }
 

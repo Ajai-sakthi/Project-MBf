@@ -25,6 +25,7 @@ export class CartComponent implements OnInit {
     this.cartItems = this.cartService.getCartItems();
     this.cartItemsSignal.set(this.cartItems);
     this.updateTotals();
+    
   }
 
   updateTotals(): void {
