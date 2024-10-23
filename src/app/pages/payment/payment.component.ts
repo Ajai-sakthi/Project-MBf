@@ -57,8 +57,8 @@ export class PaymentComponent {
     // Clear the cart after successful payment
     this.cartService.clearCart();
 
-    // Redirect to the confirmation page
-    this.router.navigate(['/order-confirmation']);
+    // Redirect to the home page
+    this.router.navigate(['/']);
   }
 
   // Validate card details
