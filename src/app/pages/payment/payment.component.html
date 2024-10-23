@@ -1,11 +1,11 @@
-<script async src="https://pay.google.com/gp/p/js/pay.js" onload="onGooglePayLoaded()"></script>
-<script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID"></script>
 <div class="payment-container">
   <h2>Payment Details</h2>
 
   <form (ngSubmit)="onSubmit()">
     <div class="payment-methods">
       <h3>Select Payment Method</h3>
+
+      <!-- Credit/Debit Card Payment Option -->
       <div>
         <label>
           <input type="radio" name="paymentMethod" [(ngModel)]="selectedPaymentMethod" value="creditOrDebitCard" required />
@@ -27,6 +27,7 @@
         </div>
       </div>
 
+      <!-- Google Pay Payment Option -->
       <div>
         <label>
           <input type="radio" name="paymentMethod" [(ngModel)]="selectedPaymentMethod" value="googlePay" />
@@ -34,13 +35,16 @@
         </label>
       </div>
 
+      <!-- PayPal Payment Option -->
       <div>
         <label>
           <input type="radio" name="paymentMethod" [(ngModel)]="selectedPaymentMethod" value="paypal" />
           PayPal
         </label>
       </div>
+      <div id="paypal-button-container" *ngIf="selectedPaymentMethod === 'paypal'"></div>
 
+      <!-- Cash on Delivery Payment Option -->
       <div>
         <label>
           <input type="radio" name="paymentMethod" [(ngModel)]="selectedPaymentMethod" value="cashOnDelivery" />

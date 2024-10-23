@@ -24,7 +24,7 @@
         <input type="email" id="email" [(ngModel)]="checkoutData.email" name="email" required />
       </div>
 
-      
+
 
       <button type="submit" class="place-order-button" (click)="navigateToPayment()">Continue to Payment</button>
 
@@ -51,7 +51,11 @@
       <a (click)="openShippingInfo()">Details</a>
     </div>
   </div>
-
+ <!-- Payment Component -->
+ <div class="payment-section">
+  <h2>Payment Details</h2>
+  <app-payment></app-payment> <!-- Include the Payment Component Here -->
+</div>
   <!-- Support Link -->
   <div class="support-link">
     <p>Need help? <a href="support.html">Contact Support</a></p>
