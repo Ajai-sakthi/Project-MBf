@@ -13,14 +13,7 @@
       font-size: 1.8rem;       // Adjust font size for heading
     }
 
-    .form-group {
-      margin-bottom: 20px;     // Slightly larger spacing between form groups
-
-      label {
-        display: block;
-        margin-bottom: 8px;    // More space between label and input
-        font-size: 1rem;       // Adjusted font size for labels
-      }
+    
 
       input,
       textarea {
@@ -70,15 +63,16 @@
       &:hover input[type="checkbox"] {
         border-color: #ffb700;
       }
-    }
+    
       textarea {
         resize: vertical; // Allow vertical resizing
         min-height: 100px; // Set a minimum height for the textarea
       }
-    }
+  }
 
     .place-order-button {
-      background-color: #ffae00; // Yellow background
+      background-color: #ffae00;
+      margin-top: 30px; // Yellow background
       color: white;
       border: none;
       border-radius: 4px;
