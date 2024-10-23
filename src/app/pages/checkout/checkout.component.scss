@@ -13,7 +13,7 @@
       font-size: 1.8rem;       // Adjust font size for heading
     }
 
-
+    
 
       input,
       textarea {
@@ -63,7 +63,7 @@
       &:hover input[type="checkbox"] {
         border-color: #ffb700;
       }
-
+    
       textarea {
         resize: vertical; // Allow vertical resizing
         min-height: 100px; // Set a minimum height for the textarea
