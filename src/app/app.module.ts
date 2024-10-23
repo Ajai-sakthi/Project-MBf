@@ -30,11 +30,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component'; // Adjust path accordinglyimport {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MatNativeDateModule } from '@angular/material/core';
-<<<<<<< HEAD
-=======
 import { PaymentComponent } from './pages/payment/payment.component';
 // app.module.ts
->>>>>>> c6e7ad86105658c48385c0c3fe54820f2bd37f52
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 @NgModule({
