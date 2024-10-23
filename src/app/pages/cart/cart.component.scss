@@ -1,168 +1,151 @@
-// Main container for the cart
 .cart-container {
-  background-color: #120b0b;  // Change background for a lighter theme
-  color: #fff;  // Darker text for better contrast
+  background-color: #000; // Dark background for the cart
+  color: white; // White text for better contrast
   padding: 20px;
-  max-width: 1000px;
-  margin: 0 auto;
-  border-radius: 10px;  // Softer corners
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);  // Soft shadow for container elevation
+  border-radius: 8px;
+  max-width: 800px; // Limit maximum width
+  margin: auto; // Center the cart
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); // Subtle shadow for depth
 
   .cart-title {
-    font-size: 2.5rem;
-    text-align: center;
-    color: #fff;  // Dark title for better contrast
+    font-size: 40px;
     margin-bottom: 20px;
+    text-align: center; // Center align title
   }
 
   .cart-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #2b2929;
-    padding: 20px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.08);  // Soft shadow for individual items
+    display: flex; // Flex layout for items
+    padding: 15px;
+    border-bottom: 1px solid #444; // Divider for items
+    &:last-child {
+      border-bottom: none; // Remove border for last item
+    }
 
     .cart-item-content {
       display: flex;
-      gap: 20px;
-      width: 100%;
+      flex-grow: 1; // Allow content to grow
+    }
 
-      .cart-item-image img {
-        width: 120px;  // Smaller image size for a modern look
-        height: auto;
-        border-radius: 8px;
+    .cart-item-image {
+      flex-shrink: 0; // Prevent shrinking
+      width: 120px; // Fixed width for images
+      img {
+        width: 100%; // Make images responsive
+        border-radius: 8px; // Rounded corners for images
+      }
+    }
+
+    .cart-item-details {
+      padding-left: 15px;
+      flex-grow: 1; // Allow details to grow
+      
+
+      h2 {
+        font-size: 30px;
+        margin: 0;
       }
 
-      .cart-item-details {
-        flex: 1;
+      .cart-item-rating {
+        color: #ffb700; // Color for stars
+        font-size: 25px;
+        margin: 5px 0;
+        margin-bottom: 50px;
+      }
 
-        h2 {
-          margin: 0;
-          font-size: 1.8rem;
-          color: #ffffff;
-        }
+      .cart-actions {
+        display: flex;
+        align-items: center; // Center align buttons and input
 
-        .cart-item-rating {
-          color: #ffd700;  // Golden stars for ratings
-          margin-bottom: 10px;
-        }
-
-        p {
-          font-size: 1.4rem;
-          margin-bottom: 15px;
-          color: #fff;  // Subtle text color for prices
-        }
-
-        // Quantity control buttons updated for a cleaner design
         .quantity-control {
           display: flex;
           align-items: center;
-          gap: 10px;
-          margin-bottom: 15px;
+          border: 1px solid #ddd;   // Add border to pill shape
+          border-radius: 50px;      // Make it a pill shape
+          overflow: hidden;         // Prevent overflow of content
+          background-color: #000;   // Background color for pill
+          padding: 1px;             // Add some padding inside pill
 
           .quantity-btn {
-            background-color: #ffae00;  // Use primary blue for buttons
+            background-color: #000; // Set the background color for buttons
             border: none;
-            color: white;
-            font-size: 1.2rem;
-            width: 25px;
-            height: 25px;
+            border-radius: 50px;       // Rounded buttons inside the pill
+            padding: 5px 13px;        // Larger size for buttons
+            color: #fff;
+            font-size: 18px;           // Increase font size for the symbols
             cursor: pointer;
-            border-radius: 3px;
-            transition: background-color 0.3s ease;
+            margin: 0 5px;             // Add some spacing between buttons and input
 
             &:hover {
-              background-color: #ffae00;
+              background-color: #444; // Darker shade on hover
             }
           }
 
           .quantity-input {
-            width: 50px;
-            text-align: center;
-            font-size: 1.4rem;
-            background-color: #333;
-            color: #fff;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            padding: 5px;
+            width: 50px; // Width for input
+            text-align: center; // Center align text
+            border: none; // Remove border
+            background-color: transparent; // Transparent background
+            color: white; // White text color
+            font-size: 18px;  // Increase font size for the input value
           }
         }
+      }
 
-        // Remove button styled for a modern look
-        .remove-btn {
-          background-color: #ffae00;
-          border: none;
-          color: white;
-          padding: 8px 10px;
-          cursor: pointer;
-          border-radius: 5px;
-          font-size: 1rem;
-          transition: background-color 0.3s ease;
-
-          &:hover {
-            background-color: #ffae00;
-          }
-        }
+      .cart-item-price {
+        margin-top: 10px;
+        color: #f3a909; // Price color
+        font-size: 25px; // Font size for price
+        text-align: right; // Align price to the right
       }
     }
   }
 
-  // Cart summary with a clean, modern look
   .cart-summary {
-    background-color: #333;
-    padding: 20px;
-    text-align: center;
-    border-radius: 8px;
-    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.08);
     margin-top: 20px;
+    text-align: right; // Align summary to the right
 
-    p {
-      font-size: 1.6rem;
+    .subtotal {
+      font-size: 25px;
       margin: 10px 0;
-      color: #fff;
+      color: #f3a909; // Subtotal color
     }
+  }
+
+  .checkout-wrapper {
+    display: flex;
+    justify-content: flex-end; // Align checkout button to the right
 
     .checkout-btn {
-      background-color: #ffae00;  // Green checkout button
-      border: none;
+      background-color: #f3a909; // Yellow for checkout button
       color: white;
-      padding: 15px 30px;
-      font-size: 1.2rem;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
       cursor: pointer;
-      border-radius: 8px;
-      transition: background-color 0.3s ease;
+      transition: background-color 0.3s;
 
       &:hover {
-        background-color: #ffae00;
+        background-color: #d9a308; // Darker shade on hover
+      }
+
+      &:disabled {
+        background-color: #6c757d; // Greyed out when disabled
+        cursor: not-allowed; // Change cursor when disabled
       }
     }
   }
 
-  // If cart is empty
   .empty-cart {
-    text-align: center;
-
-    p {
-      font-size: 1.6rem;
-      margin-bottom: 20px;
-      color: #ffffff;
-    }
+    text-align: center; // Center align empty cart message
+    font-size: 18px;
 
     .back-link {
-      color: #ffae00;
-      font-size: 1.2rem;
-      text-decoration: none;
-      padding: 10px 20px;
-      border: 2px solid #ffae00;
-      border-radius: 5px;
-      transition: background-color 0.3s ease, color 0.3s ease;
+      color: #ffb700; // Link color
+      text-decoration: underline; // Underline link
+      transition: color 0.3s;
 
       &:hover {
-        background-color: #ffae00;
-        color: #fff;
+        color: #cca000; // Darker color on hover
       }
     }
   }

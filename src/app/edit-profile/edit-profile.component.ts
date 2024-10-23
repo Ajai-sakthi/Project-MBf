@@ -9,48 +9,46 @@ import { Router } from '@angular/router';
   styleUrls: ['./edit-profile.component.scss']
 })
 export class EditProfileComponent implements OnInit {
-  editProfileForm: FormGroup;
-  user: any; // To hold the current user data
+  editProfileForm!: FormGroup;
+  userId: number | null = null;
 
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router
-  ) {
-    this.editProfileForm = this.fb.group({
-      name: ['', Validators.required], // Add more fields as necessary
-      email: [{ value: '', disabled: true }], // Set the initial value for the email control
-    });
-  }
+  ) {}
 
   ngOnInit(): void {
-    this.loadUserData();
-    this.editProfileForm.get('email')?.disable(); // Disable email input programmatically
-  }
-
-  loadUserData(): void {
     const currentUser = this.authService.getCurrentUser();
+
     if (currentUser) {
-      this.user = currentUser;
-      this.editProfileForm.patchValue({
-        name: this.user.name,
-        email: this.user.email, // Display current email, but don't allow editing
+      this.userId = currentUser.id;
+
+      // Initialize the form with the current user's data
+      this.editProfileForm = this.fb.group({
+        name: [currentUser.name, Validators.required],
+        email: [currentUser.email, Validators.required],
+        phone: ['', [Validators.required, Validators.pattern('^[0-9]+$')]], // Phone number required
+        address: ['', Validators.required], // Address required
+        password: ['', Validators.required] // Password required
       });
+
+      // Disable email field after form initialization
+      this.editProfileForm.get('email')?.disable();
     }
   }
 
   onSubmit(): void {
-    if (this.editProfileForm.valid) {
-      // Logic to update the user's profile
-      const updatedUser = {
-        ...this.user,
-        name: this.editProfileForm.get('name')?.value,
+    if (this.editProfileForm.valid && this.userId !== null) {
+      const updatedData = {
+        ...this.editProfileForm.getRawValue(),
+        id: this.userId
       };
 
-      this.authService.updateUser(updatedUser).subscribe(
+      this.authService.updateUser(updatedData).subscribe(
         response => {
-          console.log('Profile updated successfully:', response);
-          this.router.navigate(['/profile']); // Redirect to profile page after update
+          console.log('Profile updated successfully', response);
+          this.router.navigate(['/profile']);
         },
         error => {
           console.error('Error updating profile:', error);

@@ -9,7 +9,7 @@ import { CartItem } from '../../models/cart-item.model'; // Adjust path as neede
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
-  cartItems: CartItem[] = []; // Specify the type as CartItem[]
+  cartItems: CartItem[] = [];
   cartItemsSignal = signal<CartItem[]>([]);
   totalItems: number = 0;
   totalPrice: number = 0;
@@ -18,58 +18,47 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
     this.cartService.loadCartItems();
-    this.loadCart(); // Load cart items when the component initializes
+    this.loadCart();
   }
 
-  // Load items from the cart
   loadCart(): void {
-    this.cartItems = this.cartService.getCartItems(); // Load items from the cart service
-    this.cartItemsSignal.set(this.cartItems); // Update signal
-    this.updateTotals(); // Calculate totals on load
+    this.cartItems = this.cartService.getCartItems();
+    this.cartItemsSignal.set(this.cartItems);
+    this.updateTotals();
+    
   }
 
-  // Update the total items and total price in the cart
   updateTotals(): void {
     this.totalItems = this.cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
-    // Calculate total price and format it with commas
     this.totalPrice = this.cartItems.reduce((sum, item) => {
-      const cleanPrice = parseFloat(item.price.replace(/,/g, '')); // Clean the price string of commas
-      return sum + (cleanPrice * item.quantity); // Multiply price by quantity
+      const cleanPrice = parseFloat(item.price.replace(/,/g, ''));
+      return sum + (cleanPrice * item.quantity);
     }, 0);
   }
 
-  // Called when the user changes the quantity of a product in the cart
   updateQuantity(item: CartItem, increase: boolean): void {
-    // Adjust quantity based on button press (+/-)
     if (increase) {
       item.quantity++;
     } else {
-      item.quantity = Math.max(item.quantity - 1, 1); // Ensure quantity is at least 1
+      item.quantity--;
+      if (item.quantity === 0) {
+        this.removeFromCart(item);
+        return;
+      }
     }
-
-    // Update the cart service with the new quantity
+  
     this.cartService.updateItemQuantity(item);
-
-    // Recalculate totals after the quantity change
     this.updateTotals();
-
-    // Update the cart signal for reactive UI updates
     this.cartItemsSignal.set(this.cartItems);
   }
+  
 
-  // Remove an item from the cart
   removeFromCart(item: CartItem): void {
-    this.cartService.removeItem(item); // Remove item from cart service
-    this.loadCart(); // Reload the cart to reflect removal
+    this.cartService.removeItem(item);
+    this.loadCart();
   }
 
-  // Navigate to the checkout page
-  goToCheckout(): void {
-    this.router.navigate(['/checkout']); // Redirect to the checkout page
-  }
-
-  // Method to generate star ratings
   getStars(rating: number): number[] {
     const fullStars = Math.floor(rating);
     const halfStar = rating % 1 !== 0 ? 1 : 0;
@@ -80,5 +69,11 @@ export class CartComponent implements OnInit {
       ...Array(halfStar).fill(0.5),
       ...Array(emptyStars).fill(0)
     ];
+  }
+
+  // Proceed to checkout method
+  proceedToCheckout(): void {
+    // Navigate to the checkout page or perform checkout logic here
+    this.router.navigate(['/checkout']); // Adjust the route as needed
   }
 }

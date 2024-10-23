@@ -16,71 +16,55 @@
     </ul>
   </nav>
 
-<!-- Search Bar -->
-<div class="search-bar">
-  <i class="fa fa-search search-icon" aria-hidden="true"></i>
-  <input
-    type="text"
-    placeholder="Search"
-    [(ngModel)]="searchQuery"
-    (input)="onSearch()"
-    (keydown)="onSearchEnter($event)"
-    aria-label="Search Movies or Shows"
-  />
-  <i class="fa fa-filter filter-icon" (click)="openFilterMenu()"></i>
-</div>
+  <!-- Search and Filter only visible on movie list page -->
+  <div *ngIf="showSearchAndFilter" class="search-bar">
+    <i class="fa fa-search search-icon" aria-hidden="true"></i>
+    <input
+      type="text"
+      placeholder="Search"
+      [(ngModel)]="searchQuery"
+      (input)="onSearch()"
+      (keydown)="onSearchEnter($event)"
+      aria-label="Search Movies or Shows"
+    />
+    <i class="fa fa-filter filter-icon" (click)="openFilterMenu()"></i>
+  </div>
 
-<!-- Search Results -->
-<div *ngIf="showSearchResults && filteredMovies.length > 0" class="search-results">
-  <ul>
-    <li *ngFor="let movie of filteredMovies" (click)="closeSearchResults(); router.navigate(['/movies', movie.name])">
-      {{ movie.name }}
-    </li>
-  </ul>
-</div>
-
-
-<!-- Filter Modal -->
-<!-- Filter Menu -->
-<div *ngIf="isFilterMenuOpen" class="filter-menu">
-  <h4>Filter Options</h4>
-  <label>
-    Rating:
-    <select [(ngModel)]="selectedRating" (change)="applyFilters()">
-      <option value="">Select Rating</option>
-      <option *ngFor="let rating of ratingOptions" [value]="rating">{{ rating }}</option>
-    </select>
-  </label>
-
-  <label>
-    Genre:
-    <select [(ngModel)]="selectedGenre" (change)="applyFilters()">
-      <option value="">Select Genre</option>
-      <option *ngFor="let genre of genreOptions" [value]="genre">{{ genre }}</option>
-    </select>
-  </label>
-
-  <label>
-    Language:
-    <select [(ngModel)]="selectedLanguage" (change)="applyFilters()">
-      <option value="">Select Language</option>
-      <option *ngFor="let language of languageOptions" [value]="language">{{ language }}</option>
-    </select>
-  </label>
-</div>
-
+  <!-- Filter Modal -->
+  <div *ngIf="isFilterMenuOpen && showSearchAndFilter" class="filter-menu">
+    <h4>Filter Options</h4>
+    <label>
+      Rating:
+      <select [(ngModel)]="selectedRating" (change)="applyFilters()">
+        <option value="">Select Rating</option>
+        <option *ngFor="let rating of ratingOptions" [value]="rating">{{ rating }}</option>
+      </select>
+    </label>
+    <label>
+      Genre:
+      <select [(ngModel)]="selectedGenre" (change)="applyFilters()">
+        <option value="">Select Genre</option>
+        <option *ngFor="let genre of genreOptions" [value]="genre">{{ genre }}</option>
+      </select>
+    </label>
+    <label>
+      Language:
+      <select [(ngModel)]="selectedLanguage" (change)="applyFilters()">
+        <option value="">Select Language</option>
+        <option *ngFor="let language of languageOptions" [value]="language">{{ language }}</option>
+      </select>
+    </label>
+  </div>
 
   <!-- Auth Links -->
   <nav class="auth-links">
     <ul>
-      <!-- Hide Login and Sign Up links if user is logged in -->
       <li *ngIf="!isLoggedIn()">
         <a routerLink="/login"><i class="fa fa-sign-in" aria-hidden="true"></i> Log In</a>
       </li>
       <li *ngIf="!isLoggedIn()">
         <a routerLink="/register"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign Up</a>
       </li>
-      <!-- Show Logout link if user is logged in -->
       <li *ngIf="isLoggedIn()">
         <a (click)="logout()"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
       </li>
@@ -90,16 +74,11 @@
   <!-- Profile & Notifications -->
   <div class="profile-menu">
     <i class="fa fa-bell notification-icon" aria-hidden="true"></i>
-
-    <!-- Wishlist Icon -->
     <i class="fa fa-heart wishlist-icon" routerLink="/wishlist" aria-hidden="true"></i>
-
-    <!-- Cart Icon -->
-   <!-- Cart Icon -->
-<a routerLink="/cart">
-  <i class="fa fa-shopping-cart" aria-hidden="true"><span class="cart-count">{{ cartCount }}</span></i>
-   <!-- Dynamic cart count -->
-</a>
-
+    <a routerLink="/cart">
+      <i class="fa fa-shopping-cart" aria-hidden="true">
+        <span class="cart-count">{{ cartCount }}</span>
+      </i>
+    </a>
   </div>
 </header>

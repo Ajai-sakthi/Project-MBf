@@ -1,21 +1,23 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { CartService } from '../../../services/cart.service';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   searchQuery: string = '';
   isProfileMenuOpen: boolean = false;
   isFilterMenuOpen: boolean = false;
+  showSearchAndFilter: boolean = false;
 
   // New properties
   showSearchResults: boolean = false;
-  filteredMovies: any[] = []; // Update with your movie type
+  filteredMovies: any[] = []; // Replace with your movie type
   cartCount: number = 0;
 
   // Filter properties
@@ -24,19 +26,33 @@ export class HeaderComponent {
   selectedLanguage: string = '';
   isTopRated: boolean = false;
 
-  // Filter options (replace these with your actual options)
+  // Filter options
   ratingOptions: string[] = ['below 3', '4', '5'];
   genreOptions: string[] = ['Action', 'Drama', 'Comedy', 'Horror'];
-  languageOptions: string[] = ['English', 'Tamil', 'Hindi','Malayalam'];
+  languageOptions: string[] = ['English', 'Tamil', 'Hindi', 'Malayalam'];
 
   // Output event for sidebar toggle
   @Output() sidebarToggle: EventEmitter<void> = new EventEmitter();
 
-  constructor(private authService: AuthService, public router: Router, private cartService: CartService) {
-    // Subscribe to the cart count
+  constructor(
+    private authService: AuthService,
+    public router: Router,
+    private cartService: CartService
+  ) {
+    // Subscribe to cart count
     this.cartService.cartCountSubject.subscribe(count => {
-      this.cartCount = count; // Update the cart count from the service
+      this.cartCount = count; // Update cart count from the service
     });
+  }
+
+  ngOnInit() {
+    // Subscribe to router events to toggle search and filter visibility based on route
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd)) // Filter only NavigationEnd events
+      .subscribe((event: NavigationEnd) => {
+        // Show search and filter only on the /movies page
+        this.showSearchAndFilter = event.url === '/movies';
+      });
   }
 
   toggleSidebar(): void {
@@ -45,14 +61,13 @@ export class HeaderComponent {
 
   onSearch(): void {
     console.log("Search Query: ", this.searchQuery);
-    this.filteredMovies = this.filterMovies(this.searchQuery); // Implement this function to filter movies
+    this.filteredMovies = this.filterMovies(this.searchQuery); // Filter movies based on search query
     this.showSearchResults = this.filteredMovies.length > 0; // Show results if there are any
   }
 
   onSearchEnter(event: KeyboardEvent): void {
     if (event.key === 'Enter') {
-      this.showSearchResults = false; // Hide results after pressing Enter
-      // Navigate to the selected movie or perform other actions
+      this.showSearchResults = false; // Hide search results after pressing Enter
       console.log("Search Entered: ", this.searchQuery);
     }
   }
@@ -68,7 +83,7 @@ export class HeaderComponent {
       selectedLanguage: this.selectedLanguage,
       isTopRated: this.isTopRated,
     });
-    // Implement your filtering logic here
+    // Implement your actual filtering logic here
   }
 
   closeSearchResults(): void {
@@ -81,22 +96,25 @@ export class HeaderComponent {
 
   logout(): void {
     this.authService.logout(); // Clear user session from the AuthService
-    this.router.navigate(['/login']); // Redirect to the login page
+    this.router.navigate(['/login']); // Redirect to login page
   }
 
   isLoggedIn(): boolean {
     return this.authService.isLoggedIn();
   }
 
-  // Example filtering function for demonstration (replace with your actual implementation)
+  // Example movie filtering function (replace with actual implementation)
   filterMovies(query: string): any[] {
     const allMovies = [
       { name: 'Movie 1' },
       { name: 'Movie 2' },
       { name: 'Top Movie' },
-      // Add more movies
+      // Add more movies as needed
     ];
 
-    return allMovies.filter(movie => movie.name.toLowerCase().includes(query.toLowerCase()));
+    // Filter movies by name (case insensitive)
+    return allMovies.filter(movie =>
+      movie.name.toLowerCase().includes(query.toLowerCase())
+    );
   }
 }

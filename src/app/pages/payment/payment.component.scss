@@ -1,0 +1,136 @@
+.payment-container {
+  background-color: #1e1e1e; // Dark background
+  color: white; // White text
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); // Subtle shadow for depth
+  max-width: 500px; // Set a max width for better control
+  margin: auto; // Centering the container
+
+  h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-align: center; // Center title for better aesthetics
+  }
+
+  .payment-methods {
+    margin-bottom: 20px;
+
+    h3 {
+      font-size: 22px;
+      margin-bottom: 15px;
+      text-align: center; // Center title for better aesthetics
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+
+      label {
+        display: block;
+        font-weight: bold; // Bold labels for better readability
+      }
+
+      input[type="text"],
+      input[type="tel"] {
+        width: 100%;
+        padding: 12px;
+        margin-top: 8px;
+        border: none;
+        border-radius: 4px;
+        background-color: #2e2e2e;
+        color: white;
+        transition: border 0.3s ease; // Smooth transition for focus
+
+        &:focus {
+          outline: none;
+          border: 2px solid #ffc800; // Example focus color
+        }
+      }
+    }
+
+    input[type="radio"] {
+      margin-right: 10px;
+      cursor: pointer; // Hand cursor for better UX
+    }
+
+    // Add styling for radio button labels
+    label {
+      display: flex; // Flexbox for alignment
+      align-items: center; // Center items vertically
+      margin-bottom: 10px; // Space between radio options
+      cursor: pointer; // Hand cursor for better UX
+      transition: color 0.2s ease; // Transition for hover effect
+
+      &:hover {
+        color: #ffb700; // Change color on hover
+      }
+    }
+  }
+
+  .submit-button {
+    background-color: #ffb700; // Green color for submit button
+    color: black;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px; // Slightly larger font size
+    width: 100%; // Full-width button
+    transition: background-color 0.3s ease; // Smooth transition
+
+    &:hover {
+      background-color: #cca000; // Darker green on hover
+    }
+  }
+
+  // Responsive Styles
+  @media (max-width: 768px) {
+    padding: 20px;
+
+    h2 {
+      font-size: 24px;
+    }
+
+    .payment-methods h3 {
+      font-size: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+
+      input[type="text"],
+      input[type="tel"] {
+        padding: 10px;
+      }
+    }
+
+    .submit-button {
+      padding: 10px 15px;
+      font-size: 16px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    h2 {
+      font-size: 20px;
+    }
+
+    .payment-methods h3 {
+      font-size: 18px;
+    }
+
+    .form-group {
+      margin-bottom: 10px;
+
+      input[type="text"],
+      input[type="tel"] {
+        padding: 8px;
+      }
+    }
+
+    .submit-button {
+      padding: 10px;
+      font-size: 16px;
+    }
+  }
+}

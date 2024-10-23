@@ -11,11 +11,11 @@ export class CartService {
   public cartCountSubject = new BehaviorSubject<number>(0); // Observable to hold cart count
 
   constructor() {
-    this.loadCartItems();
+    this.loadCartItems(); // Load items from local storage on service initialization
   }
 
   // Load cart items from local storage
-   loadCartItems(): void {
+  public loadCartItems(): void {
     const items = JSON.parse(localStorage.getItem('cart') || '[]');
     this.cartItems = items;
     this.cartCountSubject.next(this.cartItems.length); // Update the cart count
