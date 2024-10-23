@@ -32,6 +32,7 @@ import { PaymentComponent } from './pages/payment/payment.component';
 // app.module.ts
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { SearchComponent } from './components/sharedComponents/search/search.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,7 +55,8 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     ProfileComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
-    EditProfileComponent // Declare your WishlistComponent here
+    EditProfileComponent,
+    SearchComponent // Declare your WishlistComponent here
   ],
   imports: [
     BrowserAnimationsModule,

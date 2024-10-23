@@ -27,9 +27,10 @@ export class MovieListComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.movieService.getMovies().subscribe((data: Movie[]) => {
       this.movies = data;
+     
     });
   }
-
+  
   ngAfterViewInit(): void {}
 
   floorval(val: number): number {

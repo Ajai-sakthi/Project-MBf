@@ -1,0 +1,21 @@
+<div class="search-container">
+    <input
+      type="text"
+      [formControl]="searchControl"
+      placeholder="Search Movies or Shows"
+      aria-label="Search Movies or Shows"
+    />
+  
+    <div *ngIf="searchResults.length > 0">
+      <ul>
+        <li *ngFor="let result of searchResults">
+          {{ result.title }} <!-- Adjust based on your movie data structure -->
+        </li>
+      </ul>
+    </div>
+  
+    <div *ngIf="searchResults.length === 0 && searchControl.value">
+      <p>No results found for "{{ searchControl.value }}".</p>
+    </div>
+  </div>
+  
