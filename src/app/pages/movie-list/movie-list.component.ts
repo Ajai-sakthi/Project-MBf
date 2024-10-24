@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild, AfterViewInit, signal, Signal, computed } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild,computed ,AfterViewInit} from '@angular/core';
 import { MovieService } from '../../services/movie.service';
 import { Movie } from '../../models/movie.model'; // Ensure correct import path
 import { Router } from '@angular/router';
@@ -13,6 +13,8 @@ import { UtilityService } from '../../services/utility.service';
 export class MovieListComponent implements OnInit, AfterViewInit {
  isFirstTime = true;
   movies = computed(()=>this.movieService.currentMovies())
+  filteredMovies: Movie[] = [];
+  searchQuery: string = '';
 
 // Initialize an empty array to store movies
   @ViewChild('container', { static: false }) container!: ElementRef;
@@ -25,14 +27,25 @@ export class MovieListComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.loadMovies();
+    // Subscribe to filter changes and set initial filteredMovies
+    this.movieService.getMovies().subscribe(movies => {
+      this.filteredMovies = movies; // Set all movies to filteredMovies initially
+    });
+
+    this.movieService.getFilters().subscribe(filters => {
+      if (filters) {
+        this.applyFilters(filters);
+      }
+    });
+
   }
-  loadMovies(){
+  loadMovies(): void {
     this.movieService.getMovies().subscribe((data: Movie[]) => {
-      if(this.isFirstTime){
+      if (this.isFirstTime) {
+        console.log('Movies loaded from API:', data);
         this.movieService.currentMovies.set(data);
         this.isFirstTime = false;
       }
-      
     });
   }
   ngAfterViewInit(): void {}
@@ -66,8 +79,38 @@ export class MovieListComponent implements OnInit, AfterViewInit {
          }
          this.movieService.updateWishList(id,payload).subscribe(()=>{
              this.loadMovies();
-           });       
+           });
     }
+    applyFilters(filters: any): void {
+      let movies = this.movies(); // Get the current movies from the signal
+      console.log('Movies before applying filters:', movies);
+
+      // Filter by search query
+      if (this.searchQuery) {
+        movies = movies.filter((movie: any) => movie.name.toLowerCase().includes(this.searchQuery.toLowerCase()));
+
+      }
+
+      // Apply rating filter
+      if (filters.selectedRating) {
+        const minRating = parseInt(filters.selectedRating, 10);
+        movies = movies.filter((movie:any) => movie.rating >= minRating);
+      }
+
+      // Apply language filter
+      if (filters.selectedLanguage) {
+        movies = movies.filter((movie:any) => movie.language === filters.selectedLanguage);
+      }
+
+      console.log('Movies after applying filters:', movies);
+      this.filteredMovies = movies; // Update the filtered movies
+    }
+
+    updateSearch(query: string): void {
+      this.searchQuery = query; // Update the search query
+      this.applyFilters(this.movieService.getCurrentFilters()); // Reapply filters with the current filters
+    }
+
   }
 
 

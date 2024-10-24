@@ -25,33 +25,33 @@
       [formControl]="searchQuery"
       aria-label="Search Movies or Shows"
     />
-    <i class="fa fa-filter filter-icon" (click)="openFilterMenu()"></i>
+    <i class="fa fa-filter filter-icon" (click)="openFilterMenu()" aria-hidden="true"></i>
   </div>
-
   <!-- Filter Modal -->
-  <div *ngIf="isFilterMenuOpen && showSearchAndFilter" class="filter-menu">
-    <h4>Filter Options</h4>
-    <label>
-      Rating:
-      <select [(ngModel)]="selectedRating" (change)="applyFilters()">
-        <option value="">Select Rating</option>
-        <option *ngFor="let rating of ratingOptions" [value]="rating">{{ rating }}</option>
-      </select>
-    </label>
-    <label>
-      Genre:
-      <select [(ngModel)]="selectedGenre" (change)="applyFilters()">
-        <option value="">Select Genre</option>
-        <option *ngFor="let genre of genreOptions" [value]="genre">{{ genre }}</option>
-      </select>
-    </label>
-    <label>
-      Language:
-      <select [(ngModel)]="selectedLanguage" (change)="applyFilters()">
-        <option value="">Select Language</option>
-        <option *ngFor="let language of languageOptions" [value]="language">{{ language }}</option>
-      </select>
-    </label>
+ <!-- Filter Modal -->
+ <div *ngIf="isFilterMenuOpen && showSearchAndFilter" class="filter-menu">
+  <h4>Filter Options</h4>
+  <label>
+    Rating:
+    <select [(ngModel)]="selectedRating" (change)="applyFilters()">
+      <option value="">Select Rating</option> <!-- Add a default option -->
+      <option *ngFor="let rating of ratingOptions" [value]="rating">{{ rating }}</option>
+    </select>
+  </label>
+
+  <label>
+    Language:
+    <select [(ngModel)]="selectedLanguage" (change)="applyFilters()">
+      <option value="">Select Language</option> <!-- Add a default option -->
+      <option *ngFor="let language of languageOptions" [value]="language.code">{{ language.name }}</option>
+    </select>
+  </label>
+</div>
+  <!-- Display Search Results -->
+  <div *ngIf="showSearchResults">
+    <ul>
+      <li *ngFor="let movie of filteredMovies">{{ movie.name }}</li>
+    </ul>
   </div>
 
   <!-- Auth Links -->

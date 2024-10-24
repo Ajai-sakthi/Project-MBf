@@ -1,4 +1,7 @@
 <div class="container" #container>
+  <div *ngIf="filteredMovies.length === 0" class="no-movies-message">
+    No movies found.
+  </div>
   <div class="productCard" *ngFor="let prod of movies()">
     <img class="productImage" src="{{ prod.src }}" alt="{{ prod.name }}" />
     <span class="productRating">{{ prod.rating }}</span>

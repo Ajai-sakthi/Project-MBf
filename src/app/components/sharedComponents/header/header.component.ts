@@ -24,14 +24,19 @@ export class HeaderComponent implements OnInit {
 
   // Filter properties
   selectedRating: string = '';
-  selectedGenre: string = '';
+  //selectedGenre: string = '';
   selectedLanguage: string = '';
-  isTopRated: boolean = false;
+  //isTopRated: boolean = false;
 
   // Filter options
   ratingOptions: string[] = ['below 3', '4', '5'];
-  genreOptions: string[] = ['Action', 'Drama', 'Comedy', 'Horror'];
-  languageOptions: string[] = ['English', 'Tamil', 'Hindi', 'Malayalam'];
+  //genreOptions: string[] = ['Action', 'Drama', 'Comedy', 'Horror'];
+  languageOptions = [
+    { name: 'English', code: 'Hollywood' },
+    { name: 'Tamil', code: 'Kollywood' },
+    { name: 'Hindi', code: 'Bollywood' },
+    { name: 'Malayalam', code: 'Mollywood' }
+  ];
 
   // Output event for sidebar toggle
   @Output() sidebarToggle: EventEmitter<void> = new EventEmitter();
@@ -62,7 +67,7 @@ export class HeaderComponent implements OnInit {
   }
 
   onSearch(Query:string): void {
-     
+
     this.filterMovies(Query);// Filter movies based on search query
     this.showSearchResults = this.filteredMovies.length > 0; // Show results if there are any
   }
@@ -75,7 +80,7 @@ export class HeaderComponent implements OnInit {
   onSearchEnter(event: KeyboardEvent): void {
     if (event.key === 'Enter') {
       this.showSearchResults = false; // Hide search results after pressing Enter
-      
+
     }
   }
 
@@ -84,13 +89,13 @@ export class HeaderComponent implements OnInit {
   }
 
   applyFilters(): void {
-     console.log('Applying Filters: ', {
+    const filters = {
       selectedRating: this.selectedRating,
-      selectedGenre: this.selectedGenre,
       selectedLanguage: this.selectedLanguage,
-      isTopRated: this.isTopRated,
-    });
-    // Implement your actual filtering logic here
+    };
+
+    // Send filter data to the service
+    this.movieService.setFilters(filters);
   }
 
   closeSearchResults(): void {
@@ -117,7 +122,7 @@ export class HeaderComponent implements OnInit {
       return data?.name?.toString()?.trim()?.replaceAll(' ','').toLowerCase()?.includes(query.toLowerCase());
     });
       this.movieService.currentMovies.set(res);
-       
+
     });
   }
 }
