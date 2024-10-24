@@ -17,12 +17,4 @@ constructor(private http: HttpClient) {}
     const url = `${this.apiUrl}/${id}`; // Use the movie's id to create the correct URL
     return this.http.put<Movie>(url, updatedData);
   }
-  // getStars(rating:number):number[]{
-  //   const stars = [];
-  //   for (let i = 1; i <= rating; i++) {
-  //     stars.push(i);
-  //   }
-  //   return stars;
-  // }
-  
 }

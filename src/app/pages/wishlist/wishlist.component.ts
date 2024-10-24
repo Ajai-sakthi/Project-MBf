@@ -12,16 +12,16 @@ import { MovieService } from '../../services/movie.service';
 })
 export class WishlistComponent implements OnInit {
   wishlistMovies: Movie[] = [];
-  movies:Movie[]=[];
+  movies: Movie[] = [];
   constructor(
     private cartService: CartService,
-    private utilityService: UtilityService,// Inject UtilityService
-    private router: Router,// Inject Router
-private movieService:MovieService
+    private utilityService: UtilityService, // Inject UtilityService
+    private router: Router, // Inject Router
+    private movieService: MovieService
   ) {}
 
   ngOnInit(): void {
-    this.loadMovies()
+    this.loadMovies();
   }
   addToCart(movie: Movie): void {
     const cartItem: CartItem = {
@@ -32,8 +32,7 @@ private movieService:MovieService
       rating: movie.rating,
       src: movie.src, // Include the src property
       imageUrl: movie.src, // You can keep the same value for imageUrl if that's correct
-      movie: movie // Include the entire movie object if needed
-      
+      movie: movie, // Include the entire movie object if needed
     };
 
     this.cartService.addToCart(cartItem); // Pass the CartItem
@@ -52,18 +51,18 @@ private movieService:MovieService
     this.addToCart(movie); // Add the movie to the cart first
     // Navigate to checkout if needed, similar to MovieListComponent
   }
-  loadMovies(){
+  loadMovies() {
     this.movieService.getMovies().subscribe((data: Movie[]) => {
       this.movies = data;
     });
   }
-  removeFromWishlist(id:number,movie:Movie){
-    movie.isWishListed=!movie.isWishListed;
-    let payload={
+  removeFromWishlist(id: number, movie: Movie) {
+    movie.isWishListed = !movie.isWishListed;
+    let payload = {
       ...movie,
-             isWishListed:movie.isWishListed
-         }
-    this.movieService.updateWishList(id,payload).subscribe();
+      isWishListed: movie.isWishListed,
+    };
+    this.movieService.updateWishList(id, payload).subscribe();
     // this.loadMovies();
   }
 }
