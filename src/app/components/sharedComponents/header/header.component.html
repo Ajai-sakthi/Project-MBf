@@ -22,9 +22,7 @@
     <input
       type="text"
       placeholder="Search"
-      [(ngModel)]="searchQuery"
-      (input)="onSearch()"
-      (keydown)="onSearchEnter($event)"
+      [formControl]="searchQuery"
       aria-label="Search Movies or Shows"
     />
     <i class="fa fa-filter filter-icon" (click)="openFilterMenu()"></i>

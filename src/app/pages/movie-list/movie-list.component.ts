@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild, AfterViewInit, signal, Signal } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, AfterViewInit, signal, Signal, computed } from '@angular/core';
 import { MovieService } from '../../services/movie.service';
 import { Movie } from '../../models/movie.model'; // Ensure correct import path
 import { Router } from '@angular/router';
@@ -9,11 +9,11 @@ import { UtilityService } from '../../services/utility.service';
   selector: 'app-movie-list',
   templateUrl: './movie-list.component.html',
   styleUrls: ['./movie-list.component.scss'],
-  providers: [MovieService]
 })
 export class MovieListComponent implements OnInit, AfterViewInit {
+ isFirstTime = true;
+  movies = computed(()=>this.movieService.currentMovies())
 
-  movies:Movie[]=[];
 // Initialize an empty array to store movies
   @ViewChild('container', { static: false }) container!: ElementRef;
   constructor(
@@ -28,7 +28,11 @@ export class MovieListComponent implements OnInit, AfterViewInit {
   }
   loadMovies(){
     this.movieService.getMovies().subscribe((data: Movie[]) => {
-      this.movies = data;
+      if(this.isFirstTime){
+        this.movieService.currentMovies.set(data);
+        this.isFirstTime = false;
+      }
+      
     });
   }
   ngAfterViewInit(): void {}

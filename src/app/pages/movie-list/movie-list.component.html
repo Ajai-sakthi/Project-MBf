@@ -1,5 +1,5 @@
 <div class="container" #container>
-  <div class="productCard" *ngFor="let prod of movies">
+  <div class="productCard" *ngFor="let prod of movies()">
     <img class="productImage" src="{{ prod.src }}" alt="{{ prod.name }}" />
     <span class="productRating">{{ prod.rating }}</span>
     <button

@@ -34,6 +34,7 @@ import { PaymentComponent } from './pages/payment/payment.component';
 // app.module.ts
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+
 @NgModule({
   declarations: [
     AppComponent,
