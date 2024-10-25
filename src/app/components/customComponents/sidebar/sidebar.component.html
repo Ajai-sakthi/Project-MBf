@@ -3,71 +3,21 @@
     <h3>Menu</h3>
     <ul>
       <li>
-        <a routerLink="/" class="active">
-          <fa-icon [icon]="faHome"></fa-icon>
-          Home
+        <a routerLink="/" routerLinkActive="active">
+          <fa-icon [icon]="faHome"></fa-icon> Home
         </a>
       </li>
       <li>
-        <a routerLink="/celebrities">
-          <fa-icon [icon]="faStar"></fa-icon>
-          Celebrities
-        </a>
+        <a (click)="toggleProfile()" routerLinkActive="active-link">Profile</a>
       </li>
-    </ul>
-  </div>
-
-  <div class="sidebar-library">
-    <h3>Library</h3>
-    <ul>
-      <!-- Top Rated Dropdown -->
-      <li (click)="toggleRatingSelection()">
-        <a href="javascript:void(0)">
-          <fa-icon [icon]="faStar"></fa-icon> Top Rated
-        </a>
+      <li>
+        <a (click)="toggleAbout()" routerLinkActive="active-link">About Us</a>
       </li>
-      <div *ngIf="showRatingSelection" class="dropdown-list">
-        <ul>
-          <li *ngFor="let rating of ratings" class="dropdown-item">
-            <label>
-              <input
-                type="radio"
-                name="rating"
-                (change)="toggleRating(rating.value)"
-                [checked]="selectedRatings === rating.value"
-              />
-              <span>{{ rating.label }}</span>
-            </label>
-          </li>
-        </ul>
-      </div>
-
-      <!-- Languages Dropdown -->
-      <li (click)="toggleLanguageSelection()">
-        <a href="javascript:void(0)">
-          <fa-icon [icon]="faLanguage"></fa-icon> Languages
-        </a>
+      <li>
+        <a (click)="toggleHelp()" routerLinkActive="active-link">Help</a>
       </li>
-      <div *ngIf="showLanguageSelection" class="dropdown-list">
-        <ul>
-          <li *ngFor="let language of languages" class="dropdown-item">
-            <label>
-              <input
-                type="checkbox"
-                (change)="toggleLanguage(language)"
-                [checked]="selectedLanguages.includes(language)"
-              />
-              <span>{{ language }}</span>
-            </label>
-          </li>
-        </ul>
-      </div>
-
-       <!-- Profile Link -->
-       <li>
-        <a (click)="toggleProfile()">
-          <i class="fa fa-user-circle" aria-hidden="true"></i> Profile
-        </a>
+      <li>
+        <a (click)="toggleContact()" routerLinkActive="active-link">Contact</a>
       </li>
     </ul>
   </div>

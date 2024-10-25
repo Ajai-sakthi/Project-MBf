@@ -1,0 +1,43 @@
+.help-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #000;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+  color: #00f7ff;
+  text-align: center;
+}
+
+p {
+  color: #fff;
+}
+
+.faq-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.faq-list li {
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #000;
+}
+
+strong {
+  color: #00f7ff;
+}
+
+a {
+  color: #ffae00;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
