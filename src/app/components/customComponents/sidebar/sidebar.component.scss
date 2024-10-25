@@ -1,5 +1,6 @@
 @import "../../../../styles.scss";
-// Define color variables for easier updates and styling.  // Accent color  // Sidebar background color
+
+// Define color variables for easier updates and styling
 $text-color: #fff;         // Main text color
 $muted-color: #b0b0b0;     // Muted text color for headings
 
@@ -7,12 +8,10 @@ $muted-color: #b0b0b0;     // Muted text color for headings
   display: flex;
   flex-direction: column;
   padding: 10px;
-  z-index: 10; // Higher z-index to be above the footer
+  z-index: 10; // Sidebar above the footer
 
-  // Menu sections
-  &-menu,
-  &-library,
-  &-general {
+  // Menu section
+  &-menu {
     h3 {
       font-size: 14px;
       text-transform: uppercase;
@@ -23,7 +22,7 @@ $muted-color: #b0b0b0;     // Muted text color for headings
     ul {
       list-style: none;
       padding: 0;
-      margin: 0; // Reset margin
+      margin: 0;
 
       li {
         margin-bottom: 15px;
@@ -36,10 +35,8 @@ $muted-color: #b0b0b0;     // Muted text color for headings
           cursor: pointer;
           align-items: center;
           transition: color 0.3s ease;
-          i {
-            margin-right: 10px; // Space between icon and text
-          }
-          fa-icon {
+
+          fa-icon, i {
             margin-right: 10px;
             font-size: 18px;
           }
@@ -54,7 +51,7 @@ $muted-color: #b0b0b0;     // Muted text color for headings
   }
 }
 
-// Adjust sidebar open and closed states
+// Sidebar open and closed states
 .open {
   transform: translateX(0); // Show sidebar
 }
@@ -63,101 +60,32 @@ $muted-color: #b0b0b0;     // Muted text color for headings
   transform: translateX(-100%); // Hide sidebar off-screen
 }
 
-.language-selection {
-  position: absolute; // Adjust positioning as necessary
-  background: black;
-  z-index: 1000;
-  padding: 10px;
-  display: flex; // Use flexbox for horizontal layout
-  flex-wrap: wrap; // Allow items to wrap to the next line
-  max-width: 90%; // Keep the dropdown within sidebar width
-  gap: 10px; // Space between language options
-
-  ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex; // Use flexbox for the list
-    flex-wrap: wrap; // Allow the list items to wrap
-
-    li.language-item {
-      padding: 5px 10px; // Add padding for each language option
-      flex: 0 1 auto; // Allow items to shrink and grow as needed
-      display: flex; // Align checkbox and text
-      align-items: center; // Center align vertically
-
-      label {
-        cursor: pointer;
-        display: flex; // Align checkbox and text
-        align-items: center;
-
-        input[type="checkbox"] {
-          width: 20px;  // Set a fixed width for checkboxes
-          height: 20px; // Set a fixed height for checkboxes
-          margin-right: 5px; // Space between checkbox and text
-          cursor: pointer; // Change cursor on hover
-          accent-color: $primary; // Change checkbox color if desired
-        }
-
-        span {
-          font-size: 16px; // Optional: Set a specific font size for better readability
-        }
-      }
-    }
-  }
-}
-.dropdown-list {
-  margin-left: 15px;
-  ul {
-    list-style: none;
-    padding-left: 0;
-    margin-top: 10px;
-  }
-  .dropdown-item {
-    margin-bottom: 10px;
-    label {
-      display: flex;
-      align-items: center;
-    }
-    input {
-      margin-right: 10px;
-    }
-    span {
-      font-size: 14px;
-    }
-    &:hover{
-      color: #f3a502;
-    }
-  }
-}
-
-
 // Footer styles
 .footer {
-  background-color: #1d1d1d; // Dark background for the footer
-  color: white;              // Text color for the footer
-  text-align: center;        // Center align text
-  padding: 1rem;             // Padding for the footer
-  position: fixed;           // Keep footer fixed at the bottom
-  bottom: 0;                 // Align to the bottom of the viewport
-  left: 0;                   // Align to the left edge
-  right: 0;                  // Align to the right edge
-  width: 100%;               // Full width of the screen
-  font-size: 0.9rem;         // Font size for the footer
-  z-index: 5;                // Ensure it appears below the sidebar
+  background-color: #1d1d1d;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  font-size: 0.9rem;
+  z-index: 5; // Ensure it appears below the sidebar
 
   // Responsive adjustments
   @media (max-width: 768px) {
-    padding: 0.5rem;         // Reduce padding on smaller screens
-    font-size: 0.8rem;       // Smaller font size on mobile
+    padding: 0.5rem;
+    font-size: 0.8rem;
   }
 }
 
 // Responsive adjustments for smaller screens
 @media (max-width: 768px) {
   .sidebar {
-    width: 100%; // Full width on mobile
-    height: auto; // Automatic height
-    position: relative; // Positioning is relative for mobile
+    width: 100%;
+    height: auto;
+    position: relative;
   }
 }

@@ -23,7 +23,6 @@ import { CustomCarouselComponent } from './pages/home/component/custom-carousel/
 import { Custom2carouselComponent } from './pages/home/component/custom2carousel/custom2carousel.component';
 import { WishlistComponent } from './pages/wishlist/wishlist.component'; // Import your WishlistComponent
 import { CommonModule } from '@angular/common'; // Import CommonModule
-import { TopRatedMoviesComponent } from './pages/top-rated-movies/top-rated-movies.component';
 import { FormatPricePipe } from './format-price.pipe';
 import { ProfileComponent } from './profile/profile.component';
 import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
@@ -43,7 +42,6 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     HomeComponent,
     PaymentComponent,
     MovieListComponent,
-    TopRatedMoviesComponent,
     CartComponent,
     CheckoutComponent,
     LoginComponent,
@@ -76,7 +74,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { 
+export class AppModule {
   constructor(library: FaIconLibrary) {
     library.addIcons(faHeart); // Ensure the heart icon is added
   }
