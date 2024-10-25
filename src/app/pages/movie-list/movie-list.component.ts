@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { CartItem } from '../../models/cart-item.model'; // Import the CartItem interface
 import { CartService } from '../../services/cart.service'; // Import CartService
 import { UtilityService } from '../../services/utility.service';
+import { ChangeDetectorRef } from '@angular/core';
+
 
 @Component({
   selector: 'app-movie-list',
@@ -24,7 +26,8 @@ export class MovieListComponent implements OnInit, AfterViewInit {
     private movieService: MovieService,
     private router: Router,
     private cartService: CartService,
-    private utilityService: UtilityService
+    private utilityService: UtilityService,
+    private cdr: ChangeDetectorRef 
   ) {}
 
   ngOnInit(): void {
@@ -87,10 +90,11 @@ export class MovieListComponent implements OnInit, AfterViewInit {
   applyFilters(filters: any): void {
     let movies = this.movies(); // Get current movie list from the signal
     console.log('Movies before applying filters:', movies);
+    console.log('filters applied',filters)
 
     // Apply search query filter
-    if (this.searchQuery) {
-      movies = movies.filter((movie: any) =>
+    if (this.searchQuery.trim()) {
+      movies = movies.filter((movie: Movie) =>
         movie.name.toLowerCase().includes(this.searchQuery.toLowerCase())
       );
     }
@@ -98,16 +102,17 @@ export class MovieListComponent implements OnInit, AfterViewInit {
     // Apply rating filter
     if (filters.selectedRating) {
       const minRating = parseInt(filters.selectedRating, 10);
-      movies = movies.filter((movie: any) => movie.rating >= minRating);
+      movies = movies.filter((movie: Movie) => movie.rating >= minRating);
     }
 
     // Apply language filter
     if (filters.selectedLanguage) {
-      movies = movies.filter((movie: any) => movie.language === filters.selectedLanguage);
+      movies = movies.filter((movie: Movie) => movie.language === filters.selectedLanguage);
     }
-
+    this.filteredMovies = [...movies]; // Update filtered movies
     console.log('Movies after applying filters:', movies);
-    this.filteredMovies = movies; // Update filtered movies
+    this.cdr.detectChanges();
+    
   }
 
   updateSearch(query: string): void {
