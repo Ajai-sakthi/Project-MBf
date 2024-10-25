@@ -7,7 +7,7 @@
       "releasedate": "04/04/2008",
       "price": "500",
       "language": "Kollywood",
-      "isWishListed": true,
+      "isWishListed": false,
       "id": "1"
     },
     {
@@ -18,7 +18,7 @@
       "releasedate": "26/02/2010",
       "price": "380",
       "language": "Kollywood",
-      "isWishListed": false
+      "isWishListed": true
     },
     {
       "id": "3",
@@ -380,13 +380,14 @@
       "name": "Bhuvi"
     },
     {
-      "id": "4a8e",
+      "name": "swetha",
       "email": "swethamurugan2222@gmail.com",
-      "phone": "9361144096",
-      "address": "32/A, vriddhachalam",
+      "phone": "2333346779",
+      "address": "23",
       "password": "1234",
-      "lastLoggedIn": "2024-10-21T10:46:34.435Z",
-      "name": "swetha"
+      "id": "4a8e",
+      "lastLoggedIn": "2024-10-23T06:14:18.115Z",
+      "textAlerts": false
     },
     {
       "id": "9e51",
