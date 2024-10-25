@@ -125,16 +125,16 @@ export class HeaderComponent implements OnInit {
     this.movieService.getMovies().subscribe((res: any) => {
       res = res.filter((data: any) => {
         // Initialize conditions
-        const matchesRating = filters.rating 
-                ? (filters.rating === 'below 3' ? data.rating < 3 
-                  : filters.rating === '4' ? (data.rating >= 4 && data.rating < 5) 
-                  : filters.rating === '5' ? data.rating >= 5 
-                  : true) 
+        const matchesRating = filters.rating
+                ? (filters.rating === 'below 3' ? data.rating < 3
+                  : filters.rating === '4' ? (data.rating >= 4 && data.rating < 5)
+                  : filters.rating === '5' ? data.rating >= 5
+                  : true)
                 : true;
 
-        const matchesLanguage = filters.languageOptions ? 
+        const matchesLanguage = filters.languageOptions ?
           data.language.toLowerCase() === filters.languageOptions.toLowerCase() : true;
-        const matchesQuery = filters.query ? 
+        const matchesQuery = filters.query ?
           data.name.toLowerCase().includes(filters.query.toLowerCase()) : true;
 
         // Return true if all conditions are met (AND filter)
@@ -144,6 +144,9 @@ export class HeaderComponent implements OnInit {
       // Update the currentMovies observable with the filtered result
       this.movieService.currentMovies.set(res);
     });
+  }
+  isOnLoginOrRegisterPage(): boolean {
+    return this.router.url === '/login' || this.router.url === '/register';
   }
 }
 
