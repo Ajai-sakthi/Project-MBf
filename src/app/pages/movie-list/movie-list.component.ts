@@ -1,32 +1,46 @@
-import { Component, ElementRef, OnInit, ViewChild, AfterViewInit, signal, Signal } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, AfterViewInit, computed } from '@angular/core';
 import { MovieService } from '../../services/movie.service';
-import { Movie } from '../../models/movie.model'; // Ensure correct import path
+import { Movie } from '../../models/movie.model';
 import { Router } from '@angular/router';
-import { CartItem } from '../../models/cart-item.model'; // Import the CartItem interface
-import { CartService } from '../../services/cart.service'; // Import CartService
+import { CartItem } from '../../models/cart-item.model';
+import { CartService } from '../../services/cart.service';
 import { UtilityService } from '../../services/utility.service';
+
 @Component({
   selector: 'app-movie-list',
   templateUrl: './movie-list.component.html',
   styleUrls: ['./movie-list.component.scss'],
-  providers: [MovieService]
 })
 export class MovieListComponent implements OnInit, AfterViewInit {
+  isFirstTime = true;
+  movies = computed(() => this.movieService.currentMovies());
+  filteredMovies: Movie[] = [];
+  searchQuery: string = '';
 
-  movies:Movie[]=[];
-// Initialize an empty array to store movies
   @ViewChild('container', { static: false }) container!: ElementRef;
+
   constructor(
     private movieService: MovieService,
     private router: Router,
     private cartService: CartService,
-    private utilityService:UtilityService
+    private utilityService: UtilityService
   ) {}
 
   ngOnInit(): void {
     this.loadMovies();
+
+    this.movieService.getMovies().subscribe(movies => {
+      this.filteredMovies = movies;
+    });
+
+    this.movieService.getFilters().subscribe(filters => {
+      if (filters) {
+        this.applyFilters(filters);
+      }
+    });
   }
-  loadMovies(){
+
+  loadMovies(): void {
     this.movieService.getMovies().subscribe((data: Movie[]) => {
       this.movies = data;
      
@@ -38,23 +52,24 @@ export class MovieListComponent implements OnInit, AfterViewInit {
   floorval(val: number): number {
     return this.utilityService.floorval(val);
   }
-  getStars(rating: number):number[]{
-   return this.utilityService.getStars(rating);
+
+  getStars(rating: number): number[] {
+    return this.utilityService.getStars(rating);
   }
+
   addToCart(movie: Movie): void {
     const cartItem: CartItem = {
       id: movie.id,
       name: movie.name,
-      price: movie.price.toString().replace(/,/g, ''), // Convert to string here
-      quantity: 1, // Set initial quantity
+      price: movie.price.toString().replace(/,/g, ''),
+      quantity: 1,
       rating: movie.rating,
       imageUrl: movie.src,
-      src: movie.src, // Ensure src is included if needed
-      movie: movie // Include the movie object here
-    }
-    this.cartService.addToCart(cartItem); // Call the addToCart method from CartService
-    alert(`${movie.name} has been added to your cart!`); // Show a confirmation message
-   // this.router.navigate(['/cart']); // Navigate to the cart page
+      src: movie.src,
+      movie: movie
+    };
+    this.cartService.addToCart(cartItem);
+    alert(`${movie.name} has been added to your cart!`);
   }
   updateWishlist(id:number,prod :Movie){
     prod.isWishListed=!prod.isWishListed;

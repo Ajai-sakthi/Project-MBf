@@ -1,16 +1,18 @@
-import { Component, EventEmitter, Output, OnInit } from '@angular/core';
+import { Component, EventEmitter, Output, OnInit, inject } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
 import { Router, NavigationEnd } from '@angular/router';
 import { CartService } from '../../../services/cart.service';
-import { filter } from 'rxjs/operators';
-
+import { debounce, debounceTime, distinctUntilChanged, filter } from 'rxjs/operators';
+import { FormControl } from '@angular/forms';
+import { MovieService } from '../../../services/movie.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  searchQuery: string = '';
+  private movieService = inject(MovieService);
+  searchQuery = new FormControl('');
   isProfileMenuOpen: boolean = false;
   isFilterMenuOpen: boolean = false;
   showSearchAndFilter: boolean = false;
@@ -22,14 +24,19 @@ export class HeaderComponent implements OnInit {
 
   // Filter properties
   selectedRating: string = '';
-  selectedGenre: string = '';
+  //selectedGenre: string = '';
   selectedLanguage: string = '';
-  isTopRated: boolean = false;
+  //isTopRated: boolean = false;
 
   // Filter options
   ratingOptions: string[] = ['below 3', '4', '5'];
-  genreOptions: string[] = ['Action', 'Drama', 'Comedy', 'Horror'];
-  languageOptions: string[] = ['English', 'Tamil', 'Hindi', 'Malayalam'];
+  //genreOptions: string[] = ['Action', 'Drama', 'Comedy', 'Horror'];
+  languageOptions = [
+    { name: 'English', code: 'Hollywood' },
+    { name: 'Tamil', code: 'Kollywood' },
+    { name: 'Hindi', code: 'Bollywood' },
+    { name: 'Malayalam', code: 'Mollywood' }
+  ];
 
   // Output event for sidebar toggle
   @Output() sidebarToggle: EventEmitter<void> = new EventEmitter();
@@ -59,16 +66,21 @@ export class HeaderComponent implements OnInit {
     this.sidebarToggle.emit(); // Emit event to parent to toggle sidebar
   }
 
-  onSearch(): void {
-    console.log("Search Query: ", this.searchQuery);
-    this.filteredMovies = this.filterMovies(this.searchQuery); // Filter movies based on search query
+  onSearch(Query:string): void {
+
+    this.filterMovies(Query);// Filter movies based on search query
     this.showSearchResults = this.filteredMovies.length > 0; // Show results if there are any
+  }
+  ngAfterViewInit(){
+    this.searchQuery.valueChanges.pipe(debounceTime(300),distinctUntilChanged()).subscribe((qurey:any)=>{
+        this.onSearch(qurey.trim());
+    })
   }
 
   onSearchEnter(event: KeyboardEvent): void {
     if (event.key === 'Enter') {
       this.showSearchResults = false; // Hide search results after pressing Enter
-      console.log("Search Entered: ", this.searchQuery);
+
     }
   }
 
@@ -77,13 +89,13 @@ export class HeaderComponent implements OnInit {
   }
 
   applyFilters(): void {
-    console.log('Applying Filters: ', {
+    const filters = {
       selectedRating: this.selectedRating,
-      selectedGenre: this.selectedGenre,
       selectedLanguage: this.selectedLanguage,
-      isTopRated: this.isTopRated,
-    });
-    // Implement your actual filtering logic here
+    };
+
+    // Send filter data to the service
+    this.movieService.setFilters(filters);
   }
 
   closeSearchResults(): void {
@@ -104,17 +116,13 @@ export class HeaderComponent implements OnInit {
   }
 
   // Example movie filtering function (replace with actual implementation)
-  filterMovies(query: string): any[] {
-    const allMovies = [
-      { name: 'Movie 1' },
-      { name: 'Movie 2' },
-      { name: 'Top Movie' },
-      // Add more movies as needed
-    ];
+  filterMovies(query: string){
+    this.movieService.getMovies().subscribe((res:any)=>{
+      res=res.filter((data:any)=>{
+      return data?.name?.toString()?.trim()?.replaceAll(' ','').toLowerCase()?.includes(query.toLowerCase());
+    });
+      this.movieService.currentMovies.set(res);
 
-    // Filter movies by name (case insensitive)
-    return allMovies.filter(movie =>
-      movie.name.toLowerCase().includes(query.toLowerCase())
-    );
+    });
   }
 }

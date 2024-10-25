@@ -1,14 +1,14 @@
 {
   "Movie": [
     {
-      "id": "1",
       "src": "../../../assets/images/SOK.jpg",
       "name": "Sillunu Oru Kadhal",
-      "rating": 4.9,
+      "rating": 5,
       "releasedate": "04/04/2008",
       "price": "500",
       "language": "Kollywood",
-      "isWishListed": false
+      "isWishListed": false,
+      "id": "1"
     },
     {
       "id": "2",
@@ -38,7 +38,7 @@
       "releasedate": "01/05/2008",
       "price": "410",
       "language": "Hollywood",
-      "isWishListed": true
+      "isWishListed": false
     },
     {
       "id": "5",
@@ -380,14 +380,13 @@
       "name": "Bhuvi"
     },
     {
-      "name": "swetha",
-      "email": "swethamurugan2222@gmail.com",
-      "phone": "2333346779",
-      "address": "23",
-      "password": "1234",
       "id": "4a8e",
-      "lastLoggedIn": "2024-10-23T06:14:18.115Z",
-      "textAlerts": false
+      "email": "swethamurugan2222@gmail.com",
+      "phone": "9361144096",
+      "address": "32/A, vriddhachalam",
+      "password": "1234",
+      "lastLoggedIn": "2024-10-21T10:46:34.435Z",
+      "name": "swetha"
     },
     {
       "id": "9e51",
@@ -398,11 +397,6 @@
       "id": "5f7b",
       "email": "arunajith056@gmail.com",
       "password": "123456"
-    },
-    {
-      "id": "68e9",
-      "email": "user123@gmail.com",
-      "password": "12345"
     }
   ]
 }
