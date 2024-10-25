@@ -28,7 +28,7 @@ export class HeaderComponent implements OnInit {
   selectedLanguage: string = '';
 
   // Filter options
-  ratingOptions: string[] = ['below 3', '4', '5'];
+  ratingOptions: string[] = ['below 3','above 3', '4', '5'];
   languageOptions = [
     { name: 'English', code: 'Hollywood' },
     { name: 'Tamil', code: 'Kollywood' },
@@ -127,6 +127,7 @@ export class HeaderComponent implements OnInit {
         // Initialize conditions
         const matchesRating = filters.rating
                 ? (filters.rating === 'below 3' ? data.rating < 3
+                  : filters.rating === 'above 3' ? (data.rating > 3 && data.rating < 4)
                   : filters.rating === '4' ? (data.rating >= 4 && data.rating < 5)
                   : filters.rating === '5' ? data.rating >= 5
                   : true)
