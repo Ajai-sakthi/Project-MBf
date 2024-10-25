@@ -33,7 +33,7 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component'; //
 import { MatNativeDateModule } from '@angular/material/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { SearchComponent } from './components/sharedComponents/search/search.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,7 +57,7 @@ import { SearchComponent } from './components/sharedComponents/search/search.com
     ForgotPasswordComponent,
     ResetPasswordComponent,
     EditProfileComponent,
-    SearchComponent // Declare your WishlistComponent here
+     // Declare your WishlistComponent here
   ],
   imports: [
     BrowserAnimationsModule,

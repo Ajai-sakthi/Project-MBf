@@ -7,7 +7,7 @@
       "releasedate": "04/04/2008",
       "price": "500",
       "language": "Kollywood",
-      "isWishListed": false,
+      "isWishListed": true,
       "id": "1"
     },
     {
@@ -28,7 +28,7 @@
       "releasedate": "21/07/2017",
       "price": "390",
       "language": "Kollywood",
-      "isWishListed": true
+      "isWishListed": false
     },
     {
       "id": "4",
@@ -58,7 +58,7 @@
       "releasedate": "10/08/2007",
       "price": "360",
       "language": "Bollywood",
-      "isWishListed": true
+      "isWishListed": false
     },
     {
       "id": "7",
@@ -228,7 +228,7 @@
       "releasedate": "25/11/2011",
       "price": "440",
       "language": "Kollywood",
-      "isWishListed": true
+      "isWishListed": false
     },
     {
       "id": "24",

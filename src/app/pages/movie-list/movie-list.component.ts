@@ -1,9 +1,9 @@
-import { Component, ElementRef, OnInit, ViewChild, AfterViewInit, computed } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, computed, AfterViewInit } from '@angular/core';
 import { MovieService } from '../../services/movie.service';
-import { Movie } from '../../models/movie.model';
+import { Movie } from '../../models/movie.model'; // Ensure correct import path
 import { Router } from '@angular/router';
-import { CartItem } from '../../models/cart-item.model';
-import { CartService } from '../../services/cart.service';
+import { CartItem } from '../../models/cart-item.model'; // Import the CartItem interface
+import { CartService } from '../../services/cart.service'; // Import CartService
 import { UtilityService } from '../../services/utility.service';
 
 @Component({
@@ -13,9 +13,10 @@ import { UtilityService } from '../../services/utility.service';
 })
 export class MovieListComponent implements OnInit, AfterViewInit {
   isFirstTime = true;
-  movies = computed(() => this.movieService.currentMovies());
+  movies = computed(() => this.movieService.currentMovies()); // Use currentMovies signal for movie data
   filteredMovies: Movie[] = [];
-  searchQuery: string = '';
+  isFilterVisible: boolean = false;
+  searchQuery: string = ''; // Search query for filtering
 
   @ViewChild('container', { static: false }) container!: ElementRef;
 
@@ -29,10 +30,7 @@ export class MovieListComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.loadMovies();
 
-    this.movieService.getMovies().subscribe(movies => {
-      this.filteredMovies = movies;
-    });
-
+    // Subscribe to changes in filter options and apply them to filteredMovies
     this.movieService.getFilters().subscribe(filters => {
       if (filters) {
         this.applyFilters(filters);
@@ -42,11 +40,14 @@ export class MovieListComponent implements OnInit, AfterViewInit {
 
   loadMovies(): void {
     this.movieService.getMovies().subscribe((data: Movie[]) => {
-      this.movies = data;
-     
+      if (this.isFirstTime) {
+        console.log('Movies loaded from API:', data);
+        this.movieService.currentMovies.set(data); // Store the loaded movies in the signal
+        this.isFirstTime = false;
+      }
     });
   }
-  
+
   ngAfterViewInit(): void {}
 
   floorval(val: number): number {
@@ -61,24 +62,59 @@ export class MovieListComponent implements OnInit, AfterViewInit {
     const cartItem: CartItem = {
       id: movie.id,
       name: movie.name,
-      price: movie.price.toString().replace(/,/g, ''),
-      quantity: 1,
+      price: movie.price.toString().replace(/,/g, ''), // Ensure price is a clean string
+      quantity: 1, // Default quantity
       rating: movie.rating,
       imageUrl: movie.src,
-      src: movie.src,
-      movie: movie
+      src: movie.src, // Include the image source
+      movie: movie // Include the movie object
     };
-    this.cartService.addToCart(cartItem);
-    alert(`${movie.name} has been added to your cart!`);
+    this.cartService.addToCart(cartItem); // Add item to cart
+    //alert(${movie.name} has been added to your cart!);
   }
-  updateWishlist(id:number,prod :Movie){
-    prod.isWishListed=!prod.isWishListed;
-      let payload={
+
+  updateWishlist(id: number, prod: Movie): void {
+    prod.isWishListed = !prod.isWishListed; // Toggle wishlist status
+    const payload = {
       ...prod,
-             isWishListed:prod.isWishListed
-         }
-         this.movieService.updateWishList(id,payload).subscribe(()=>{
-             this.loadMovies();
-           });       
-    }
+      isWishListed: prod.isWishListed
+    };
+    this.movieService.updateWishList(id, payload).subscribe(() => {
+      this.loadMovies(); // Reload movies after wishlist update
+    });
   }
+
+  applyFilters(filters: any): void {
+    let movies = this.movies(); // Get current movie list from the signal
+    console.log('Movies before applying filters:', movies);
+
+    // Apply search query filter
+    if (this.searchQuery) {
+      movies = movies.filter((movie: any) =>
+        movie.name.toLowerCase().includes(this.searchQuery.toLowerCase())
+      );
+    }
+
+    // Apply rating filter
+    if (filters.selectedRating) {
+      const minRating = parseInt(filters.selectedRating, 10);
+      movies = movies.filter((movie: any) => movie.rating >= minRating);
+    }
+
+    // Apply language filter
+    if (filters.selectedLanguage) {
+      movies = movies.filter((movie: any) => movie.language === filters.selectedLanguage);
+    }
+
+    console.log('Movies after applying filters:', movies);
+    this.filteredMovies = movies; // Update filtered movies
+  }
+
+  updateSearch(query: string): void {
+    this.searchQuery = query; // Update search query
+    this.applyFilters(this.movieService.getCurrentFilters()); // Apply current filters with updated search query
+  }
+  toggleFilters(): void {
+    this.isFilterVisible = !this.isFilterVisible; // Toggle filter visibility
+  }
+}
