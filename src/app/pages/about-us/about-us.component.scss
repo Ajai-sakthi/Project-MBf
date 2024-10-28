@@ -1,0 +1,42 @@
+.about-container {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  color:white;
+  line-height: 1.6;
+
+  h1 {
+    font-size: 2.5rem;
+    color: #00f7ff;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  .about-section {
+    margin: 20px 0;
+
+    h2 {
+      font-size: 1.8rem;
+      color: #00f7ff;
+      margin-bottom: 8px;
+    }
+
+    p, ul {
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+
+    ul {
+      padding-left: 20px;
+      list-style-type: disc;
+    }
+  }
+
+  .closing-note {
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 30px;
+    color: #00f7ff;
+  }
+}

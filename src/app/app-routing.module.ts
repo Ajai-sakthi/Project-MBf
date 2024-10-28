@@ -13,6 +13,9 @@ import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.
 import { ProfileComponent } from './profile/profile.component'; // Make sure ProfileComponent is imported
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { PaymentComponent } from './pages/payment/payment.component'; // Adjust this path based on your new structure
+import { AboutUsComponent } from './pages/about-us/about-us.component';
+import { ContactComponent } from './pages/contact/contact.component';
+import { HelpComponent } from './pages/help/help.component';
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' }, // Redirect empty path to login
@@ -22,6 +25,9 @@ const routes: Routes = [
   { path: 'edit-profile', component: EditProfileComponent },
   { path: 'movies', component: MovieListComponent },
   { path: 'cart', component: CartComponent },
+  {path:'about-us',component:AboutUsComponent},
+  {path:'contact',component:ContactComponent},
+  {path:'Help',component:HelpComponent},
   { path: 'checkout', component: CheckoutComponent },
   { path: 'payment', component: PaymentComponent },
   { path: 'wishlist', component: WishlistComponent },

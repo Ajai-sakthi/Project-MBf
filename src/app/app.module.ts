@@ -6,6 +6,7 @@ import { HeaderComponent } from './components/sharedComponents/header/header.com
 import { SidebarComponent } from './components/customComponents/sidebar/sidebar.component';
 import { FooterComponent } from './components/sharedComponents/footer/footer.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { PaymentComponent } from './pages/payment/payment.component';
 import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { HomeComponent } from './pages/home/home.component';
@@ -22,7 +23,6 @@ import { CustomCarouselComponent } from './pages/home/component/custom-carousel/
 import { Custom2carouselComponent } from './pages/home/component/custom2carousel/custom2carousel.component';
 import { WishlistComponent } from './pages/wishlist/wishlist.component'; // Import your WishlistComponent
 import { CommonModule } from '@angular/common'; // Import CommonModule
-import { TopRatedMoviesComponent } from './pages/top-rated-movies/top-rated-movies.component';
 import { FormatPricePipe } from './format-price.pipe';
 import { ProfileComponent } from './profile/profile.component';
 import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
@@ -30,8 +30,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component'; // Adjust path accordinglyimport {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MatNativeDateModule } from '@angular/material/core';
-import { PaymentComponent } from './pages/payment/payment.component';
-// app.module.ts
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
@@ -44,7 +42,6 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     HomeComponent,
     PaymentComponent,
     MovieListComponent,
-    TopRatedMoviesComponent,
     CartComponent,
     CheckoutComponent,
     LoginComponent,
@@ -57,7 +54,8 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     ProfileComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
-    EditProfileComponent // Declare your WishlistComponent here
+    EditProfileComponent,
+     // Declare your WishlistComponent here
   ],
   imports: [
     BrowserAnimationsModule,
@@ -76,7 +74,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { 
+export class AppModule {
   constructor(library: FaIconLibrary) {
     library.addIcons(faHeart); // Ensure the heart icon is added
   }

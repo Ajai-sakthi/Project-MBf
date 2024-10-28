@@ -64,7 +64,6 @@ else{
     this.subTotal.set(this.cart.reduce((total: number, data: Movie) => total + (data.price * data.quantity), 0));
 
 });
-
 }
   }
 

@@ -11,4 +11,5 @@ export class UtilityService {
   floorval(val: number): number {
     return Math.floor(val);
   }
+
 }

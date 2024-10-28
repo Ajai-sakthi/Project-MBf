@@ -24,7 +24,7 @@
       [formControl]="searchQuery"
       aria-label="Search Movies or Shows"
     />
-    <i class="fa fa-filter filter-icon" (click)="openFilterMenu()"></i>
+    <i class="fa fa-filter filter-icon" (click)="openFilterMenu()" aria-hidden="true"></i>
   </div>
 
   <!-- Filter Modal -->
@@ -37,13 +37,7 @@
         <option *ngFor="let rating of ratingOptions" [value]="rating">{{ rating }}</option>
       </select>
     </label>
-    <label>
-      Genre:
-      <select [(ngModel)]="selectedGenre" (change)="applyFilters()">
-        <option value="">Select Genre</option>
-        <option *ngFor="let genre of genreOptions" [value]="genre">{{ genre }}</option>
-      </select>
-    </label>
+
     <label>
       Language:
       <select [(ngModel)]="selectedLanguage" (change)="applyFilters()">
@@ -51,6 +45,13 @@
         <option *ngFor="let language of languageOptions" [value]="language.code">{{ language.name }}</option>
       </select>
     </label>
+  </div>
+
+  <!-- Display Search Results -->
+  <div *ngIf="showSearchResults">
+    <ul>
+      <li *ngFor="let movie of filteredMovies">{{ movie.name }}</li>
+    </ul>
   </div>
 
   <!-- Auth Links -->
@@ -67,8 +68,9 @@
       </li>
     </ul>
   </nav>
-  <!-- Profile & Notifications -->
-  <div class="profile-menu">
+
+  <!-- Profile & Notifications (Only show on pages other than login and signup) -->
+  <div *ngIf="!isOnLoginOrRegisterPage()" class="profile-menu">
     <i class="fa fa-bell notification-icon" aria-hidden="true"></i>
     <i class="fa fa-heart wishlist-icon" routerLink="/wishlist" aria-hidden="true">
       <span class="wishlistCount">{{ wishListCount }}</span>

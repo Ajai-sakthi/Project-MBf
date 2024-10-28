@@ -28,19 +28,16 @@ export class HeaderComponent implements OnInit {
 //  cartCount: number = 0;
 
   // Filter properties
-  selectedRating: string = '';
-  selectedGenre: string = '';
+  selectedRating: string = ''; // Keep as string for options
   selectedLanguage: string = '';
-  isTopRated: boolean = false;
 
   // Filter options
-  ratingOptions: string[] = ['below 3', '4', '5'];
-  genreOptions: string[] = ['Action', 'Drama', 'Comedy', 'Horror'];
+  ratingOptions: string[] = ['below 3','above 3', '4', '5'];
   languageOptions = [
-    {name:'English',code:'hollywood'},
-    {name:'Tamil',code:'kollywood'},
-    {name:'Hindi',code:'bollywood'},
-    {name:'Malayalam',code:'mollywood'}
+    { name: 'English', code: 'Hollywood' },
+    { name: 'Tamil', code: 'Kollywood' },
+    { name: 'Hindi', code: 'Bollywood' },
+    { name: 'Malayalam', code: 'Mollywood' }
   ];
 
   // Output event for sidebar toggle
@@ -73,21 +70,27 @@ export class HeaderComponent implements OnInit {
     this.sidebarToggle.emit(); // Emit event to parent to toggle sidebar
   }
 
-  onSearch(Query:string): void {
-     
-    this.filterMovies(Query);// Filter movies based on search query
-    this.showSearchResults = this.filteredMovies.length > 0; // Show results if there are any
+  onSearch(query: string | null): void {
+    if (query) {
+      const filters = {
+        rating: this.selectedRating,      // Use selected rating
+        languageOptions: this.selectedLanguage, // Use selected language
+        query: query.trim() // Trim the search query
+      };
+      this.filterMovies(filters); // Pass the filters object
+      this.showSearchResults = this.filteredMovies.length > 0; // Show results if there are any
+    }
   }
-  ngAfterViewInit(){
-    this.searchQuery.valueChanges.pipe(debounceTime(300),distinctUntilChanged()).subscribe((qurey:any)=>{
-        this.onSearch(qurey.trim().replaceAll(' ',''));
-    })
+
+  ngAfterViewInit() {
+    this.searchQuery.valueChanges.pipe(debounceTime(300), distinctUntilChanged()).subscribe((query: any) => {
+      this.onSearch(query); // Pass query directly
+    });
   }
 
   onSearchEnter(event: KeyboardEvent): void {
     if (event.key === 'Enter') {
       this.showSearchResults = false; // Hide search results after pressing Enter
-      
     }
   }
 
@@ -96,13 +99,14 @@ export class HeaderComponent implements OnInit {
   }
 
   applyFilters(): void {
-     console.log('Applying Filters: ', {
-      selectedRating: this.selectedRating,
-      selectedGenre: this.selectedGenre,
-      selectedLanguage: this.selectedLanguage,
-      isTopRated: this.isTopRated,
-    });
-    // Implement your actual filtering logic here
+    const filters = {
+      rating: this.selectedRating,
+      languageOptions: this.selectedLanguage,
+    };
+
+    // Send filter data to the service
+    console.log('applying filters', filters);
+    this.filterMovies(filters); // Call filterMovies with selected filters
   }
 
   closeSearchResults(): void {
@@ -122,14 +126,34 @@ export class HeaderComponent implements OnInit {
     return this.authService.isLoggedIn();
   }
 
-  // Example movie filtering function (replace with actual implementation)
-  filterMovies(query: string){
-    this.movieService.getMovies().subscribe((res:any)=>{
-      res=res.filter((data:any)=>{
-      return data?.name?.toString()?.trim()?.replaceAll(' ','').toLowerCase()?.includes(query.toLowerCase());
-    });
+  // Updated filterMovies function
+  filterMovies(filters: { rating?: string; languageOptions?: string; query?: string | null }) {
+    this.movieService.getMovies().subscribe((res: any) => {
+      res = res.filter((data: any) => {
+        // Initialize conditions
+        const matchesRating = filters.rating
+                ? (filters.rating === 'below 3' ? data.rating < 3
+                  : filters.rating === 'above 3' ? (data.rating > 3 && data.rating < 4)
+                  : filters.rating === '4' ? (data.rating >= 4 && data.rating < 5)
+                  : filters.rating === '5' ? data.rating >= 5
+                  : true)
+                : true;
+
+        const matchesLanguage = filters.languageOptions ?
+          data.language.toLowerCase() === filters.languageOptions.toLowerCase() : true;
+        const matchesQuery = filters.query ?
+          data.name.toLowerCase().includes(filters.query.toLowerCase()) : true;
+
+        // Return true if all conditions are met (AND filter)
+        return matchesRating && matchesLanguage && matchesQuery;
+      });
+
+      // Update the currentMovies observable with the filtered result
       this.movieService.currentMovies.set(res);
-       
     });
   }
+  isOnLoginOrRegisterPage(): boolean {
+    return this.router.url === '/login' || this.router.url === '/register';
+  }
 }
+

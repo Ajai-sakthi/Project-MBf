@@ -19,7 +19,7 @@
       "releasedate": "26/02/2010",
       "price": "380",
       "language": "Kollywood",
-      "isWishListed": true,
+      "isWishListed": false,
       "quantity": 1
     },
     {
@@ -30,7 +30,7 @@
       "releasedate": "21/07/2017",
       "price": "390",
       "language": "Kollywood",
-      "isWishListed": false,
+      "isWishListed": true,
       "quantity": 1
     },
     {
@@ -417,11 +417,12 @@
       "name": "Bhuvi"
     },
     {
-      "id": "4a8e",
+      "name": "swetha",
       "email": "swethamurugan2222@gmail.com",
       "password": "1234",
-      "lastLoggedIn": "2024-10-21T10:46:34.435Z",
-      "name": "swetha"
+      "id": "4a8e",
+      "lastLoggedIn": "2024-10-23T06:14:18.115Z",
+      "textAlerts": false
     },
     {
       "id": "9e51",

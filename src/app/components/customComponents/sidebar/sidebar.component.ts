@@ -1,9 +1,8 @@
-import { Router } from '@angular/router';
 // src/app/components/customComponents/sidebar/sidebar.component.ts
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { IconDefinition } from '@fortawesome/fontawesome-common-types';
-import { faHome, faSearch, faStar, faHeart, faLanguage } from '@fortawesome/free-solid-svg-icons';
-import { StateService } from '../../../services/state.service'; // Adjust the path as necessary
+import { faHome, faEnvelope, faQuestionCircle, faInfoCircle, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-sidebar',
@@ -12,72 +11,42 @@ import { StateService } from '../../../services/state.service'; // Adjust the pa
 })
 export class SidebarComponent {
   @Input() isOpen: boolean = false; // Receive the sidebar state
-  @Output() languageChange = new EventEmitter<string[]>(); // Emit language changes
-  @Output() ratingChange = new EventEmitter<string | number | null>(); // Emit rating changes
 
   // Icon definitions
   faHome: IconDefinition = faHome;
-  faSearch: IconDefinition = faSearch;
-  faStar: IconDefinition = faStar;
-  faHeart: IconDefinition = faHeart;
-  faLanguage: IconDefinition = faLanguage; // Define faLanguage icon
+  faEnvelope: IconDefinition = faEnvelope;
+  faQuestionCircle: IconDefinition = faQuestionCircle;
+  faInfoCircle: IconDefinition = faInfoCircle;
+  faUserCircle: IconDefinition = faUserCircle;
 
-  showRatingSelection = false; // Controls the rating dropdown
-  showLanguageSelection = false; // Controls the language dropdown
-  isProfileOpen:boolean=false;
-  languages: string[] = ['Tamil', 'Malayalam', 'Hindi', 'English']; // Available languages
-  selectedLanguages: string[] = []; // Currently selected languages
+  isProfileOpen: boolean = false;
+  isAboutOpen: boolean = false;
+  isHelpOpen: boolean = false;
+  isContactOpen: boolean = false;
 
-  // Ratings categories for 5, 4, and below 3 stars
-  ratings = [
-    { label: '5 Stars', value: 5 },
-    { label: '4 Stars', value: 4 },
-    { label: 'Below 3 Stars', value: 'below3' }
-  ];
-
-  selectedRatings: string | number | null = null; // Store selected rating
-
-  constructor(private stateService: StateService,private router: Router) {}
-
-  // Toggle language selection dropdown
-  toggleLanguageSelection() {
-    this.showLanguageSelection = !this.showLanguageSelection;
-  }
-
-  // Toggle rating selection dropdown
-  toggleRatingSelection() {
-    this.showRatingSelection = !this.showRatingSelection;
-  }
-
-  // Toggle individual language selection
-  toggleLanguage(language: string) {
-    const index = this.selectedLanguages.indexOf(language);
-    if (index === -1) {
-      this.selectedLanguages.push(language);
-    } else {
-      this.selectedLanguages.splice(index, 1);
-    }
-    this.languageChange.emit(this.selectedLanguages); // Emit selected languages
-  }
-
-  // Handle rating selection
-  toggleRating(rating: number | string) {
-    this.selectedRatings = this.selectedRatings === rating ? null : rating;
-    this.ratingChange.emit(this.selectedRatings); // Emit selected rating
-  }
+  constructor(private router: Router) {}
 
   // Toggle profile navigation
   toggleProfile() {
-    if (this.isProfileOpen) {
-      // Close the profile by navigating to a different page (e.g., Home)
-      this.isProfileOpen = false;
-      this.router.navigate(['/home']);
-      console.log('Navigating back to home');
-    } else {
-      // Open the profile by navigating to the profile page
-      this.isProfileOpen = true;
-      this.router.navigate(['/profile']);
-      console.log('Navigating to profile page');
-    }
+    this.isProfileOpen = !this.isProfileOpen;
+    this.router.navigate(this.isProfileOpen ? ['/profile'] : ['/home']);
+  }
+
+  // Toggle About Us section
+  toggleAbout() {
+    this.isAboutOpen = !this.isAboutOpen;
+    this.router.navigate(this.isAboutOpen ? ['/about-us'] : ['/home']);
+  }
+
+  // Toggle Help section
+  toggleHelp() {
+    this.isHelpOpen = !this.isHelpOpen;
+    this.router.navigate(this.isHelpOpen ? ['/Help'] : ['/home']);
+  }
+
+  // Toggle Contact section
+  toggleContact() {
+    this.isContactOpen = !this.isContactOpen;
+    this.router.navigate(this.isContactOpen ? ['/contact'] : ['/home']);
   }
 }

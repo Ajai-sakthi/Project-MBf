@@ -9,12 +9,14 @@ import { Movie } from '../models/movie.model'; // Adjust the path based on your 
 export class MovieService {
   wishListedMovies:[]=[]
   public wishListCount = new BehaviorSubject<number>(0);
-  private apiUrl = 'http://localhost:3000/Movie'; // The URL of your JSON server
-  currentMovies = signal<any>({});
-constructor(private http: HttpClient) {
+  private apiUrl = 'http://localhost:3000/Movie';
+  currentMovies = signal<Movie[]>([]);
+  private filtersSubject = new BehaviorSubject<any>({});
+
+  constructor(private http: HttpClient) {
   this.loadWishlist();
 }
-// Fetch all movies from the server
+
   getMovies(): Observable<Movie[]> {
     return this.http.get<Movie[]>(this.apiUrl);
   }
@@ -33,5 +35,14 @@ constructor(private http: HttpClient) {
     this.wishListCount.next(this.wishListedMovies.length);
 
     });
+  }
+  setFilters(filters:any):void{
+    this.filtersSubject.next(filters);
+  }
+  getFilters():Observable<any>{
+    return this.filtersSubject.asObservable();
+  }
+  getCurrentFilters():any{
+    return this.filtersSubject.getValue();
   }
 }
