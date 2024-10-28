@@ -144,31 +144,27 @@
     .notification-icon,
     .wishlist-icon,
     .fa-shopping-cart {
-      margin: 0 10px;
+      padding: 0 15px;
       color: white;
       cursor: pointer;
       position: relative; // Positioning for cart count badge
-
       &:hover {
         color: #fdc602; // Highlight color on hover
       }
     }
-
-    // Add more space specifically between wishlist and cart icons
-    .wishlist-icon {
-      margin-right: 20px; // Increase the space after the wishlist icon
-    }
-
-    .cart-count {
-      position: relative;
-      top: -9px;
-      right: 3px;
+    .cart-count,.wishlistCount{
+      position: absolute;
       background-color: red;
       color: white;
-      border-radius: 50%;
-      padding: 2px 6px;
-      font-size: 0.75rem;
+      border-radius: 50%;  
     }
+    .cart-count,.wishlistCount{
+      top: -9px;
+      right: 2px;
+      font-size: 0.65rem;
+      padding: 2.5px 5px;
+    }
+
   }
   .search-results {
     position: absolute;

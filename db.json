@@ -1,14 +1,15 @@
 {
   "Movie": [
     {
+      "id": "1",
       "src": "../../../assets/images/SOK.jpg",
       "name": "Sillunu Oru Kadhal",
-      "rating": 5,
+      "rating": 4.9,
       "releasedate": "04/04/2008",
       "price": "500",
       "language": "Kollywood",
       "isWishListed": false,
-      "id": "1"
+      "quantity": 1
     },
     {
       "id": "2",
@@ -18,7 +19,8 @@
       "releasedate": "26/02/2010",
       "price": "380",
       "language": "Kollywood",
-      "isWishListed": false
+      "isWishListed": false,
+      "quantity": 1
     },
     {
       "id": "3",
@@ -28,7 +30,8 @@
       "releasedate": "21/07/2017",
       "price": "390",
       "language": "Kollywood",
-      "isWishListed": false
+      "isWishListed": true,
+      "quantity": 1
     },
     {
       "id": "4",
@@ -38,7 +41,8 @@
       "releasedate": "01/05/2008",
       "price": "410",
       "language": "Hollywood",
-      "isWishListed": false
+      "isWishListed": false,
+      "quantity": "1"
     },
     {
       "id": "5",
@@ -48,7 +52,8 @@
       "releasedate": "17/04/2015",
       "price": "430",
       "language": "Kollywood",
-      "isWishListed": false
+      "isWishListed": false,
+      "quantity": "1"
     },
     {
       "id": "6",
@@ -58,7 +63,8 @@
       "releasedate": "10/08/2007",
       "price": "360",
       "language": "Bollywood",
-      "isWishListed": false
+      "isWishListed": false,
+      "quantity": "1"
     },
     {
       "id": "7",
@@ -68,7 +74,8 @@
       "releasedate": "03/05/2002",
       "price": "345",
       "language": "Hollywood",
-      "isWishListed": false
+      "isWishListed": false,
+      "quantity": "1"
     },
     {
       "id": "8",
@@ -78,7 +85,8 @@
       "releasedate": "08/09/2006",
       "price": "365",
       "language": "Kollywood",
-      "isWishListed": false
+      "isWishListed": false,
+      "quantity": "1"
     },
     {
       "id": "9",
@@ -88,7 +96,8 @@
       "releasedate": "21/06/2013",
       "price": "380",
       "language": "Bollywood",
-      "isWishListed": false
+      "isWishListed": false,
+      "quantity": "1"
     },
     {
       "id": "10",
@@ -98,7 +107,8 @@
       "releasedate": "22/02/2013",
       "price": "425",
       "language": "Bollywood",
-      "isWishListed": false
+      "isWishListed": false,
+      "quantity": "1"
     },
     {
       "id": "11",
@@ -108,7 +118,8 @@
       "releasedate": "15/08/2003",
       "price": "415",
       "language": "Hollywood",
-      "isWishListed": false
+      "isWishListed": false,
+      "quantity": "1"
     },
     {
       "id": "12",
@@ -118,7 +129,8 @@
       "releasedate": "24/12/2015",
       "price": "375",
       "language": "Mollywood",
-      "isWishListed": false
+      "isWishListed": false,
+      "quantity": "1"
     },
     {
       "id": "13",
@@ -128,7 +140,8 @@
       "releasedate": "14/01/2011",
       "price": "420",
       "language": "Kollywood",
-      "isWishListed": false
+      "isWishListed": false,
+      "quantity": "1"
     },
     {
       "id": "14",
@@ -138,7 +151,8 @@
       "releasedate": "24/12/2021",
       "price": "310",
       "language": "Bollywood",
-      "isWishListed": false
+      "isWishListed": false,
+      "quantity": "1"
     },
     {
       "id": "15",
@@ -148,7 +162,8 @@
       "releasedate": "07/02/2014",
       "price": "435",
       "language": "Mollywood",
-      "isWishListed": false
+      "isWishListed": false,
+      "quantity": "1"
     },
     {
       "id": "16",
@@ -158,7 +173,8 @@
       "releasedate": "30/09/2016",
       "price": "455",
       "language": "Bollywood",
-      "isWishListed": false
+      "isWishListed": false,
+      "quantity": "1"
     },
     {
       "id": "17",
@@ -168,7 +184,8 @@
       "releasedate": "29/05/2015",
       "price": "370",
       "language": "Mollywood",
-      "isWishListed": false
+      "isWishListed": false,
+      "quantity": "1"
     },
     {
       "id": "18",
@@ -178,7 +195,8 @@
       "releasedate": "12/04/2002",
       "price": "380",
       "language": "Hollywood",
-      "isWishListed": "false"
+      "isWishListed": false,
+      "quantity": "1"
     },
     {
       "id": "19",
@@ -188,7 +206,8 @@
       "releasedate": "23/12/2016",
       "price": "435",
       "language": "Bollywood",
-      "isWishListed": "false"
+      "isWishListed": false,
+      "quantity": "1"
     },
     {
       "id": "20",
@@ -198,7 +217,8 @@
       "releasedate": "30/03/2012",
       "price": "410",
       "language": "Kollywood",
-      "isWishListed": "false"
+      "isWishListed": false,
+      "quantity": "1"
     },
     {
       "id": "21",
@@ -208,7 +228,8 @@
       "releasedate": "11/04/2024",
       "price": "315",
       "language": "Mollywood",
-      "isWishListed": "false"
+      "isWishListed": false,
+      "quantity": "1"
     },
     {
       "id": "22",
@@ -218,7 +239,8 @@
       "releasedate": "12/12/2008",
       "price": "355",
       "language": "Bollywood",
-      "isWishListed": false
+      "isWishListed": false,
+      "quantity": "1"
     },
     {
       "id": "23",
@@ -228,7 +250,8 @@
       "releasedate": "25/11/2011",
       "price": "440",
       "language": "Kollywood",
-      "isWishListed": false
+      "isWishListed": false,
+      "quantity": "1"
     },
     {
       "id": "24",
@@ -238,7 +261,8 @@
       "releasedate": "09/02/2024",
       "price": "425",
       "language": "Mollywood",
-      "isWishListed": "false"
+      "isWishListed": false,
+      "quantity": "1"
     },
     {
       "id": "25",
@@ -248,7 +272,8 @@
       "releasedate": "12/11/2020",
       "price": "460",
       "language": "Kollywood",
-      "isWishListed": false
+      "isWishListed": false,
+      "quantity": "1"
     },
     {
       "id": "26",
@@ -258,7 +283,8 @@
       "releasedate": "30/05/2014",
       "price": "365",
       "language": "Mollywood",
-      "isWishListed": "false"
+      "isWishListed": false,
+      "quantity": "1"
     },
     {
       "id": "27",
@@ -268,7 +294,8 @@
       "releasedate": "29/01/2016",
       "price": "440",
       "language": "Kollywood",
-      "isWishListed": "false"
+      "isWishListed": false,
+      "quantity": "1"
     },
     {
       "id": "28",
@@ -278,7 +305,8 @@
       "releasedate": "15/12/2006",
       "price": "425",
       "language": "Hollywood",
-      "isWishListed": "false"
+      "isWishListed": false,
+      "quantity": "1"
     },
     {
       "id": "29",
@@ -288,7 +316,8 @@
       "releasedate": "05/08/2022",
       "price": "435",
       "language": "Kollywood",
-      "isWishListed": "false"
+      "isWishListed": false,
+      "quantity": "1"
     },
     {
       "id": "30",
@@ -298,7 +327,8 @@
       "releasedate": "06/09/2019",
       "price": "455",
       "language": "Bollywood",
-      "isWishListed": "false"
+      "isWishListed": false,
+      "quantity": "1"
     },
     {
       "id": "31",
@@ -308,7 +338,8 @@
       "releasedate": "21/01/2022",
       "price": "410",
       "language": "Mollywood",
-      "isWishListed": "false"
+      "isWishListed": false,
+      "quantity": "1"
     },
     {
       "id": "32",
@@ -318,7 +349,8 @@
       "releasedate": "26/04/2013",
       "price": "430",
       "language": "Bollywood",
-      "isWishListed": "false"
+      "isWishListed": false,
+      "quantity": "1"
     },
     {
       "id": "33",
@@ -328,7 +360,8 @@
       "releasedate": "15/10/2004",
       "price": "445",
       "language": "Kollywood",
-      "isWishListed": "false"
+      "isWishListed": false,
+      "quantity": "1"
     },
     {
       "id": "34",
@@ -338,7 +371,8 @@
       "releasedate": "07/02/2019",
       "price": "410",
       "language": "Mollywood",
-      "isWishListed": "false"
+      "isWishListed": false,
+      "quantity": "1"
     },
     {
       "id": "35",
@@ -348,7 +382,8 @@
       "releasedate": "07/02/2020",
       "price": "400",
       "language": "Mollywood",
-      "isWishListed": "false"
+      "isWishListed": false,
+      "quantity": "1"
     },
     {
       "id": "36",
@@ -358,7 +393,8 @@
       "releasedate": "12/08/2021",
       "price": "430",
       "language": "Bollywood",
-      "isWishListed": "false"
+      "isWishListed": false,
+      "quantity": "1"
     },
     {
       "id": "37",
@@ -368,7 +404,8 @@
       "releasedate": "07/09/2018",
       "price": "330",
       "language": "Mollywood",
-      "isWishListed": "false"
+      "isWishListed": false,
+      "quantity": "1"
     }
   ],
   "users": [
@@ -382,8 +419,6 @@
     {
       "name": "swetha",
       "email": "swethamurugan2222@gmail.com",
-      "phone": "2333346779",
-      "address": "23",
       "password": "1234",
       "id": "4a8e",
       "lastLoggedIn": "2024-10-23T06:14:18.115Z",
@@ -399,5 +434,6 @@
       "email": "arunajith056@gmail.com",
       "password": "123456"
     }
-  ]
+  ],
+  "Cart": []
 }

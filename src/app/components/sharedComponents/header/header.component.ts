@@ -1,11 +1,11 @@
-import { Component, EventEmitter, Output, OnInit, inject } from '@angular/core';
+import { Component, EventEmitter, Output, OnInit, inject, signal, computed } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
 import { Router, NavigationEnd } from '@angular/router';
 import { CartService } from '../../../services/cart.service';
-import { debounceTime, distinctUntilChanged, filter } from 'rxjs/operators';
+import { count, debounceTime, distinctUntilChanged, filter } from 'rxjs/operators';
 import { FormControl } from '@angular/forms';
 import { MovieService } from '../../../services/movie.service';
-
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -13,15 +13,19 @@ import { MovieService } from '../../../services/movie.service';
 })
 export class HeaderComponent implements OnInit {
   private movieService = inject(MovieService);
+  private cartService = inject(CartService);
+
+  CartCount = computed(()=> this.cartService.Count());
   searchQuery = new FormControl('');
   isProfileMenuOpen: boolean = false;
   isFilterMenuOpen: boolean = false;
   showSearchAndFilter: boolean = false;
-
-  // New properties
+  movies:[]=[]; 
+  wishListedMovies:any[]=[];
+  wishListCount:number=0;// New properties
   showSearchResults: boolean = false;
   filteredMovies: any[] = []; // Replace with your movie type
-  cartCount: number = 0;
+//  cartCount: number = 0;
 
   // Filter properties
   selectedRating: string = ''; // Keep as string for options
@@ -41,15 +45,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    public router: Router,
-    private cartService: CartService
-  ) {
-    // Subscribe to cart count
-    this.cartService.cartCountSubject.subscribe(count => {
-      this.cartCount = count; // Update cart count from the service
-    });
-  }
-
+    public router: Router
+  ) {}
   ngOnInit() {
     // Subscribe to router events to toggle search and filter visibility based on route
     this.router.events
@@ -58,8 +55,17 @@ export class HeaderComponent implements OnInit {
         // Show search and filter only on the /movies page
         this.showSearchAndFilter = event.url === '/movies';
       });
+      this.loadcart();
+      this.loadWishlist();
   }
-
+  loadcart(){
+    this.cartService.getCart().subscribe();
+  }
+  loadWishlist(){
+    this.movieService.getWishlistCount().subscribe((count) => {
+      this.wishListCount=(count);
+    });
+  }
   toggleSidebar(): void {
     this.sidebarToggle.emit(); // Emit event to parent to toggle sidebar
   }

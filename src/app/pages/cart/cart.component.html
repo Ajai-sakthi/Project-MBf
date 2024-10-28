@@ -1,63 +1,47 @@
-<div class="cart-container">
-  <h1 class="cart-title">Shopping Cart</h1>
-
-  <div *ngIf="cartItems.length > 0; else emptyCart">
-    <div *ngFor="let item of cartItems" class="cart-item">
-      <div class="cart-item-content">
-        <!-- Image on the left -->
-        <div class="cart-item-image">
-          <img [src]="item.imageUrl" alt="{{ item.name }}">
-        </div>
-
-        <!-- Item details on the right -->
-        <div class="cart-item-details">
-          <h2>{{ item.name }}</h2>
-
-          <div class="cart-item-rating">
-            <span *ngFor="let star of getStars(item.rating)">
-              <ng-container *ngIf="star === 1">★</ng-container>
-              <ng-container *ngIf="star === 0.5">☆</ng-container>
-            </span>
-          </div>
-
-          <!-- Quantity controls and other actions -->
-          <div class="cart-actions">
-            <div class="quantity-control">
-              <button *ngIf="item.quantity > 1" (click)="updateQuantity(item, false)" class="quantity-btn">-</button>
-              <button *ngIf="item.quantity === 1" (click)="removeFromCart(item)" class="quantity-btn trash-btn">
-               <!-- <i class="fa-regular fa-trash-can"></i> -->
-               <i class="fa-solid fa-trash"></i>
-              </button>
-              <input type="number" [value]="item.quantity" readonly class="quantity-input" />
-              <button (click)="updateQuantity(item, true)" class="quantity-btn">+</button>
+@if(cart$|async; as  cart){
+    <div class="cart-container">
+      <h1 class="cart-title">Shopping Cart</h1>
+      <div *ngIf="cart.length > 0; else emptyCart"> 
+          <div class="cart-item" *ngFor="let item of cart">
+            <div class="cart-item-content">
+              <div class="cart-item-image">
+                <img [src]="item.src" alt="{{ item.name }}" />
+              </div>
+              <!-- Item details on the right  -->
+               <div class="cart-item-details">
+                <h2>{{ item.name }}</h2>
+              <div class="cart-item-rating">
+                <i class="fas fa-star" *ngFor="let star of getStars(item.rating)"></i>
+                <i class="far fa-star" *ngFor="let star of getStars(5 - floorval(item.rating))"></i>
+              </div>
+              <div>
+                <div class="cart-actions">
+                  <div class="quantity-control">
+                    <button *ngIf="item.quantity > 1" class="quantity-btn" (click)="updateQuantity(item,false)">-</button>
+                    <button *ngIf="item.quantity == 1" class="quantity-btn trash-btn" (click)="removeFromCart(item)"><i class="fa-solid fa-trash"></i></button>
+                    <input type="number" readonly class="quantity-input" placeholder="{{ item.quantity }}" />
+                    <button class="quantity-btn" (click)="updateQuantity(item,true)">+</button>
+                  </div>
+                 </div>
+                <p class="cart-item-price">₹{{ item.price }}</p>
+              </div>   
             </div>
-            
-            
-          </div>
-
-          <!-- Price at the corner -->
-          <div class="cart-item-price">
-            <p>₹{{ item.price }}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="cart-summary">
-      <p class="subtotal">Subtotal ({{ totalItems }} items): ₹{{ totalPrice | number: '1.0-0' }}</p>
-    </div>
-    
-    <div class="checkout-wrapper">  <!--New wrapper for checkout button -->
-      <button class="checkout-btn" [disabled]="totalItems === 0" (click)="proceedToCheckout()">
-        Proceed to Checkout
-      </button>
-    </div>
-    
+            </div>
+            </div>
+            <div class="cart-summary">
+              <p class="subtotal">Subtotal ({{ CartCount() }} items): ₹{{ subTotal() | number: '1.0-0' }}</p>
+            </div>
+            <div class="checkout-wrapper">
+              <button class="checkout-btn" [disabled]="CartCount() === 0" (click)="proceedToCheckout()">
+                Proceed to Checkout
+              </button>
+            </div>
+            </div>
+            </div>
+  }  
+<ng-template #emptyCart>
+  <div class="empty-cart">
+    <p>Your cart is empty.</p>
+    <a routerLink="/movies" class="back-link">Continue Shopping</a>
   </div>
-
-  <ng-template #emptyCart>
-    <div class="empty-cart">
-      <p>Your cart is empty.</p>
-      <a routerLink="/movies" class="back-link">Continue Shopping</a>
-    </div>
-  </ng-template>
-</div>
+</ng-template>

@@ -1,8 +1,7 @@
-import { Component, ElementRef, OnInit, ViewChild, computed, AfterViewInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, AfterViewInit, signal, Signal, computed, inject } from '@angular/core';
 import { MovieService } from '../../services/movie.service';
 import { Movie } from '../../models/movie.model'; // Ensure correct import path
 import { Router } from '@angular/router';
-import { CartItem } from '../../models/cart-item.model'; // Import the CartItem interface
 import { CartService } from '../../services/cart.service'; // Import CartService
 import { UtilityService } from '../../services/utility.service';
 import { ChangeDetectorRef } from '@angular/core';
@@ -10,7 +9,7 @@ import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-movie-list',
-  templateUrl: './movie-list.component.html',
+  templateUrl:'./movie-list.component.html',
   styleUrls: ['./movie-list.component.scss'],
 })
 export class MovieListComponent implements OnInit, AfterViewInit {
@@ -19,6 +18,7 @@ export class MovieListComponent implements OnInit, AfterViewInit {
   filteredMovies: Movie[] = [];
   isFilterVisible: boolean = false;
   searchQuery: string = ''; // Search query for filtering
+  wishListedMovies:[]=[];
 
   @ViewChild('container', { static: false }) container!: ElementRef;
 
@@ -32,8 +32,7 @@ export class MovieListComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.loadMovies();
-
-    // Subscribe to changes in filter options and apply them to filteredMovies
+// Subscribe to changes in filter options and apply them to filteredMovies
     this.movieService.getFilters().subscribe(filters => {
       if (filters) {
         this.applyFilters(filters);
@@ -60,25 +59,12 @@ export class MovieListComponent implements OnInit, AfterViewInit {
   getStars(rating: number): number[] {
     return this.utilityService.getStars(rating);
   }
+addToCart(movie:Movie){
+this.cartService.updateCart(movie,true).subscribe();}
 
-  addToCart(movie: Movie): void {
-    const cartItem: CartItem = {
-      id: movie.id,
-      name: movie.name,
-      price: movie.price.toString().replace(/,/g, ''), // Ensure price is a clean string
-      quantity: 1, // Default quantity
-      rating: movie.rating,
-      imageUrl: movie.src,
-      src: movie.src, // Include the image source
-      movie: movie // Include the movie object
-    };
-    this.cartService.addToCart(cartItem); // Add item to cart
-    //alert(${movie.name} has been added to your cart!);
-  }
-
-  updateWishlist(id: number, prod: Movie): void {
-    prod.isWishListed = !prod.isWishListed; // Toggle wishlist status
-    const payload = {
+updateWishlist(id:number,prod :Movie){
+    prod.isWishListed=!prod.isWishListed;
+      let payload={
       ...prod,
       isWishListed: prod.isWishListed
     };
