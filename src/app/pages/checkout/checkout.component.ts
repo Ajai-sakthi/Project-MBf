@@ -38,7 +38,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.cartItems = this.cartService.getCartItems();
+    // this.cartItems = this.cartService.getCartItems();
     this.totalPrice = this.cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
 
     // Calculate shipping cost based on total price
@@ -95,7 +95,7 @@ export class CheckoutComponent implements OnInit {
         );
       }
 
-      this.cartService.clearCart(); // Clear the cart after placing the order
+      // this.cartService.clearCart(); // Clear the cart after placing the order
       this.router.navigate(['/payment']); // Navigate to confirmation page
     } else {
       console.error('Form is invalid. Please fill in all required fields.');

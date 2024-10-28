@@ -21,11 +21,11 @@ h1 {
   min-height: 85vh;
   padding-top: 50px;
 }
-
 .productCard {
   display: inline-block;
   color: white;
   font-size: 20px;
+  width: 290px;
   font-weight: 900;
   position: relative;
   font-family: "Lato", sans-serif;
@@ -38,7 +38,7 @@ h1 {
 }
 
 .productCard:hover {
-  transform: translateY(-9px); /* Slightly lift the card on hover */
+  transform: translateY(-15px); /* Slightly lift the card on hover */
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4); /* Enhanced shadow on hover */
 }
 
@@ -98,4 +98,20 @@ h1 {
   display: flex;
   justify-content: space-between; /* Space buttons evenly */
   width: 100%; /* Full width for btn-container */
+}
+.productName {
+  text-align: center; /* Center the movie name */
+  width: 100%;
+  font-weight: 900;
+  margin-bottom: 10px;
+  white-space: nowrap;
+  overflow-x: scroll; /* Allow horizontal scrolling */
+  overflow-y: hidden; /* No vertical scrolling */
+  scrollbar-width: none; /* Hide the scrollbar in Firefox */
+  -ms-overflow-style: none; /* Hide scrollbar in Internet Explorer and Edge */
+}
+
+/* Hide the scrollbar in WebKit browsers (Chrome, Safari, etc.) */
+.productName::-webkit-scrollbar {
+  display: none;
 }

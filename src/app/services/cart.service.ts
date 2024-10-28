@@ -1,75 +1,35 @@
 // src/app/services/cart.service.ts
-import { Injectable } from '@angular/core';
-import { CartItem } from '../models/cart-item.model'; // Adjust path as needed
-import { BehaviorSubject } from 'rxjs';
+import { Injectable, signal } from '@angular/core';
+// import { CartItem } from '../models/cart-item.model'; // Adjust path as needed
+import { count, Observable, tap } from 'rxjs';
+import { Movie } from '../models/movie.model';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-  private cartItems: CartItem[] = []; // Array to hold cart items
-  public cartCountSubject = new BehaviorSubject<number>(0); // Observable to hold cart count
-
-  constructor() {
-    this.loadCartItems(); // Load items from local storage on service initialization
-  }
-
-  // Load cart items from local storage
-  public loadCartItems(): void {
-    const items = JSON.parse(localStorage.getItem('cart') || '[]');
-    this.cartItems = items;
-    this.cartCountSubject.next(this.cartItems.length); // Update the cart count
-  }
-
-  // Retrieve cart items
-  getCartItems(): CartItem[] {
-    return this.cartItems;
-  }
-
-  // Update item quantity in the cart
-  updateItemQuantity(item: CartItem): void {
-    const cartItem = this.cartItems.find(i => i.name === item.name);
-    if (cartItem) {
-      cartItem.quantity = item.quantity; // Update quantity
-      this.updateLocalStorage(); // Ensure local storage is updated
-    }
-  }
-
-  // Remove item from the cart
-  removeItem(item: CartItem): void {
-    const index = this.cartItems.indexOf(item);
-    if (index > -1) {
-      this.cartItems.splice(index, 1); // Remove item from cart
-      this.updateLocalStorage(); // Ensure local storage is updated
-    }
-  }
-
-  // Clear the cart
-  clearCart(): void {
-    this.cartItems = []; // Reset the cart items
-    this.updateLocalStorage(); // Ensure local storage is cleared
-  }
-
-  // Add item to the cart
-  addToCart(item: CartItem): void {
-    // Check if the item already exists in the cart
-    const existingItem = this.cartItems.find(i => i.name === item.name);
-    if (existingItem) {
-      existingItem.quantity += item.quantity; // Increase quantity if it exists
-    } else {
-      this.cartItems.push(item); // Add new item if it doesn't exist
-    }
-    this.updateLocalStorage(); // Update local storage after adding
-  }
-
-  // Update local storage and emit new cart count
-  private updateLocalStorage(): void {
-    localStorage.setItem('cart', JSON.stringify(this.cartItems));
-    this.cartCountSubject.next(this.cartItems.length); // Update the count
-  }
-
-  // Get the current cart count as an observable
-  getCartCount(): BehaviorSubject<number> {
-    return this.cartCountSubject;
+Cart:number[]=[];
+Count=signal<number>(0);
+private apiUrl ='http://localhost:3000/Cart'
+constructor(private http: HttpClient) {}
+getCart():Observable<any>{
+  return this.http.get<any>(this.apiUrl).pipe(tap((res:any)=>{this.updateCartCount(res.length)}));
+}
+updateCart(movie:Movie,update:boolean): Observable<Movie>{
+const url=`${this.apiUrl}`;
+if(update===true)
+  return this.http.post<any>(url,movie).pipe(tap(()=>{this.updateCartCount(this.Count()+1)}));
+else{
+  const apiurl=`${this.apiUrl}/${movie.id}`;
+  return this.http.delete<any>(apiurl).pipe(tap(()=>{this.updateCartCount(this.Count()-1)}));
+}
+}
+updateCartCount(item:number){
+  this.Count.set(item);}
+  UpdateQuantity(data:Movie):Observable<any>{
+    const url=`${this.apiUrl}/${data.id}`
+return this.http.put<any>(url,data)
   }
 }
+

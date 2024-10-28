@@ -64,7 +64,7 @@ export class PaymentComponent implements AfterViewInit {
     }
 
     // Clear the cart after successful payment
-    this.cartService.clearCart();
+    // this.cartService.clearCart();
 
     // Redirect to the home page
     this.router.navigate(['/']);
